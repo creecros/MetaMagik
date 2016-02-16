@@ -8,7 +8,11 @@ class Plugin extends Base
 {
     public function initialize()
     {
-        //$this->template->hook->attach('template:layout:head', 'theme:layout/head');
+        //Project
+        $this->template->hook->attach('template:project:sidebar', 'metadata:dashboard/sidebar');
+        //Task
+        
+        //User
     }
     
     public function getPluginName()
