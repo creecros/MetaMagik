@@ -16,19 +16,36 @@ class Metadata extends Base
      */
     public function project()
     {
-        //$project = $this->getProject();
-        $this->response->html($this->helper->layout->project('metadata:project/metadata', array('title' => t('Metadata')), 'project/sidebar'));
+        $project = $this->getProject();
+        
+        $metadata = $this->projectMetadata->getAll($project['id']);
+        
+        $this->response->html($this->helper->layout->project('metadata:metadata/metadata', array('title' => t('Metadata'), 
+                                                                                                 'project' => $project,
+                                                                                                 'metadata' => $metadata )));
     }
     
     public function task()
     {
-        //$project = $this->getProject();
-        $this->response->html($this->helper->layout->project('metadata:task/metadata', array('title' => t('Metadata')), 'task/sidebar'));
+        $project = $this->getProject();
+        $task = $this->getTask();
+        
+        $metadata = $this->taskMetadata->getAll($task['id']);
+        
+        $this->response->html($this->helper->layout->task('metadata:metadata/metadata', array('title' => t('Metadata'), 
+                                                                                              'task' => $task,  
+                                                                                              'project' => $project,
+                                                                                              'metadata' => $metadata)));
     }
     
     public function user()
     {
-        //$project = $this->getProject();
-        $this->response->html($this->helper->layout->project('metadata:user/metadata', array('title' => t('Metadata')), 'user/sidebar'));
+        $user = $this->getUser();
+        
+        $metadata = $this->userMetadata->getAll($user['id']);
+        
+        $this->response->html($this->helper->layout->user('metadata:metadata/metadata', array('title' => t('Metadata'), 
+                                                                                              'user' => $user,
+                                                                                              'metadata' => $metadata)));
     }
 }
