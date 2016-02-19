@@ -89,4 +89,42 @@ class Metadata extends Base
         
         
     }
+    
+    public function confirm()
+    {
+        $type = $this->request->getStringParam('type');
+        $id = $this->request->getStringParam('id');
+        $key = $this->request->getStringParam('key');
+
+        $this->response->html($this->template->render('metadata:metadata/remove', array(
+            'id' => $id,
+            'type' => $type,
+            'key' => $key,
+        )));
+    }
+    
+    public function remove()
+    {
+        
+        $type = $this->request->getStringParam('type');
+        $id = $this->request->getStringParam('id');
+        $key = $this->request->getStringParam('key');
+        
+        switch ($type){
+            case 'project':
+                $this->projectMetadata->remove($id, $key);
+                $this->response->redirect($this->project($id));
+                break;
+            case 'task':
+                $this->taskMetadata->remove($id, $key);
+                $this->response->redirect($this->task($id));
+                break;
+            case 'user':
+                $this->userMetadata->remove($id, $key);
+                $this->response->redirect($this->user($id));
+                break;
+        }
+        
+        
+    }
 }

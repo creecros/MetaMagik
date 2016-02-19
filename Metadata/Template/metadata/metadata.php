@@ -16,16 +16,13 @@
     <tr>
         <td><?= $key ?></td>
         <td><?= $value ?></td>
-        <!--<td>
+        <td>
             <ul>
-                    <li>
-                        <?= $this->url->link(t('Edit'), 'metadata', 'edit', array('plugin' => 'metadata'), false, 'popover') ?>
-                    </li>
-                    <li>
-                        <?= $this->url->link(t('Remove'), 'metadata', 'confirm', array('plugin' => 'metadata' ), false, 'popover') ?>
-                    </li>
-                </ul>
-        </td>-->
+                <li>
+                    <?= $this->url->link(t('Remove'), 'metadata', 'confirm', array('plugin' => 'metadata','type' => $type, 'id' => $id, 'key' => $key ), false, 'popover') ?>
+                </li>
+            </ul>
+        </td>
     </tr>
     <?php endforeach ?>
     </table>
