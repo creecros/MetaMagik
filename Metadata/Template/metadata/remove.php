@@ -11,5 +11,7 @@
 
     <div class="form-actions">
         <?= $this->url->link(t('Yes'), 'metadata', 'remove', array('plugin' => 'metadata','id' => $id, 'type' => $type, 'key' => $key), true, 'btn btn-red') ?>
+        <?= t('or') ?>
+        <?= $this->url->link(t('cancel'), 'metadata', $type, array('plugin' => 'metadata', 'id' => $id)) ?>
     </div>
 </div>
