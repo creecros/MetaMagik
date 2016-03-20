@@ -27,7 +27,7 @@ class Plugin extends Base
 
     public function getPluginName()
     {
-        return 'Overwrite Translation';
+        return 'Metadata';
     }
     public function getPluginDescription()
     {
@@ -40,5 +40,9 @@ class Plugin extends Base
     public function getPluginVersion()
     {
         return '1.0.0';
+    }
+    public function getPluginHomepage()
+    {
+        return 'https://github.com/BlueTeck/kanboard_plugin_metadata';
     }
 }

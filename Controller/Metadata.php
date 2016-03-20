@@ -9,11 +9,6 @@ use Kanboard\Controller\Base;
  */
 class Metadata extends Base
 {
-    /**
-     * index page
-     *
-     * @access public
-     */
     public function project()
     {
         $project = $this->getProject();
@@ -55,27 +50,17 @@ class Metadata extends Base
         
         $this->userMetadata->save($user['id'], [$values['key'] => $values['value']]);
         
-        $metadata = $this->userMetadata->getAll($user['id']);
-        
-        $this->response->html($this->helper->layout->user('metadata:user/metadata', array('title' => t('Metadata'), 
-                                                                                              'user' => $user,
-                                                                                              'metadata' => $metadata)));
+        return $this->response->redirect($this->helper->url->to('metadata', 'user', array('plugin' => 'metadata', 'user_id' => $user['id'])), true); 
     }
     
     public function addTask()
     {
-        $project = $this->getProject();
         $task = $this->getTask();
         $values = $this->request->getValues();
         
         $this->taskMetadata->save($task['id'], [$values['key'] => $values['value']]);
         
-        $metadata = $this->taskMetadata->getAll($task['id']);
-        
-        $this->response->html($this->helper->layout->task('metadata:task/metadata', array('title' => t('Metadata'), 
-                                                                                              'task' => $task,  
-                                                                                              'project' => $project,
-                                                                                              'metadata' => $metadata)));
+        return $this->response->redirect($this->helper->url->to('metadata', 'task', array('plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id'])), true);                                                                                              
     }
     
     public function addProject()
@@ -85,11 +70,7 @@ class Metadata extends Base
         
         $this->projectMetadata->save($project['id'], [$values['key'] => $values['value']]);
         
-        $metadata = $this->projectMetadata->getAll($project['id']);
-        
-        $this->response->html($this->helper->layout->project('metadata:project/metadata', array('title' => t('Metadata'), 
-                                                                                              'project' => $project,
-                                                                                              'metadata' => $metadata)));
+        return $this->response->redirect($this->helper->url->to('metadata', 'project', array('plugin' => 'metadata', 'project_id' => $project['id'])), true);                                                                                              
     }
     
     public function confirmTask()
@@ -131,48 +112,31 @@ class Metadata extends Base
     
     public function removeTask()
     {
-        
-        $project = $this->getProject();
         $task = $this->getTask();
         $key = $this->request->getStringParam('key');
            
         $this->taskMetadata->remove($task['id'], $key);
         
-        $metadata = $this->taskMetadata->getAll($task['id']);
-        
-        $this->response->html($this->helper->layout->task('metadata:task/metadata', array('title' => t('Metadata'), 
-                                                                                              'task' => $task,  
-                                                                                              'project' => $project,
-                                                                                              'metadata' => $metadata)));
+        return $this->response->redirect($this->helper->url->to('metadata', 'task', array('plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id'])), true);                                                                                              
     }
     
     public function removeProject()
     {
-        
         $project = $this->getProject();
         $key = $this->request->getStringParam('key');
            
         $this->projectMetadata->remove($project['id'], $key);
         
-        $metadata = $this->projectMetadata->getAll($project['id']);
-        
-        $this->response->html($this->helper->layout->project('metadata:project/metadata', array('title' => t('Metadata'), 
-                                                                                                 'project' => $project,
-                                                                                                 'metadata' => $metadata )));
+        return $this->response->redirect($this->helper->url->to('metadata', 'project', array('plugin' => 'metadata', 'project_id' => $project['id'])), true);   
     }
     
     public function removeUser()
     {
-        
         $user = $this->getUser();
         $key = $this->request->getStringParam('key');
            
         $this->userMetadata->remove($user['id'], $key);
         
-        $metadata = $this->userMetadata->getAll($user['id']);
-        
-        $this->response->html($this->helper->layout->user('metadata:user/metadata', array('title' => t('Metadata'), 
-                                                                                              'user' => $user,
-                                                                                              'metadata' => $metadata)));
+        return $this->response->redirect($this->helper->url->to('metadata', 'user', array('plugin' => 'metadata', 'user_id' => $user['id'])), true); 
     }
 }
