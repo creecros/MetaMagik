@@ -22,7 +22,19 @@ class Plugin extends Base
         $this->on('app.bootstrap', function($container) {
             Translator::load($container['config']->getCurrentLanguage(), __DIR__.'/Locale');
         });
+
+        // Add link to new plugin settings
+        $this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
         
+    }
+
+    public function getClasses()
+    {
+        return array(
+            'Plugin\Metadata\Model' => array(
+                'MetadataType',
+            )
+        );
     }
 
     public function getPluginName()
