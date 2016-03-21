@@ -43,7 +43,7 @@ class Metadata extends Base
                                                                                               'metadata' => $metadata)));
     }
     
-    public function addUser()
+    public function saveUser()
     {
         $user = $this->getUser();
         $values = $this->request->getValues();
@@ -53,7 +53,7 @@ class Metadata extends Base
         return $this->response->redirect($this->helper->url->to('metadata', 'user', array('plugin' => 'metadata', 'user_id' => $user['id'])), true); 
     }
     
-    public function addTask()
+    public function saveTask()
     {
         $task = $this->getTask();
         $values = $this->request->getValues();
@@ -63,7 +63,7 @@ class Metadata extends Base
         return $this->response->redirect($this->helper->url->to('metadata', 'task', array('plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id'])), true);                                                                                              
     }
     
-    public function addProject()
+    public function saveProject()
     {
         $project = $this->getProject();
         $values = $this->request->getValues();
@@ -138,5 +138,46 @@ class Metadata extends Base
         $this->userMetadata->remove($user['id'], $key);
         
         return $this->response->redirect($this->helper->url->to('metadata', 'user', array('plugin' => 'metadata', 'user_id' => $user['id'])), true); 
+    }
+    
+    public function editProject()
+    {
+        $project = $this->getProject();
+        $key = $this->request->getStringParam('key');
+        $metadata = $this->projectMetadata->get($project['id'], $key);
+
+        $this->response->html($this->template->render('metadata:project/form', array(
+            'project' => $project,
+            'form_headline' => t('Edit Metadata'),
+            'values' => array('key'=>$key, 'value'=> $metadata),
+        )));
+    }
+    
+    public function editUser()
+    {
+        $user = $this->getUser();
+        $key = $this->request->getStringParam('key');
+        $metadata = $this->userMetadata->get($user['id'], $key);
+
+        $this->response->html($this->template->render('metadata:user/form', array(
+            'user' => $user,
+            'form_headline' => t('Edit Metadata'),
+            'values' => array('key'=>$key, 'value'=> $metadata),
+        )));
+    }
+    
+    public function editTask()
+    {
+        $project = $this->getProject();
+        $task = $this->getTask();
+        $key = $this->request->getStringParam('key');
+        $metadata = $this->taskMetadata->get($task['id'], $key);
+
+        $this->response->html($this->template->render('metadata:task/form', array(
+            'project' => $project,
+            'task' => $task,
+            'form_headline' => t('Edit Metadata'),
+            'values' => array('key'=>$key, 'value'=> $metadata),
+        )));
     }
 }

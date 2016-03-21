@@ -21,6 +21,9 @@
                 <li>
                     <?= $this->url->link(t('Remove'), 'metadata', 'confirmProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
                 </li>
+                <li>
+                    <?= $this->url->link(t('Edit'), 'metadata', 'editProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                </li>
             </ul>
         </td>
     </tr>
@@ -29,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:project/add', array('project' => $project)) ?>
+<?= $this->render('metadata:project/form', array('project' => $project, 'form_headline' => t('Add Metadata'))) ?>

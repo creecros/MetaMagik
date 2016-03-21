@@ -21,6 +21,9 @@
                 <li>
                     <?= $this->url->link(t('Remove'), 'metadata', 'confirmTask', array('plugin' => 'metadata','task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
                 </li>
+                <li>
+                    <?= $this->url->link(t('Edit'), 'metadata', 'editTask', array('plugin' => 'metadata','task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                </li>
             </ul>
         </td>
     </tr>
@@ -29,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:task/add', array('task' => $task, 'project' => $project)) ?>
+<?= $this->render('metadata:task/form', array('task' => $task, 'project' => $project, 'form_headline' => t('Add Metadata'))) ?>

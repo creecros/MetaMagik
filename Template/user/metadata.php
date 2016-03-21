@@ -21,6 +21,9 @@
                 <li>
                     <?= $this->url->link(t('Remove'), 'metadata', 'confirmUser', array('plugin' => 'metadata','user_id' => $user['id'], 'key' => $key ), false, 'popover') ?>
                 </li>
+                <li>
+                    <?= $this->url->link(t('Edit'), 'metadata', 'editUser', array('plugin' => 'metadata','user_id' => $user['id'], 'key' => $key ), false, 'popover') ?>
+                </li>
             </ul>
         </td>
     </tr>
@@ -29,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:user/add', array('user' => $user)) ?>
+<?= $this->render('metadata:user/form', array('user' => $user, 'form_headline' => t('Add Metadata'))) ?>
