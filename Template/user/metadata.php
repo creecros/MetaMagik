@@ -32,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:user/form', array('user' => $user, 'form_headline' => t('Add Metadata'))) ?>
+<?= $this->render('metadata:user/form', array('user' => $user, 'form_headline' => t('Add Metadata'), 'values' => array())) ?>
