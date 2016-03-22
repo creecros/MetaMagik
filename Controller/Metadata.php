@@ -48,7 +48,7 @@ class Metadata extends Base
         $user = $this->getUser();
         $values = $this->request->getValues();
         
-        $this->userMetadata->save($user['id'], [$values['key'] => $values['value']]);
+        $this->userMetadata->save($user['id'], array($values['key'] => $values['value']));
         
         return $this->response->redirect($this->helper->url->to('metadata', 'user', array('plugin' => 'metadata', 'user_id' => $user['id'])), true); 
     }
@@ -58,7 +58,7 @@ class Metadata extends Base
         $task = $this->getTask();
         $values = $this->request->getValues();
         
-        $this->taskMetadata->save($task['id'], [$values['key'] => $values['value']]);
+        $this->taskMetadata->save($task['id'], array($values['key'] => $values['value']));
         
         return $this->response->redirect($this->helper->url->to('metadata', 'task', array('plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id'])), true);                                                                                              
     }
@@ -68,7 +68,7 @@ class Metadata extends Base
         $project = $this->getProject();
         $values = $this->request->getValues();
         
-        $this->projectMetadata->save($project['id'], [$values['key'] => $values['value']]);
+        $this->projectMetadata->save($project['id'], array($values['key'] => $values['value']));
         
         return $this->response->redirect($this->helper->url->to('metadata', 'project', array('plugin' => 'metadata', 'project_id' => $project['id'])), true);                                                                                              
     }
