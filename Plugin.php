@@ -47,7 +47,7 @@ class Plugin extends Base
     }
     public function getPluginAuthor()
     {
-        return 'BlueTeck';
+        return 'BlueTeck + Daniele Lenares';
     }
     public function getPluginVersion()
     {
