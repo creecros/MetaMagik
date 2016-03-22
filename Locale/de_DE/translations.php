@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 return array(
     'Metadata' => 'Metadaten',
@@ -7,4 +7,5 @@ return array(
     'No metadata' => 'keine Metadaten vorhanden',
     'Remove Metadata' => 'Metadaten löschen',
     'Do you really want to remove this metadata?' => 'Wollen Sie diese Metadaten wirklich löschen?',
+    'Add Metadata' => 'Metadaten hinzufügen',
 );
