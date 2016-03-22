@@ -11,11 +11,11 @@ function version_1(PDO $pdo)
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS metadata_types (
           id INTEGER PRIMARY KEY,
-          human_name TEXT NOT NULL,
-          machine_name TEXT NOT NULL,
-          data_type TEXT NOT NULL,
+          human_name VARCHAR(255) NOT NULL,
+          machine_name VARCHAR(255) NOT NULL,
+          data_type VARCHAR(50) NOT NULL,
           is_required BOOLEAN DEFAULT 0,
-          attached_to TEXT NOT NULL,
+          attached_to VARCHAR(50) NOT NULL,
           UNIQUE(machine_name, attached_to)
         )
     ");
