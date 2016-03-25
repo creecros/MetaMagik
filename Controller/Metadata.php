@@ -28,7 +28,22 @@ class Metadata extends Base
         $metadata = $this->taskMetadata->getAll($task['id']);
         
         $this->response->html($this->helper->layout->task('metadata:task/metadata', array('title' => t('Metadata'), 
-                                                                                              'task' => $task,  
+                                                                                              'task' => $task,
+                                                                                              'add_form' => true,
+                                                                                              'project' => $project,
+                                                                                              'metadata' => $metadata)));
+    }
+    
+    public function task_footer()
+    {
+        $project = $this->getProject();
+        $task = $this->getTask();
+        
+        $metadata = $this->taskMetadata->getAll($task['id']);
+        
+        $this->response->html($this->helper->layout->task('metadata:task/metadata', array('title' => t('Metadata'), 
+                                                                                              'task' => $task,
+                                                                                              'add_form' => false,
                                                                                               'project' => $project,
                                                                                               'metadata' => $metadata)));
     }
