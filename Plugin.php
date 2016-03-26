@@ -14,7 +14,7 @@ class Plugin extends Base
 
         //Task
         $this->template->hook->attach('template:task:sidebar', 'metadata:task/sidebar');
-        $this->template->hook->attach('template:board:task:footer_icon', 'metadata:task/footer_icon');
+        $this->template->hook->attach('template:board:task:icons', 'metadata:task/footer_icon');
 
         //User
         $this->template->hook->attach('template:user:sidebar:information', 'metadata:user/sidebar');
