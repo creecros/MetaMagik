@@ -25,7 +25,7 @@ class Plugin extends Base
         });
 
         // Add link to new plugin settings
-        $this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
+        //$this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
         
     }
 
@@ -52,7 +52,7 @@ class Plugin extends Base
     }
     public function getPluginVersion()
     {
-        return '1.0.1';
+        return '1.0.2';
     }
     public function getPluginHomepage()
     {
