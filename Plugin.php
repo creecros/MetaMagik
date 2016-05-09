@@ -21,7 +21,7 @@ class Plugin extends Base
 
         // Translation
         $this->on('app.bootstrap', function($container) {
-            Translator::load($container['config']->getCurrentLanguage(), __DIR__.'/Locale');
+            Translator::load($this->language->getCurrentLanguage(), __DIR__.'/Locale');
         });
 
         // Add link to new plugin settings
