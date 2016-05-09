@@ -13,7 +13,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:project:sidebar', 'metadata:project/sidebar');
 
         //Task
-        $this->template->hook->attach('template:task:sidebar', 'metadata:task/sidebar');
+        $this->template->hook->attach('template:task:sidebar:information', 'metadata:task/sidebar');
         $this->template->hook->attach('template:board:task:icons', 'metadata:task/footer_icon');
 
         //User
