@@ -1,5 +1,5 @@
 <h2><?= $form_headline ?></h2>
-<form method="post" action="<?= $this->url->href('metadata', 'saveUser', array('plugin' => 'metadata', 'user_id' => $user['id'])) ?>" autocomplete="off">
+<form method="post" action="<?= $this->url->href('MetadataController', 'saveUser', array('plugin' => 'metadata', 'user_id' => $user['id'])) ?>" autocomplete="off">
     <?= $this->form->csrf() ?>
 
     <?= $this->form->text('key', $values, array(), array('required', 'placeholder="'.t('Key').'"')) ?>

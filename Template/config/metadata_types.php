@@ -2,7 +2,7 @@
     <h2><?= t('Metadata Types') ?></h2>
 </div>
 
-<form id="metadata-type-creation-form" method="post" action="<?= $this->url->href('MetadataTypes', 'config', array('plugin' => 'Metadata')) ?>" autocomplete="off">
+<form id="metadata-type-creation-form" method="post" action="<?= $this->url->href('MetadataTypesController', 'config', array('plugin' => 'Metadata')) ?>" autocomplete="off">
     <?= $this->form->label(t('Name'), 'human_name') ?>
     <?= $this->form->text('human_name', $values, $errors, array('required')) ?>
 

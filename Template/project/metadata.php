@@ -19,10 +19,10 @@
         <td>
             <ul>
                 <li>
-                    <?= $this->url->link(t('Remove'), 'metadata', 'confirmProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
                 </li>
                 <li>
-                    <?= $this->url->link(t('Edit'), 'metadata', 'editProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
                 </li>
             </ul>
         </td>

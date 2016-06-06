@@ -10,8 +10,8 @@
     <p><strong><?= $key; ?></strong></p>
 
     <div class="form-actions">
-        <?= $this->url->link(t('Yes'), 'metadata', 'removeProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key), true, 'btn btn-red') ?>
+        <?= $this->url->link(t('Yes'), 'MetadataController', 'removeProject', array('plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key), true, 'btn btn-red') ?>
         <?= t('or') ?>
-        <?= $this->url->link(t('cancel'), 'metadata', 'project', array('plugin' => 'metadata', 'project_id' => $project['id'])) ?>
+        <?= $this->url->link(t('cancel'), 'MetadataController', 'project', array('plugin' => 'metadata', 'project_id' => $project['id'])) ?>
     </div>
 </div>
