@@ -18,13 +18,14 @@ class Plugin extends Base {
         //User
         $this->template->hook->attach('template:user:sidebar:information', 'metadata:user/sidebar');
 
-        // Translation
-        $this->on('app.bootstrap', function($container) {
-            Translator::load($this->languageModel->getCurrentLanguage(), __DIR__ . '/Locale');
-        });
-
         // Add link to new plugin settings
         //$this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
+    }
+
+    public function onStartup()
+    {
+        // Translation
+        Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
     }
 
     public function getClasses() {
