@@ -20,12 +20,12 @@ function version_1(PDO $pdo)
         )
     ");
 
-    $pdo->exec("
+    $pdo->exec('
         CREATE TABLE IF NOT EXISTS metadata_has_type (
           id SERIAL PRIMARY KEY,
           type_id INTEGER NOT NULL,
           metadata_id INTEGER NOT NULL,
           FOREIGN KEY(type_id) REFERENCES metadata_types(id) ON DELETE CASCADE
         )
-    ");
+    ');
 }

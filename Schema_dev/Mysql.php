@@ -8,7 +8,7 @@ const VERSION = 1;
 
 function version_1(PDO $pdo)
 {
-    $pdo->exec("
+    $pdo->exec('
         CREATE TABLE IF NOT EXISTS metadata_types (
           id INT PRIMARY KEY AUTO_INCREMENT,
           human_name VARCHAR(255) NOT NULL,
@@ -18,14 +18,14 @@ function version_1(PDO $pdo)
           attached_to VARCHAR(50) NOT NULL,
           UNIQUE(machine_name, attached_to)
         ) ENGINE=InnoDB CHARSET=utf8
-    ");
+    ');
 
-    $pdo->exec("
+    $pdo->exec('
         CREATE TABLE IF NOT EXISTS metadata_has_type (
           id INT PRIMARY KEY AUTO_INCREMENT,
           type_id INT NOT NULL,
           metadata_id INT NOT NULL,
           FOREIGN KEY(type_id) REFERENCES metadata_types(id) ON DELETE CASCADE
         ) ENGINE=InnoDB CHARSET=utf8
-    ");
+    ');
 }

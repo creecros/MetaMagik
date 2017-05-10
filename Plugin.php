@@ -5,9 +5,10 @@ namespace Kanboard\Plugin\Metadata;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 
-class Plugin extends Base {
-
-    public function initialize() {
+class Plugin extends Base
+{
+    public function initialize()
+    {
         //Project
         $this->template->hook->attach('template:project:sidebar', 'metadata:project/sidebar');
 
@@ -28,32 +29,37 @@ class Plugin extends Base {
         Translator::load($this->languageModel->getCurrentLanguage(), __DIR__.'/Locale');
     }
 
-    public function getClasses() {
-        return array(
-            'Plugin\Metadata\Model' => array(
+    public function getClasses()
+    {
+        return [
+            'Plugin\Metadata\Model' => [
                 'MetadataTypeModel',
-            )
-        );
+            ],
+        ];
     }
 
-    public function getPluginName() {
+    public function getPluginName()
+    {
         return 'Metadata';
     }
 
-    public function getPluginDescription() {
+    public function getPluginDescription()
+    {
         return t('Manage Metadata');
     }
 
-    public function getPluginAuthor() {
+    public function getPluginAuthor()
+    {
         return 'BlueTeck + Daniele Lenares';
     }
 
-    public function getPluginVersion() {
+    public function getPluginVersion()
+    {
         return '1.0.33.1';
     }
 
-    public function getPluginHomepage() {
+    public function getPluginHomepage()
+    {
         return 'https://github.com/BlueTeck/kanboard_plugin_metadata';
     }
-
 }

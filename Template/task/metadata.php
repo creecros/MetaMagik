@@ -19,10 +19,10 @@
         <td>
             <ul>
                 <li>
-                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmTask', array('plugin' => 'metadata','task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmTask', ['plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
                 <li>
-                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editTask', array('plugin' => 'metadata','task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editTask', ['plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
             </ul>
         </td>
@@ -32,5 +32,5 @@
 <?php endif ?>
 
 <?php if ($add_form): ?>
-<?= $this->render('metadata:task/form', array('task' => $task, 'project' => $project, 'form_headline' => t('Add Metadata'), 'values' => array())) ?>
+<?= $this->render('metadata:task/form', ['task' => $task, 'project' => $project, 'form_headline' => t('Add Metadata'), 'values' => []]) ?>
 <?php endif ?>

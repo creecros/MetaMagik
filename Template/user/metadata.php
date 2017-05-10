@@ -19,10 +19,10 @@
         <td>
             <ul>
                 <li>
-                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmUser', array('plugin' => 'metadata','user_id' => $user['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmUser', ['plugin' => 'metadata', 'user_id' => $user['id'], 'key' => $key], false, 'popover') ?>
                 </li>
                 <li>
-                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editUser', array('plugin' => 'metadata','user_id' => $user['id'], 'key' => $key ), false, 'popover') ?>
+                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editUser', ['plugin' => 'metadata', 'user_id' => $user['id'], 'key' => $key], false, 'popover') ?>
                 </li>
             </ul>
         </td>
@@ -32,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:user/form', array('user' => $user, 'form_headline' => t('Add Metadata'), 'values' => array())) ?>
+<?= $this->render('metadata:user/form', ['user' => $user, 'form_headline' => t('Add Metadata'), 'values' => []]) ?>
