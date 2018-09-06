@@ -20,7 +20,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:user:sidebar:information', 'metadata:user/sidebar');
 
         // Add link to new plugin settings
-        //$this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
+        $this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
     }
 
     public function onStartup()
