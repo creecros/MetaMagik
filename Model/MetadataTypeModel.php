@@ -2,7 +2,7 @@
 
 namespace Kanboard\Plugin\Metadata\Model;
 
-use Kanboard\Model\Base;
+use Kanboard\Core\Base;
 
 /**
  * Class MetadataType.
