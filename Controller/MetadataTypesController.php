@@ -27,7 +27,7 @@ class MetadataTypesController extends BaseController
             if (!$validation_errors) {
                 $machine_name = $this->createMachineName($values['human_name']);
                 $values['machine_name'] = $machine_name;
-                $type_id = $this->metadataTypeModel->persist(MetadataTypeModel::TABLE, $values);
+                $type_id = $this->db->table(MetadataTypeModel::TABLE)->persist($values);
                 if ($type_id) {
                     $this->flash->success(t('Metadata type created successfully.'));
                 } else {
