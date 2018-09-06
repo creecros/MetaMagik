@@ -2,15 +2,14 @@
 
 namespace Kanboard\Plugin\Metadata\Controller;
 
-use Kanboard\Controller\Base;
-use Kanboard\Plugin\Metadata\Model\MetadataType;
+use Kanboard\Controller\BaseController;
+use Kanboard\Plugin\Metadata\Model\MetadataTypeModel;
 
 /**
  * Class MetadataTypes.
  *
- * @author Daniele Lenares <daniele.lenares@gmail.com>
  */
-class MetadataTypesController extends Base
+class MetadataTypesController extends BaseController
 {
     /**
      * Action to list and save Metadata types in the config section.
@@ -28,7 +27,7 @@ class MetadataTypesController extends Base
             if (!$validation_errors) {
                 $machine_name = $this->createMachineName($values['human_name']);
                 $values['machine_name'] = $machine_name;
-                $type_id = $this->metadataType->persist(MetadataType::TABLE, $values);
+                $type_id = $this->metadataTypeModel->persist(MetadataTypeModel::TABLE, $values);
                 if ($type_id) {
                     $this->flash->success(t('Metadata type created successfully.'));
                 } else {
@@ -40,7 +39,7 @@ class MetadataTypesController extends Base
             }
         }
 
-        $metadataTypes = $this->metadataType->getAll();
+        $metadataTypes = $this->metadataTypeModel->getAll();
 
         $this->response->html($this->helper->layout->config('Metadata:config/metadata_types', [
             'values' => $values,
