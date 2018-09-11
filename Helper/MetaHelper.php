@@ -15,7 +15,7 @@ class MetaHelper extends Base
     {
         $metadata = $this->taskMetadataModel->getAll($values['id']);
         foreach ($metadata as $key => $value) {
-        $html .= $this->helper->form->label(t($key), $key);
+        $html .= $this->helper->form->label($key, $key);
         $html .= $this->helper->form->text($key, $value, $errors, $attributes, 'form-input-small');
         }
 
