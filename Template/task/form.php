@@ -1,5 +1,5 @@
 <h2><?= $form_headline ?></h2>
-<form method="post" action="<?= $this->url->href('MetadataController', 'saveTask', ['plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $project['id']]) ?>" autocomplete="off">
+<form method="post" action="<?= $this->url->href('MetadataController', 'saveTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id']]) ?>" autocomplete="off">
     <?= $this->form->csrf() ?>
 
     <?= $this->form->text('key', $values, [], ['required', 'placeholder="'.t('Key').'"']) ?>
