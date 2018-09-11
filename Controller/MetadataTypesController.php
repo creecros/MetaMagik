@@ -1,9 +1,9 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Controller;
+namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
-use Kanboard\Plugin\Metadata\Model\MetadataTypeModel;
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 
 /**
  * Class MetadataTypes.
