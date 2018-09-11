@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Controller;
+namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
 
