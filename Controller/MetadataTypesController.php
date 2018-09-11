@@ -41,7 +41,7 @@ class MetadataTypesController extends BaseController
 
         $metadataTypes = $this->metadataTypeModel->getAll();
 
-        $this->response->html($this->helper->layout->config('Metadata:config/metadata_types', [
+        $this->response->html($this->helper->layout->config('MetaMagik:config/metadata_types', [
             'values' => $values,
             'errors' => $errors,
             'types'  => $metadataTypes,
