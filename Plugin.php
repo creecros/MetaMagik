@@ -19,6 +19,7 @@ class Plugin extends Base
         //Task
         $this->template->hook->attach('template:task:sidebar:information', 'metaMagik:task/sidebar');
         $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
+        $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
 
         //User
         $this->template->hook->attach('template:user:sidebar:information', 'metaMagik:user/sidebar');
