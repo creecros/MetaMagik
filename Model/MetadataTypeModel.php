@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Model;
+namespace Kanboard\Plugin\MetaMagik\Model;
 
 use Kanboard\Core\Base;
 
