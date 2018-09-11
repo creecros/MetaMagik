@@ -19,10 +19,10 @@
         <td>
             <ul>
                 <li>
-                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmProject', ['plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmProject', ['plugin' => 'metaMagik', 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
                 <li>
-                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editProject', ['plugin' => 'metadata', 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editProject', ['plugin' => 'metaMagik', 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
             </ul>
         </td>
@@ -32,4 +32,4 @@
 <?php endif ?>
 
 
-<?= $this->render('metadata:project/form', ['project' => $project, 'form_headline' => t('Add Metadata'), 'values' => []]) ?>
+<?= $this->render('metaMagik:project/form', ['project' => $project, 'form_headline' => t('Add Metadata'), 'values' => []]) ?>
