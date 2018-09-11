@@ -1,5 +1,5 @@
-plugin=Metadata
-version=1.0.33.2
+plugin=MetaMagik
+version=0.0.1
 
 all:
 	@ echo "Build archive for plugin ${plugin} version=${version}"
