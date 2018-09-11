@@ -10,6 +10,9 @@ class Plugin extends Base
 {
     public function initialize()
     {
+        //Helpers
+        $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
+        
         //Project
         $this->template->hook->attach('template:project:sidebar', 'metaMagik:project/sidebar');
 
