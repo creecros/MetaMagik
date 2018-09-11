@@ -1,1 +1,1 @@
- <?= $this->helper->metaHelper->renderMetaFields($values) ?>
+ <?= $this->helper->metaHelper->renderMetaFields($values, $errors) ?>
