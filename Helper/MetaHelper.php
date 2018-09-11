@@ -11,12 +11,15 @@ use Kanboard\Core\Base;
 class MetaHelper extends Base
 {
 
-    public function renderMetaFields(array $values)
+    public function renderMetaFields(array $values, array $errors)
     {
         $metadata = $this->taskMetadataModel->getAll($values['id']);
+        $html = '';
+        $attributes = '';
+        
         foreach ($metadata as $key => $value) {
-        $html .= $this->helper->form->label($key, $key);
-        $html .= $this->helper->form->text($key, $value, $errors, $attributes, 'form-input-small');
+         $html .= $this->helper->form->label($key, $key);
+         $html .= $this->helper->form->text($key, $value, $errors, $attributes, 'form-input-small');
         }
 
         return $html;
