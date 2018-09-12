@@ -25,6 +25,7 @@ class NewTaskModificationModel extends Base
         $task = $this->taskFinderModel->getById($values['id']);
 
         $this->updateTags($values, $task);
+        $this->udateMeta($values, $task);
         $this->prepare($values);
         $result = $this->db->table(TaskModel::TABLE)->eq('id', $task['id'])->update($values);
 
@@ -125,7 +126,7 @@ class NewTaskModificationModel extends Base
         }
     }
     
-        protected function updateMeta(array &$values, array $original_task)
+    protected function updateMeta(array &$values, array $original_task)
     {
         $keys = array();
         foreach ($values as $key => $value) {
@@ -134,7 +135,7 @@ class NewTaskModificationModel extends Base
             } else {
                 $realkey = str_replace('metamagikkey_', '', $key);
                 $keyval = $values[$key];
-                $this->taskMetadataModel->save($values['id'], [$realkey => $keyval]);
+                $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
                 unset($values[$key]);
             }
         }           
