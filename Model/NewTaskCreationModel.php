@@ -116,7 +116,7 @@ class NewTaskCreationModel extends Base
             } else {
                 $keys[$key] = $values[$key]
             }
-        } 
+         
         return $keys;
     }
     
