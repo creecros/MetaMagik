@@ -16,7 +16,6 @@ class MetaHelper extends Base
     public function renderMetaFields(array $values, array $errors = array(), array $attributes = array())
     {
         $metasettings = $this->metadataTypeModel->getAll();
-        $metadata = $this->taskMetadataModel->getAll($values['id']);
         $html = '';
         
         foreach ($metasettings as $setting) {
@@ -26,14 +25,16 @@ class MetaHelper extends Base
                 $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
             }
             
-            $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-            $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
-            
+            if (!isset($values['id'])) {
+                $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
+                $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
+            }
             }
 
         }
         
-        
+        $metadata = $this->taskMetadataModel->getAll($values['id']);
+
         
         foreach ($metadata as $key => $value) {
          $values['metamagikkey_' . $key] = $metadata[$key];
