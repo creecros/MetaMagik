@@ -67,7 +67,7 @@ class MetadataController extends BaseController
 
         $this->userMetadataModel->save($user['id'], [$values['key'] => $values['value']]);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'user', ['plugin' => 'metadata', 'user_id' => $user['id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'user', ['plugin' => 'metaMagik', 'user_id' => $user['id']]), true);
     }
 
     public function saveTask()
@@ -77,7 +77,7 @@ class MetadataController extends BaseController
 
         $this->taskMetadataModel->save($task['id'], [$values['key'] => $values['value']]);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'task', ['plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'task', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $task['project_id']]), true);
     }
 
     public function saveProject()
@@ -87,7 +87,7 @@ class MetadataController extends BaseController
 
         $this->projectMetadataModel->save($project['id'], [$values['key'] => $values['value']]);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'project', ['plugin' => 'metadata', 'project_id' => $project['id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'project', ['plugin' => 'metaMagik', 'project_id' => $project['id']]), true);
     }
 
     public function confirmTask()
@@ -134,7 +134,7 @@ class MetadataController extends BaseController
 
         $this->taskMetadataModel->remove($task['id'], $key);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'task', ['plugin' => 'metadata', 'task_id' => $task['id'], 'project_id' => $task['project_id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'task', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $task['project_id']]), true);
     }
 
     public function removeProject()
@@ -144,7 +144,7 @@ class MetadataController extends BaseController
 
         $this->projectMetadataModel->remove($project['id'], $key);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'project', ['plugin' => 'metadata', 'project_id' => $project['id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'project', ['plugin' => 'metaMagik', 'project_id' => $project['id']]), true);
     }
 
     public function removeUser()
@@ -154,7 +154,7 @@ class MetadataController extends BaseController
 
         $this->userMetadataModel->remove($user['id'], $key);
 
-        return $this->response->redirect($this->helper->url->to('MetadataController', 'user', ['plugin' => 'metadata', 'user_id' => $user['id']]), true);
+        return $this->response->redirect($this->helper->url->to('MetadataController', 'user', ['plugin' => 'metaMagik', 'user_id' => $user['id']]), true);
     }
 
     public function editProject()
