@@ -57,7 +57,7 @@ class NewTaskCreationModel extends Base
             ));
         }
 
-        $this->createMeta($metaholder);
+        $this->createMeta($metaholder, $task_id);
         $this->hook->reference('model:task:creation:aftersave', $task_id);
 
         return (int) $task_id;
@@ -116,12 +116,12 @@ class NewTaskCreationModel extends Base
         return $keys;
     }
     
-    protected function createMeta(array &$metaholder)
+    protected function createMeta(array &$metaholder, $task_id)
     {
         foreach ($metaholder as $key => $value) {
                 $realkey = str_replace('metamagikkey_', '', $key);
-                $keyval = $values[$key];
-                $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
+                $keyval = $metaholder[$key];
+                $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
                 unset($metaholder[$key]);
             }
                    
