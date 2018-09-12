@@ -1,14 +1,17 @@
-Kanboard Plugin to manage metadata
+MetaMagik Kanboard Plugin 
 ==========================
 
-This plugin adds a GUI for Plugin Metadata.
+This plugin uses Metadata to create Customizable Fields.
+A settings panel, allows you to create fields.
+Fields will show up when creating/modifying/duplicating tasks.
+
 
 Plugin for https://github.com/fguillot/kanboard
 
 Author
 ------
 
-- BlueTeck
+- Craig Crosby (credit to original fork author BlueTeck)
 - License MIT
 
 Installation
@@ -18,5 +21,5 @@ Installation
 
 or
 
-- Create a folder **plugins/Metadata**
+- Create a folder **plugins/MetaMagik**
 - Copy all files under this directory
