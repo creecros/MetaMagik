@@ -1,4 +1,4 @@
-MetaMagik Kanboard Plugin 
+MetaMagik Kanboard Plugin (Under Development)
 ==========================
 
 This plugin uses Metadata to create Customizable Fields.
