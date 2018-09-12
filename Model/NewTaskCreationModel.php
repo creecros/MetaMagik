@@ -1,16 +1,22 @@
 <?php
 
-namespace Kanboard\Model;
+namespace Kanboard\Plugin\MetaMagik\Model;
 
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
+use Kanboard\Model\TaskFinderModel;
+use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Model\MetadataModel;
+use Kanboard\Model\TaskTagModel;
+use Kanboard\Model\TaskModel;
+use Kanboard\Model\TaskPositionModel;
+use Kanboard\Model\SwimlaneModel;
 use Kanboard\Core\Base;
 
 /**
  * Task Creation
  *
- * @package  Kanboard\Model
- * @author   Frederic Guillot
  */
-class TaskCreationModel extends Base
+class NewTaskCreationModel extends Base
 {
     /**
      * Create a task
@@ -23,14 +29,23 @@ class TaskCreationModel extends Base
     {
         $position = empty($values['position']) ? 0 : $values['position'];
         $tags = array();
+        $metaholder = array();
+
 
         if (isset($values['tags'])) {
             $tags = $values['tags'];
             unset($values['tags']);
         }
-
+        
+        $metaholder = $this->hideMeta($values);
+        
+        foreach ($metaholder as $key => $value){
+            unset($values[$key]);
+        }
+        
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
+
 
         if ($task_id !== false) {
             if ($position > 0 && $values['position'] > 1) {
@@ -47,6 +62,7 @@ class TaskCreationModel extends Base
             ));
         }
 
+        $this->createMeta($metaholder, $task_id);
         $this->hook->reference('model:task:creation:aftersave', $task_id);
 
         return (int) $task_id;
@@ -89,5 +105,29 @@ class TaskCreationModel extends Base
         $values['position'] = $this->taskFinderModel->countByColumnAndSwimlaneId($values['project_id'], $values['column_id'], $values['swimlane_id']) + 1;
 
         $this->hook->reference('model:task:creation:prepare', $values);
+    }
+    
+    protected function hideMeta(array &$values)
+    {
+        $keys = array();
+        foreach ($values as $key => $value) {
+            $pos = strpos($key, 'metamagikkey_');
+            if ($pos === false) {
+            } else {
+                $keys[$key] = $values[$key];
+            }
+        }
+        return $keys;
+    }
+    
+    protected function createMeta(array &$metaholder, $task_id)
+    {
+        foreach ($metaholder as $key => $value) {
+                $realkey = str_replace('metamagikkey_', '', $key);
+                $keyval = $metaholder[$key];
+                $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
+                unset($metaholder[$key]);
+            }
+                   
     }
 }
