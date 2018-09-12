@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Model;
+namespace Kanboard\Plugin\MetaMagik\Model;
 
 use Kanboard\Core\Base;
 
@@ -10,7 +10,7 @@ use Kanboard\Core\Base;
  * @package  Kanboard\Model
  * @author   Frederic Guillot
  */
-class TaskModificationModel extends Base
+class NewTaskModificationModel extends Base
 {
     /**
      * Update a task
@@ -123,5 +123,20 @@ class TaskModificationModel extends Base
             $this->taskTagModel->save($original_task['project_id'], $values['id'], $values['tags']);
             unset($values['tags']);
         }
+    }
+    
+        protected function updateMeta(array &$values, array $original_task)
+    {
+        $keys = array();
+        foreach ($values as $key => $value) {
+            $pos = strpos($key, 'metamagikkey_');
+            if ($pos === false) {
+            } else {
+                $realkey = str_replace('metamagikkey_', '', $key);
+                $keyval = $values[$key];
+                $this->taskMetadataModel->save($values['id'], [$realkey => $keyval]);
+                unset($values[$key]);
+            }
+        }           
     }
 }
