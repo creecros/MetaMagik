@@ -20,6 +20,7 @@ class MetaHelper extends Base
         $html = '';
         
         foreach ($metasettings as $setting) {
+            if ($setting['attached_to'] = 'task') {
             $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
             if (!$metaisset) {
                 $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
@@ -28,6 +29,7 @@ class MetaHelper extends Base
             if (!isset($values['id'])) {
                $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
                $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
+            }
             }
 
         }
