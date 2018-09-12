@@ -29,16 +29,18 @@ class NewTaskCreationModel extends Base
     {
         $position = empty($values['position']) ? 0 : $values['position'];
         $tags = array();
+        $metaholder = array();
+
 
         if (isset($values['tags'])) {
             $tags = $values['tags'];
             unset($values['tags']);
         }
         
-        
+        $metaholder = $this->hideMeta($values);
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
-        $this->createMeta($values, $task_id);
+
 
         if ($task_id !== false) {
             if ($position > 0 && $values['position'] > 1) {
@@ -55,6 +57,7 @@ class NewTaskCreationModel extends Base
             ));
         }
 
+        $this->createMeta($metaholder);
         $this->hook->reference('model:task:creation:aftersave', $task_id);
 
         return (int) $task_id;
@@ -99,18 +102,28 @@ class NewTaskCreationModel extends Base
         $this->hook->reference('model:task:creation:prepare', $values);
     }
     
-    protected function createMeta(array &$values, $task_id)
+    protected function hideMeta(array &$values)
     {
         $keys = array();
         foreach ($values as $key => $value) {
             $pos = strpos($key, 'metamagikkey_');
             if ($pos === false) {
             } else {
-                $realkey = str_replace('metamagikkey_', '', $key);
-                $keyval = $values[$key];
-                $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
+                $keys[$key] = $values[$key]
                 unset($values[$key]);
             }
-        }           
+        } 
+        return $keys;
+    }
+    
+    protected function createMeta(array &$metaholder)
+    {
+        foreach ($metaholder as $key => $value) {
+                $realkey = str_replace('metamagikkey_', '', $key);
+                $keyval = $values[$key];
+                $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
+                unset($metaholder[$key]);
+            }
+                   
     }
 }
