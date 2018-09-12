@@ -25,4 +25,18 @@ class MetaHelper extends Base
         return $html;
     }
 
+    public function createMetaFields(array $values, array $errors = array(), array $attributes = array())
+    {
+        $metadata = $this->metadataTypeModel->getAll();
+        $html = '';
+        
+        foreach ($metadata as $meta) {
+         $values['metamagikkey_' . $meta] = $meta['human_name'];
+         $html .= $this->helper->form->label($meta['human_name'], 'metamagikkey_' . $meta);
+         $html .= $this->helper->form->text('metamagikkey_' . $meta, $values, $errors, $attributes, 'form-input-small');
+        }
+
+        return $html;
+    }    
+    
 }
