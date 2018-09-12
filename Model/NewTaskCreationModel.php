@@ -114,7 +114,7 @@ class NewTaskCreationModel extends Base
             $pos = strpos($key, 'metamagikkey_');
             if ($pos === false) {
             } else {
-                $keys[$key] = $values[$key]
+                $keys[$key] = $values[$key];
             }
          
         return $keys;
