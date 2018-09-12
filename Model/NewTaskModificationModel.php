@@ -30,7 +30,7 @@ class NewTaskModificationModel extends Base
         $task = $this->taskFinderModel->getById($values['id']);
 
         $this->updateTags($values, $task);
-        $this->udateMeta($values, $task);
+        $this->updateMeta($values, $task);
         $this->prepare($values);
         $result = $this->db->table(TaskModel::TABLE)->eq('id', $task['id'])->update($values);
 
