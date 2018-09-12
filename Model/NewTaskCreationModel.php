@@ -1,16 +1,22 @@
 <?php
 
-namespace Kanboard\Model;
+namespace Kanboard\Plugin\MetaMagik\Model;
 
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
+use Kanboard\Model\TaskFinderModel;
+use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Model\MetadataModel;
+use Kanboard\Model\TaskTagModel;
+use Kanboard\Model\TaskModel;
+use Kanboard\Model\TaskPositionModel;
+use Kanboard\Model\SwimlaneModel;
 use Kanboard\Core\Base;
 
 /**
  * Task Creation
  *
- * @package  Kanboard\Model
- * @author   Frederic Guillot
  */
-class TaskCreationModel extends Base
+class NewTaskCreationModel extends Base
 {
     /**
      * Create a task
@@ -28,9 +34,11 @@ class TaskCreationModel extends Base
             $tags = $values['tags'];
             unset($values['tags']);
         }
-
+        
+        
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
+        $this->createMeta($values, $task_id);
 
         if ($task_id !== false) {
             if ($position > 0 && $values['position'] > 1) {
@@ -89,5 +97,20 @@ class TaskCreationModel extends Base
         $values['position'] = $this->taskFinderModel->countByColumnAndSwimlaneId($values['project_id'], $values['column_id'], $values['swimlane_id']) + 1;
 
         $this->hook->reference('model:task:creation:prepare', $values);
+    }
+    
+    protected function createMeta(array &$values, $task_id)
+    {
+        $keys = array();
+        foreach ($values as $key => $value) {
+            $pos = strpos($key, 'metamagikkey_');
+            if ($pos === false) {
+            } else {
+                $realkey = str_replace('metamagikkey_', '', $key);
+                $keyval = $values[$key];
+                $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
+                unset($values[$key]);
+            }
+        }           
     }
 }
