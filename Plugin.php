@@ -5,6 +5,8 @@ namespace Kanboard\Plugin\MetaMagik;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
+
 
 class Plugin extends Base
 {
@@ -12,6 +14,11 @@ class Plugin extends Base
     {
         //Helpers
         $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
+        
+        //Models
+        $this->container['taskModificationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskModificationModel($c);
+        });
         
         //Project
         $this->template->hook->attach('template:project:sidebar', 'metaMagik:project/sidebar');
