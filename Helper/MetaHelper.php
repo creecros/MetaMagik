@@ -24,6 +24,11 @@ class MetaHelper extends Base
             if (!$metaisset) {
                 $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
             }
+            
+            if (!isset($values['id'])) {
+               $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
+               $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
+            }
 
         }
         
