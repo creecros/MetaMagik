@@ -6,6 +6,7 @@ use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 
 
 class Plugin extends Base
@@ -18,6 +19,9 @@ class Plugin extends Base
         //Models
         $this->container['taskModificationModel'] = $this->container->factory(function ($c) {
             return new NewTaskModificationModel($c);
+        });
+        $this->container['taskCreationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskCreationModel($c);
         });
         
         //Project
