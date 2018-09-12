@@ -16,7 +16,7 @@ class MetaHelper extends Base
     public function renderMetaFields(array $values, array $errors = array(), array $attributes = array())
     {
         $metasettings = $this->metadataTypeModel->getAll();
-        $metadata = $this->taskMetadataModel->getAll($values['id']);
+
         $html = '';
         
         foreach ($metasettings as $setting) {
@@ -34,6 +34,7 @@ class MetaHelper extends Base
 
         }
         
+        $metadata = $this->taskMetadataModel->getAll($values['id']);
         
         foreach ($metadata as $key => $value) {
          $values['metamagikkey_' . $key] = $metadata[$key];
