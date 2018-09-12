@@ -1,9 +1,9 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Controller;
+namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
-use Kanboard\Plugin\Metadata\Model\MetadataTypeModel;
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 
 /**
  * Class MetadataTypes.
@@ -41,7 +41,7 @@ class MetadataTypesController extends BaseController
 
         $metadataTypes = $this->metadataTypeModel->getAll();
 
-        $this->response->html($this->helper->layout->config('Metadata:config/metadata_types', [
+        $this->response->html($this->helper->layout->config('MetaMagik:config/metadata_types', [
             'values' => $values,
             'errors' => $errors,
             'types'  => $metadataTypes,

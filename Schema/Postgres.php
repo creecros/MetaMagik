@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Schema;
+namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 

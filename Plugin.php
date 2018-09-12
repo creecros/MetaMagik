@@ -1,26 +1,38 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata;
+namespace Kanboard\Plugin\MetaMagik;
 
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
+use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
+
 
 class Plugin extends Base
 {
     public function initialize()
     {
+        //Helpers
+        $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
+        
+        //Models
+        $this->container['taskModificationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskModificationModel($c);
+        });
+        
         //Project
-        $this->template->hook->attach('template:project:sidebar', 'metadata:project/sidebar');
+        $this->template->hook->attach('template:project:sidebar', 'metaMagik:project/sidebar');
 
         //Task
-        $this->template->hook->attach('template:task:sidebar:information', 'metadata:task/sidebar');
-        $this->template->hook->attach('template:board:task:icons', 'metadata:task/footer_icon');
+        $this->template->hook->attach('template:task:sidebar:information', 'metaMagik:task/sidebar');
+        $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
+        $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
 
         //User
-        $this->template->hook->attach('template:user:sidebar:information', 'metadata:user/sidebar');
+        $this->template->hook->attach('template:user:sidebar:information', 'metaMagik:user/sidebar');
 
         // Add link to new plugin settings
-        $this->template->hook->attach('template:config:sidebar', 'Metadata:config/sidebar');
+        $this->template->hook->attach('template:config:sidebar', 'metaMagik:config/sidebar');
     }
 
     public function onStartup()
@@ -32,7 +44,7 @@ class Plugin extends Base
     public function getClasses()
     {
         return [
-            'Plugin\Metadata\Model' => [
+            'Plugin\MetaMagik\Model' => [
                 'MetadataTypeModel',
             ],
         ];
@@ -40,7 +52,7 @@ class Plugin extends Base
 
     public function getPluginName()
     {
-        return 'Metadata';
+        return 'metaMagik';
     }
 
     public function getPluginDescription()
@@ -50,16 +62,16 @@ class Plugin extends Base
 
     public function getPluginAuthor()
     {
-        return 'BlueTeck + Daniele Lenares';
+        return 'Craig Crosby';
     }
 
     public function getPluginVersion()
     {
-        return '1.0.33.2';
+        return '0.0.1';
     }
 
     public function getPluginHomepage()
     {
-        return 'https://github.com/BlueTeck/kanboard_plugin_metadata';
+        return 'https://github.com/creecros/MetaMagik';
     }
 }

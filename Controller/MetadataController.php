@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\Metadata\Controller;
+namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
 
@@ -17,7 +17,7 @@ class MetadataController extends BaseController
 
         $metadata = $this->projectMetadataModel->getAll($project['id']);
 
-        $this->response->html($this->helper->layout->project('metadata:project/metadata', ['title' => t('Metadata'),
+        $this->response->html($this->helper->layout->project('metaMagik:project/metadata', ['title' => t('Metadata'),
                     'project'                                                                      => $project,
                     'metadata'                                                                     => $metadata, ]));
     }
@@ -29,7 +29,7 @@ class MetadataController extends BaseController
 
         $metadata = $this->taskMetadataModel->getAll($task['id']);
 
-        $this->response->html($this->helper->layout->task('metadata:task/metadata', ['title' => t('Metadata'),
+        $this->response->html($this->helper->layout->task('metaMagik:task/metadata', ['title' => t('Metadata'),
                     'task'                                                                   => $task,
                     'add_form'                                                               => true,
                     'project'                                                                => $project,
@@ -43,7 +43,7 @@ class MetadataController extends BaseController
 
         $metadata = $this->taskMetadataModel->getAll($task['id']);
 
-        $this->response->html($this->helper->layout->task('metadata:task/metadata', ['title' => t('Metadata'),
+        $this->response->html($this->helper->layout->task('metaMagik:task/metadata', ['title' => t('Metadata'),
                     'task'                                                                   => $task,
                     'add_form'                                                               => false,
                     'project'                                                                => $project,
@@ -55,7 +55,7 @@ class MetadataController extends BaseController
         $user = $this->getUser();
         $metadata = $this->userMetadataModel->getAll($user['id']);
 
-        $this->response->html($this->helper->layout->user('metadata:user/metadata', ['title' => t('Metadata'),
+        $this->response->html($this->helper->layout->user('metaMagik:user/metadata', ['title' => t('Metadata'),
                     'user'                                                                   => $user,
                     'metadata'                                                               => $metadata, ]));
     }
@@ -96,7 +96,7 @@ class MetadataController extends BaseController
         $task = $this->getTask();
         $key = $this->request->getStringParam('key');
 
-        $this->response->html($this->template->render('metadata:task/remove', [
+        $this->response->html($this->template->render('metaMagik:task/remove', [
                     'task'    => $task,
                     'project' => $project,
                     'key'     => $key,
@@ -108,7 +108,7 @@ class MetadataController extends BaseController
         $project = $this->getProject();
         $key = $this->request->getStringParam('key');
 
-        $this->response->html($this->template->render('metadata:project/remove', [
+        $this->response->html($this->template->render('metaMagik:project/remove', [
                     'project' => $project,
                     'key'     => $key,
         ]));
@@ -120,7 +120,7 @@ class MetadataController extends BaseController
         $id = $this->request->getStringParam('id');
         $key = $this->request->getStringParam('key');
 
-        $this->response->html($this->template->render('metadata:user/remove', [
+        $this->response->html($this->template->render('metaMagik:user/remove', [
                     'id'   => $id,
                     'type' => $type,
                     'key'  => $key,
@@ -163,7 +163,7 @@ class MetadataController extends BaseController
         $key = $this->request->getStringParam('key');
         $metadata = $this->projectMetadataModel->get($project['id'], $key);
 
-        $this->response->html($this->template->render('metadata:project/form', [
+        $this->response->html($this->template->render('metaMagik:project/form', [
                     'project'       => $project,
                     'form_headline' => t('Edit Metadata'),
                     'values'        => ['key' => $key, 'value' => $metadata],
@@ -176,7 +176,7 @@ class MetadataController extends BaseController
         $key = $this->request->getStringParam('key');
         $metadata = $this->userMetadataModel->get($user['id'], $key);
 
-        $this->response->html($this->template->render('metadata:user/form', [
+        $this->response->html($this->template->render('metaMagik:user/form', [
                     'user'          => $user,
                     'form_headline' => t('Edit Metadata'),
                     'values'        => ['key' => $key, 'value' => $metadata],
@@ -190,7 +190,7 @@ class MetadataController extends BaseController
         $key = $this->request->getStringParam('key');
         $metadata = $this->taskMetadataModel->get($task['id'], $key);
 
-        $this->response->html($this->template->render('metadata:task/form', [
+        $this->response->html($this->template->render('metaMagik:task/form', [
                     'project'       => $project,
                     'task'          => $task,
                     'form_headline' => t('Edit Metadata'),
