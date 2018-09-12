@@ -2,6 +2,7 @@
 
 namespace Kanboard\Plugin\MetaMagik\Helper;
 
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 use Kanboard\Core\Base;
 
 /**
@@ -10,11 +11,22 @@ use Kanboard\Core\Base;
  */
 class MetaHelper extends Base
 {
+    
 
     public function renderMetaFields(array $values, array $errors = array(), array $attributes = array())
     {
+        $metasettings = $this->metadataTypeModel->getAll();
         $metadata = $this->taskMetadataModel->getAll($values['id']);
         $html = '';
+        
+        foreach ($metasettings as $setting) {
+            $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
+            if (!$metaisset) {
+                $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
+            }
+
+        }
+        
         
         foreach ($metadata as $key => $value) {
          $values['metamagikkey_' . $key] = $metadata[$key];
@@ -24,19 +36,5 @@ class MetaHelper extends Base
 
         return $html;
     }
-
-    public function createMetaFields(array $values, array $errors = array(), array $attributes = array())
-    {
-        $metadata = $this->metadataTypeModel->getAll();
-        $html = '';
-        
-        foreach ($metadata as $meta) {
-         $values['metamagikkey_' . $meta] = $meta['human_name'];
-         $html .= $this->helper->form->label($meta['human_name'], 'metamagikkey_' . $meta);
-         $html .= $this->helper->form->text('metamagikkey_' . $meta, $values, $errors, $attributes, 'form-input-small');
-        }
-
-        return $html;
-    }    
     
 }
