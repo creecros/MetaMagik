@@ -20,7 +20,7 @@ class MetaHelper extends Base
         $html = '';
         
         foreach ($metasettings as $setting) {
-            if ($setting['attached_to'] = 'task') {
+            if ($setting['attached_to'] == 'task') {
             $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
             if (!$metaisset) {
                 $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
