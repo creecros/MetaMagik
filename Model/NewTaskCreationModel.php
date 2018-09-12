@@ -38,6 +38,11 @@ class NewTaskCreationModel extends Base
         }
         
         $metaholder = $this->hideMeta($values);
+        
+        foreach ($metaholder as $meta){
+            unset($values[$meta]);
+        }
+        
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
 
@@ -110,7 +115,6 @@ class NewTaskCreationModel extends Base
             if ($pos === false) {
             } else {
                 $keys[$key] = $values[$key]
-                unset($values[$key]);
             }
         } 
         return $keys;
