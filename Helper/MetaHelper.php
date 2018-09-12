@@ -17,6 +17,7 @@ class MetaHelper extends Base
         $html = '';
         
         foreach ($metadata as $key => $value) {
+         $values['metamagikkey_' . $key] = $metadata[$key];
          $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
          $html .= $this->helper->form->text('metamagikkey' . $key, $values, $errors, $attributes, 'form-input-small');
         }
