@@ -39,8 +39,8 @@ class NewTaskCreationModel extends Base
         
         $metaholder = $this->hideMeta($values);
         
-        foreach ($metaholder as $meta){
-            unset($values[$meta]);
+        foreach ($metaholder as $key => $value){
+            unset($values[$key]);
         }
         
         $this->prepare($values);
