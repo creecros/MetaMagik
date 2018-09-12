@@ -2,6 +2,11 @@
 
 namespace Kanboard\Plugin\MetaMagik\Model;
 
+use Kanboard\Model\TaskFinderModel;
+use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Model\MetadataModel;
+use Kanboard\Model\TaskTagModel;
+use Kanboard\Model\TaskModel;
 use Kanboard\Core\Base;
 
 /**
