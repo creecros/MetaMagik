@@ -127,7 +127,7 @@ class NewTaskCreationModel extends Base
             $exists = array_key_exists('metamagikkey_' . $check['human_name'], $metaholder);
             if (!$exists) { 
                 $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $metaholder);
-                if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name'] = ''; }
+                if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name']] = ''; }
             }
         }
         
