@@ -45,7 +45,7 @@ class MetaHelper extends Base
                         foreach ($opt_explode as $key => $value) {
                             $meta_opt[$value] = $value;
                         }
-                        $html .= $this->helper->form->radio('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
+                        $html .= $this->helper->form->radios('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
                     } else if ($setting['data_type'] == 'check') {
 
                     }
@@ -85,7 +85,7 @@ class MetaHelper extends Base
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
              }
-             $html .= $this->helper->form->radio('metamagikkey_' . $key, $meta_opt, $values); 
+             $html .= $this->helper->form->radios('metamagikkey_' . $key, $meta_opt, $values); 
          } else if ($meta_type[$key] == 'check') {
              
          }
