@@ -9,9 +9,9 @@ if (empty($metadata)):
 <div class="accordion-title">
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
-<div class="accordion-content">
+<div class="accordion-content color-<?= $task['color_id'] ?>">
   <?php foreach ($metadata as $key => $value): ?>
-        <p><strong><?= $key ?><?= t(':') ?></strong><?= $value ?></p>
+        <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
     <?php endforeach ?>
 </div>
 </section>
