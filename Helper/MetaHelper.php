@@ -107,11 +107,11 @@ class MetaHelper extends Base
              $meta_opt = array();
          } else if ($meta_type[$key] == 'check') {
              $wtf = explode(',', $metadata[$key]);
-             $values['metamagikkey_' . $key] = array( 
-                 foreach ($wtf as $key_fix) {
-                     $key_fix => $key_fix,
-                 }
-                     );
+              
+             foreach ($wtf as $key_fix) {
+                     $values['metamagikkey_' . $key][$key_fix] = $key_fix;
+             }
+                
              $opt_explode = explode(',', $meta_deopt[$key]);
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
