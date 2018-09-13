@@ -2,11 +2,14 @@
     <h2><?= t('Metadata') ?></h2>
 </div>
 
-<?php $metadata = $this->taskMetadataModel->getAll($task['id']): ?>
 
-<?php if (empty($metadata)): ?>
+<?php 
+$metadata = $this->task->taskMetadataModel->getAll($task['id']);
+if (empty($metadata)): 
+?>
     <p class="alert"><?= t('No metadata') ?></p>
 <?php else: ?>
+<div class="meta-summary-container color-<?= $task['color_id'] ?>">
     <table class="table-small table-fixed">
     <tr>
         <th class="column-40"><?= t('Key') ?></th>
@@ -30,4 +33,5 @@
     </tr>
     <?php endforeach ?>
     </table>
+</div>
 <?php endif ?>
