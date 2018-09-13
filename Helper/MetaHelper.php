@@ -50,13 +50,37 @@ class MetaHelper extends Base
             }
         }
         
+        $meta_opt = array();
+        $meta_type = array();
+        $meta_deopt = array();
         $metadata = $this->taskMetadataModel->getAll($values['id']);
+        
+        foreach ($metasettings as $setting) {
+            $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
+            $key = $setting['human_name'];
+            if ($metaisset) { 
+                $meta_deopt[$key] = $setting['options']; 
+                $meta_type[$key] = $setting['data_type'];
+            }
+        }
 
         
         foreach ($metadata as $key => $value) {
          $values['metamagikkey_' . $key] = $metadata[$key];
          $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-         $html .= $this->helper->form->text('metamagikkey_' . $key, $values, $errors, $attributes, 'form-input-small');
+         if ($meta_type[$key] == 'text') {   
+             $html .= $this->helper->form->text('metamagikkey_' . $key, $values, $errors, $attributes, 'form-input-small');
+         } else if ($meta_type[$key] == 'list') {
+             $opt_explode = explode(',', $meta_deopt[$key]);
+             foreach ($opt_explode as $key => $value) {
+                            $meta_opt[$value] = $value;
+             }
+             $html .= $this->helper->form->select('metamagikkey_' . $key, $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
+         } else if ($meta_type[$key] == 'radio') {
+             
+         } else if ($meta_type[$key] == 'check') {
+             
+         }
         }
 
         return $html;
