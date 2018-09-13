@@ -14,6 +14,7 @@ function version_1(PDO $pdo)
           human_name VARCHAR(255) NOT NULL,
           machine_name VARCHAR(255) NOT NULL,
           data_type VARCHAR(50) NOT NULL,
+          options VARCHAR(255) DEFAULT '',
           is_required TINYINT(1) DEFAULT 0,
           attached_to VARCHAR(50) NOT NULL,
           UNIQUE(machine_name, attached_to)
