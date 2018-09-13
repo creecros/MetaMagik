@@ -109,7 +109,7 @@ class MetaHelper extends Base
              $wtf = explode(',', $metadata[$key]);
               
              foreach ($wtf as $key_fix) {
-                     $values['metamagikkey_' . $key][$key_fix] = $key_fix;
+                     $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
              }
                 
              $opt_explode = explode(',', $meta_deopt[$key]);
