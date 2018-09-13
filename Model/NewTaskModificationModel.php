@@ -144,7 +144,7 @@ class NewTaskModificationModel extends Base
                 $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
                 unset($values[$key]);
                 } else {
-                    $keyval_imploded = implode(',', $keyval);
+                    // $keyval_imploded = implode(',', $keyval);
                     $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
                     unset($values[$key]);
                 }
