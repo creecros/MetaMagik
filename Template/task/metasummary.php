@@ -11,8 +11,7 @@ if (empty($metadata)):
     </div>
 <div class="accordion-content">
   <?php foreach ($metadata as $key => $value): ?>
-    <p><?= $key ?></p>
-    <p><?= $value ?></p>
+        <p><strong><?= $key ?><?= t(':') ?></strong><?= $value ?></p>
     <?php endforeach ?>
 </div>
 </section>
