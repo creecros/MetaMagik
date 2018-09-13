@@ -109,7 +109,7 @@ class MetaHelper extends Base
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
              }
-             $values['metamagikkey_' . $key] = implode(',', $values['metamagikkey_' . $key])
+             $values['metamagikkey_' . $key] = implode(',', $values['metamagikkey_' . $key]);
              $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
              $html .= $this->helper->form->checkboxes('metamagikkey_' . $key, $meta_opt, $values); 
              $meta_opt = array();
