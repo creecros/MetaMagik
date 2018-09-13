@@ -10,8 +10,13 @@
     <?= $this->form->select('data_type', [
         ''        => '--',
         'text'    => 'Text',
-        'integer' => 'Integer',
+        'list'    => 'Dropdown List',
+        'radio'   => 'Radio List',
+        'check'   => 'Checkbox Group',    
     ], $values, $errors, ['required']) ?>
+    
+    <?= $this->form->label(t('Options - comma seperated list for dropdown, radio, or checkbox group. 255 chars max.'), 'options') ?>
+    <?= $this->form->text('options', $values, $errors, ['required']) ?>
 
 
     <?= $this->form->checkbox('is_required', 'Is required?', '1', []) ?>
