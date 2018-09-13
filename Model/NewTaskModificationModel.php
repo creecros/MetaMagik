@@ -138,7 +138,7 @@ class NewTaskModificationModel extends Base
             $exists = array_key_exists('metamagikkey_' . $check['human_name'], $values);
             if (!$exists) { 
                 $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $values);
-                if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name']] = ''; }
+                if (!$existsdoublecheck) { $values['metamagikkey_' . $check['human_name']] = ''; }
             }
         }
         
@@ -149,6 +149,7 @@ class NewTaskModificationModel extends Base
             } else {
                 $realkey = str_replace('metamagikkey_', '', $key);
                 $keyval = $values[$key];
+                if (empty($keyval)) { $keyval = ''; }
                 if (!is_array($keyval)) {
                 $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
                 unset($values[$key]);
@@ -158,6 +159,7 @@ class NewTaskModificationModel extends Base
                     if ($v) { array_push($key_imploded, implode(',', $v)); }
                     }
                     $keys_extracted = implode(',', $key_imploded);
+                    if (empty($keys_extracted)) { $keys_extracted = ''; }
                     $this->taskMetadataModel->save($original_task['id'], [$realkey => $keys_extracted]);
                     unset($values[$key]);
                 }
