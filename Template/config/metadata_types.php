@@ -16,7 +16,7 @@
     ], $values, $errors, ['required']) ?>
     
     <?= $this->form->label(t('Options - comma seperated list for dropdown, radio, or checkbox group. 255 chars max.'), 'options') ?>
-    <?= $this->form->text('options', $values, $errors, ['required']) ?>
+    <?= $this->form->text('options', $values, $errors) ?>
 
 
     <?= $this->form->checkbox('is_required', 'Is required?', '1', []) ?>
