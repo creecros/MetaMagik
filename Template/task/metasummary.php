@@ -4,8 +4,8 @@
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 if (empty($metadata)): 
 ?>
-    <p class="alert"><?= t('No metadata') ?></p>
 <?php else: ?>
+<section class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
 <div class="accordion-title">
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
@@ -15,5 +15,5 @@ if (empty($metadata)):
     <p><?= $value ?></p>
     <?php endforeach ?>
 </div>
-
+</section>
 <?php endif ?>
