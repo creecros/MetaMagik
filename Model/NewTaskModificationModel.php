@@ -140,8 +140,14 @@ class NewTaskModificationModel extends Base
             } else {
                 $realkey = str_replace('metamagikkey_', '', $key);
                 $keyval = $values[$key];
+                if (!is_array($keyval)) {
                 $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
                 unset($values[$key]);
+                } else {
+                    $keyval_imploded = implode(',', $keyval);
+                    $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
+                    unset($values[$key]);
+                }
             }
         }           
     }
