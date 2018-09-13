@@ -6,8 +6,10 @@ if (empty($metadata)):
 ?>
     <p class="alert"><?= t('No metadata') ?></p>
 <?php else: ?>
-<button class="accordion"><?= t('Section 1') ?></button>
-<div class="panel">
+<div class="accordion-title">
+        <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
+    </div>
+<div class="accordion-content">
   <?php foreach ($metadata as $key => $value): ?>
     <p><?= $key ?></p>
     <p><?= $value ?></p>
