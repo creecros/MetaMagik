@@ -2,6 +2,7 @@
     <h2><?= t('Metadata') ?></h2>
 </div>
 
+<?php $metadata = $this->taskMetadataModel->getAll($task['id']): ?>
 
 <?php if (empty($metadata)): ?>
     <p class="alert"><?= t('No metadata') ?></p>
