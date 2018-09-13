@@ -57,8 +57,8 @@ class MetaHelper extends Base
                         foreach ($opt_explode as $key => $value) {
                             $meta_opt[$value] = $value;
                         }
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name'] . '[]');
-                        $html .= $this->helper->form->checkboxes('metamagikkey_' . $setting['human_name'] . '[]', $meta_opt, $values); 
+                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
+                        $html .= $this->helper->form->checkboxes('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
                         $meta_opt = array();
                     }
 
@@ -109,8 +109,9 @@ class MetaHelper extends Base
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
              }
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key . '[]');
-             $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $meta_opt, $values); 
+             $values['metamagikkey_' . $key] = implode(',', $values['metamagikkey_' . $key])
+             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+             $html .= $this->helper->form->checkboxes('metamagikkey_' . $key, $meta_opt, $values); 
              $meta_opt = array();
          }
         }
