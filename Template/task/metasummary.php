@@ -22,7 +22,7 @@ if (empty($metadata)):
         <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
         <?php else: ?>
                 </div>
-                <div class="meta-summary-column">
+                <div class="task-summary-column">
                         <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
     <?php endforeach ?>
      </div>
