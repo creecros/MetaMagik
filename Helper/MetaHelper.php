@@ -106,8 +106,9 @@ class MetaHelper extends Base
              $html .= $this->helper->form->radios('metamagikkey_' . $key, $meta_opt, $values); 
              $meta_opt = array();
          } else if ($meta_type[$key] == 'check') {
+             $wtf = explode(',', $metadata[$key]);
              $values['metamagikkey_' . $key] = array( 
-                 foreach (explode(',', $metadata[$key]) as $key_fix) {
+                 foreach ($wtf as $key_fix) {
                      $key_fix => $key_fix,
                  }
                      );
