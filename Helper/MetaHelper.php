@@ -72,7 +72,7 @@ class MetaHelper extends Base
              $html .= $this->helper->form->text('metamagikkey_' . $key, $values, $errors, $attributes, 'form-input-small');
          } else if ($meta_type[$key] == 'list') {
              $opt_explode = explode(',', $meta_deopt[$key]);
-             foreach ($opt_explode as $key => $value) {
+             foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
              }
              $html .= $this->helper->form->select('metamagikkey_' . $key, $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
