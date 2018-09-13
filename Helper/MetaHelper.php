@@ -57,8 +57,8 @@ class MetaHelper extends Base
                         foreach ($opt_explode as $key => $value) {
                             $meta_opt[$value] = $value;
                         }
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-                        $html .= $this->helper->form->checkboxes('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
+                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name'] . '[]');
+                        $html .= $this->helper->form->checkboxes('metamagikkey_' . $setting['human_name'] . '[]', $meta_opt, $values); 
                         $meta_opt = array();
                     }
 
@@ -82,13 +82,13 @@ class MetaHelper extends Base
 
         
         foreach ($metadata as $key => $value) {
-         $values['metamagikkey_' . $key] = $metadata[$key];
-         
-         if ($meta_type[$key] == 'text') { 
+         if ($meta_type[$key] == 'text') {
+             $values['metamagikkey_' . $key] = $metadata[$key];
              $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
              $html .= $this->helper->form->text('metamagikkey_' . $key, $values, $errors, $attributes, 'form-input-small');
              $meta_opt = array();
          } else if ($meta_type[$key] == 'list') {
+             $values['metamagikkey_' . $key] = $metadata[$key];
              $opt_explode = explode(',', $meta_deopt[$key]);
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
@@ -97,6 +97,7 @@ class MetaHelper extends Base
              $html .= $this->helper->form->select('metamagikkey_' . $key, $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
              $meta_opt = array();
          } else if ($meta_type[$key] == 'radio') {
+             $values['metamagikkey_' . $key] = $metadata[$key];
              $opt_explode = explode(',', $meta_deopt[$key]);
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
@@ -105,13 +106,14 @@ class MetaHelper extends Base
              $html .= $this->helper->form->radios('metamagikkey_' . $key, $meta_opt, $values); 
              $meta_opt = array();
          } else if ($meta_type[$key] == 'check') {
+             $values['metamagikkey_' . $key] = explode(',', $metadata[$key]):;
              $opt_explode = explode(',', $meta_deopt[$key]);
              foreach ($opt_explode as $name => $value) {
                             $meta_opt[$value] = $value;
-                            $values['metamagikkey_' . $value] = $value;
              }
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-             $html .= $this->helper->form->checkboxes('metamagikkey_' . $key, $meta_opt, $values); 
+             
+             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key . '[]');
+             $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $meta_opt, $values); 
              $meta_opt = array();
          }
         }
