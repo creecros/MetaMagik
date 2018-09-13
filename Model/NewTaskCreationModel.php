@@ -125,8 +125,19 @@ class NewTaskCreationModel extends Base
         foreach ($metaholder as $key => $value) {
                 $realkey = str_replace('metamagikkey_', '', $key);
                 $keyval = $metaholder[$key];
+                if (!isset($keyval)) { $keyval = ''; }
+                if (!is_array($keyval)) {
                 $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
                 unset($metaholder[$key]);
+                } else {
+                    $key_imploded = array();
+                    foreach ($keyval as $k => $v) {
+                    if ($v) { array_push($key_imploded, implode(',', $v)); }
+                    }
+                    $keys_extracted = implode(',', $key_imploded);
+                    $this->taskMetadataModel->save($task_id, [$realkey => $keys_extracted]);
+                    unset($metaholder[$key]);
+                }
             }
                    
     }
