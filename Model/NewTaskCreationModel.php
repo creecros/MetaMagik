@@ -122,6 +122,15 @@ class NewTaskCreationModel extends Base
     
     protected function createMeta(array &$metaholder, $task_id)
     {
+        $metadoublecheck = $this->metadataTypeModel->getAll();
+        foreach ($metadoublecheck as $check) {
+            $exists = array_key_exists('metamagikkey_' . $check['human_name'], $metaholder);
+            if (!$exists) { 
+                $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $metaholder);
+                if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name'] = ''; }
+            }
+        }
+        
         foreach ($metaholder as $key => $value) {
                 $realkey = str_replace('metamagikkey_', '', $key);
                 $keyval = $metaholder[$key];
@@ -140,6 +149,7 @@ class NewTaskCreationModel extends Base
                     unset($metaholder[$key]);
                 }
             }
+       
                    
     }
 }
