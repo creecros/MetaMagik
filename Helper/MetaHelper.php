@@ -41,7 +41,11 @@ class MetaHelper extends Base
                         }
                         $html .= $this->helper->form->select('metamagikkey_' . $setting['human_name'], $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
                     } else if ($setting['data_type'] == 'radio') {
-
+                        $opt_explode = explode(',', $setting['options']);
+                        foreach ($opt_explode as $key => $value) {
+                            $meta_opt[$value] = $value;
+                        }
+                        $html .= $this->helper->form->radio('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
                     } else if ($setting['data_type'] == 'check') {
 
                     }
@@ -77,7 +81,11 @@ class MetaHelper extends Base
              }
              $html .= $this->helper->form->select('metamagikkey_' . $key, $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
          } else if ($meta_type[$key] == 'radio') {
-             
+             $opt_explode = explode(',', $meta_deopt[$key]);
+             foreach ($opt_explode as $name => $value) {
+                            $meta_opt[$value] = $value;
+             }
+             $html .= $this->helper->form->radio('metamagikkey_' . $key, $meta_opt, $values); 
          } else if ($meta_type[$key] == 'check') {
              
          }
