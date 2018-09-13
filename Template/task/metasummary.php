@@ -10,9 +10,21 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-  <?php foreach ($metadata as $key => $value): ?>
+        <div class="meta-summary-columns">
+            <div class="meta-summary-column">
+  <?php 
+        $rows = 0;
+        foreach ($metadata as $key => $value): 
+        $rows += 1; 
+  ?>
+        <?php if ($rows <= 3): ?>
         <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
+        <?php else: ?>
+                </div>
+                <div class="meta-summary-column">
+                        <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
     <?php endforeach ?>
+                </div>
 </div>
 </section>
 <?php endif ?>
