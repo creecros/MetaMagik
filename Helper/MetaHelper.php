@@ -17,6 +17,7 @@ class MetaHelper extends Base
     {
         $metasettings = $this->metadataTypeModel->getAll();
         $html = '';
+        $meta_opt = array();
         
         if (isset($values['id'])) {
             foreach ($metasettings as $setting) {
@@ -31,7 +32,20 @@ class MetaHelper extends Base
             foreach ($metasettings as $setting) {
                 if ($setting['attached_to'] == 'task') {
                      $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-                     $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
+                    if ($setting['data_type'] == 'text') {
+                        $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
+                    } else if ($setting['data_type'] == 'list') {
+                        $opt_explode = explode(',', $setting['options']);
+                        foreach ($opt_explode as $key => $value) {
+                            $meta_opt[$value] = $value;
+                        }
+                        $html .= $this->helper->form->select('metamagikkey_' . $setting['human_name'], $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
+                    } else if ($setting['data_type'] == 'radio') {
+
+                    } else if ($setting['data_type'] == 'check') {
+
+                    }
+
                 }
             }
         }
