@@ -133,6 +133,15 @@ class NewTaskModificationModel extends Base
     
     protected function updateMeta(array &$values, array $original_task)
     {
+        $metadoublecheck = $this->metadataTypeModel->getAll();
+        foreach ($metadoublecheck as $check) {
+            $exists = array_key_exists('metamagikkey_' . $check['human_name'], $values);
+            if (!$exists) { 
+                $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $values);
+                if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name']] = ''; }
+            }
+        }
+        
         $keys = array();
         foreach ($values as $key => $value) {
             $pos = strpos($key, 'metamagikkey_');
