@@ -30,7 +30,7 @@ class MetadataTypeModel extends Base
         return $metadataTypes;
     }
     
-     public function remove($entity_id)
+     public function remove($id)
     {
         return $this->db->table(self::TABLE)
             ->eq('id', $id)
