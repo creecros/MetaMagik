@@ -38,12 +38,12 @@ class Plugin extends Base
         
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
-            $taskLexer->withFilter(MetaFieldFilter::getInstance());
+            $taskLexer->withFilter(MetaFieldFilter::getInstance()->setDatabase($c['db']));
             return $taskLexer;
         });
         
         $this->container->extend('taskLexer', function($taskLexer, $c) {
-            $taskLexer->withFilter(MetaValueFilter::getInstance());
+            $taskLexer->withFilter(MetaValueFilter::getInstance()->setDatabase($c['db']));
             return $taskLexer;
         });
 
