@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\MetaMagik\Filter;
 
 use Kanboard\Core\Filter\FilterInterface;
+use Kanboard\Filter\BaseFilter;
 use Kanboard\Model\MetadataModel;
 use Kanboard\Model\TaskModel;
 use Kanboard\Model\TaskMetadataModel;
@@ -55,7 +56,7 @@ class MetaValueFilter extends BaseFilter implements FilterInterface
     public function apply()
     {
         $metafield = $this->db
-            ->hashtable($this->'task_has_metadata')
+            ->hashtable($this->task_has_metadata)
             ->eq('value', $this->value)
             ->asc('task_id')
             ->getAll('task_id');
