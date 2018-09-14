@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?= t('Metadata Types') ?></h2>
+    <h2><?= t('Task Metadata Types') ?></h2>
 </div>
 
 <form id="metadata-type-creation-form" method="post" action="<?= $this->url->href('MetadataTypesController', 'config', ['plugin' => 'MetaMagik']) ?>" autocomplete="off">
@@ -24,8 +24,8 @@
     <?= $this->form->label(t('Attached Entity'), 'attach_to') ?>
     <?= $this->form->select('attached_to', [
         ''        => '--',
-        'user'    => 'User',
-        'project' => 'Project',
+        //'user'    => 'User',
+        //'project' => 'Project',
         'task'    => 'Task',
     ], $values, $errors, ['required']) ?>
 
@@ -39,17 +39,28 @@
 <?php if (!empty($types)): ?>
     <table class="table-stripped">
         <tr>
-            <th>Friendly Name</th>
+            <th>Field Name</th>
             <th>Type</th>
             <th>Required</th>
-            <th>Entity</th>
+            <th>Options</th>
+            <th>Action</th>
         </tr>
         <?php foreach ($types as $type): ?>
             <tr>
                 <td><?= $type['human_name'] ?></td>
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['is_required'] ?></td>
-                <td><?= $type['attached_to'] ?></td>
+                <td><?= $type['options'] ?></td>
+                <td>
+                   <ul>
+                        <li>
+                            <?= $this->modal->small('remove', t('Remove'), 'MetadataController', 'confirmTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                        </li>
+                        <li>
+                            <?= $this->modal->small('edit', t('Edit'), 'MetadataController', 'editTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                        </li>
+                    </ul>
+                </td>
             </tr>
         <?php endforeach ?>
     </table>
