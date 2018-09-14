@@ -38,12 +38,12 @@ class Plugin extends Base
         
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
-            $taskLexer->withFilter(MetaFieldFilter::getInstance()->setCurrentUserId($c['userSession']->getId()));
+            $taskLexer->withFilter(MetaFieldFilter::getInstance());
             return $taskLexer;
         });
         
         $this->container->extend('taskLexer', function($taskLexer, $c) {
-            $taskLexer->withFilter(MetaValueFilter::getInstance()->setCurrentUserId($c['userSession']->getId()));
+            $taskLexer->withFilter(MetaValueFilter::getInstance());
             return $taskLexer;
         });
 
