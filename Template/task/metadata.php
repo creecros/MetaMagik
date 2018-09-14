@@ -19,10 +19,10 @@
         <td>
             <ul>
                 <li>
-                    <?= $this->url->link(t('Remove'), 'MetadataController', 'confirmTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                    <?= $this->modal->small('remove', t('Remove'), 'MetadataController', 'confirmTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
                 <li>
-                    <?= $this->url->link(t('Edit'), 'MetadataController', 'editTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
+                    <?= $this->modal->small('edit', t('Edit'), 'MetadataController', 'editTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
                 </li>
             </ul>
         </td>
