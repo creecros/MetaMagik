@@ -98,7 +98,7 @@ class MetadataTypesController extends BaseController
     
     public function confirmTask()
     {
-        $key = $this->request->getStringParam('id');
+        $key = $this->request->getStringParam('key');
         $this->response->html($this->template->render('metaMagik:config/remove', [
                     'key'     => $key,
         ]));
@@ -106,7 +106,7 @@ class MetadataTypesController extends BaseController
     
      public function removeTask()
     {
-        $key = $this->request->getStringParam('id');
+        $key = $this->request->getStringParam('key');
         $this->metadataTypeModel->remove($key);
     }
 
