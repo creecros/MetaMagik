@@ -34,7 +34,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:sidebar:information', 'metaMagik:task/sidebar');
         $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
         $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
-        $this->template->hook->attach('template:task:show:before-description', 'metaMagik:task/metasummary');
+        $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
