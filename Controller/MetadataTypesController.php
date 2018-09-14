@@ -109,7 +109,7 @@ class MetadataTypesController extends BaseController
         $key = $this->request->getStringParam('key');
         $this->metadataTypeModel->remove($key);
          
-        return $this->response->redirect($this->helper->url->to('MetadataTypesController', 'config', ['plugin' => 'metaMagik']);
+        return $this->response->redirect($this->helper->url->to('MetadataTypesController', 'config', ['plugin' => 'metaMagik']));
 
     }
 
