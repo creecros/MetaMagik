@@ -15,6 +15,7 @@ use PicoDb\Database;
  */
 class MetaValueFilter extends BaseFilter implements FilterInterface
 {
+    const TABLE = 'task_has_metadata';
     /**
      * Database object
      *
@@ -56,7 +57,7 @@ class MetaValueFilter extends BaseFilter implements FilterInterface
     public function apply()
     {
         $metafield = $this->db
-            ->hashtable($this->task_has_metadata)
+            ->hashtable(self::TABLE)
             ->eq('value', $this->value)
             ->asc('task_id')
             ->getAll('task_id', 'value');
