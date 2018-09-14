@@ -96,6 +96,14 @@ class MetadataTypesController extends BaseController
         return $machine_name;
     }
     
+    public function confirmTask()
+    {
+        $key = $this->request->getStringParam('id');
+        $this->response->html($this->template->render('metaMagik:config/remove', [
+                    'id'     => $key,
+        ]));
+    }
+    
      public function removeTask()
     {
         $key = $this->request->getStringParam('id');
