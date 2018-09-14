@@ -10,8 +10,8 @@
     <p><strong><?= $key; ?></strong></p>
 
     <div class="form-actions">
-        <?= $this->url->link(t('Yes'), 'MetadataTypeController', 'removeTask', ['plugin' => 'metaMagik', 'id' => $key], true, 'btn btn-red') ?>
+        <?= $this->url->link(t('Yes'), 'MetadataTypesController', 'removeTask', ['plugin' => 'metaMagik', 'id' => $key], true, 'btn btn-red') ?>
         <?= t('or') ?>
-        <?= $this->url->link(t('cancel'), 'MetadataTypeController', 'config', ['plugin' => 'metaMagik']) ?>
+        <?= $this->url->link(t('cancel'), 'MetadataTypesController', 'config', ['plugin' => 'metaMagik']) ?>
     </div>
 </div>
