@@ -60,7 +60,7 @@ class MetaFieldFilter extends BaseFilter implements FilterInterface
             ->hashtable(self::TABLE)
             ->eq('name', $this->value)
             ->asc('task_id')
-            ->getAll('task_id', 'value');
+            ->getAll('task_id', 'task_id');
             
         $task_ids = $metafield;
 
