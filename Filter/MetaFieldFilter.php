@@ -6,6 +6,7 @@ use Kanboard\Core\Filter\FilterInterface;
 use Kanboard\Model\MetadataModel;
 use Kanboard\Model\TaskModel;
 use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Filter\BaseFilter;
 use PicoDb\Database;
 
 /**
@@ -55,7 +56,7 @@ class MetaFieldFilter extends BaseFilter implements FilterInterface
     public function apply()
     {
         $metafield = $this->db
-            ->hashtable($this->'task_has_metadata')
+            ->hashtable(TaskMetadataModel::TABLE)
             ->eq('name', $this->value)
             ->asc('task_id')
             ->getAll('task_id');
