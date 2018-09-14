@@ -59,7 +59,7 @@ class MetaValueFilter extends BaseFilter implements FilterInterface
             ->hashtable($this->task_has_metadata)
             ->eq('value', $this->value)
             ->asc('task_id')
-            ->getAll('task_id');
+            ->getAll('task_id', 'value');
             
         $task_ids = $metafield;
 
