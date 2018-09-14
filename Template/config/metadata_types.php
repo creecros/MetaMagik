@@ -56,9 +56,6 @@
                         <li>
                             <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'id' => $type['id']], false, 'popover') ?>
                         </li>
-                        <li>
-                            <?= $this->modal->small('edit', t('Edit'), 'MetadataController', 'editTask', ['plugin' => 'metaMagik', 'task_id' => $task['id'], 'project_id' => $project['id'], 'key' => $key], false, 'popover') ?>
-                        </li>
                     </ul>
                 </td>
             </tr>
