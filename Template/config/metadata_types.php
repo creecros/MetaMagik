@@ -45,7 +45,10 @@
             <th>Options</th>
             <th>Action</th>
         </tr>
-        <?php foreach ($types as $type): ?>
+        <?php 
+        foreach ($types as $type): 
+        $key = $type['id']
+        ?>
             <tr>
                 <td><?= $type['human_name'] ?></td>
                 <td><?= $type['data_type'] ?></td>
@@ -54,7 +57,7 @@
                 <td>
                    <ul>
                         <li>
-                            <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'id' => $type['id']], false, 'popover') ?>
+                            <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                         </li>
                     </ul>
                 </td>
