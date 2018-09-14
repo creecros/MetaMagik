@@ -100,7 +100,7 @@ class MetadataTypesController extends BaseController
     {
         $key = $this->request->getStringParam('id');
         $this->response->html($this->template->render('metaMagik:config/remove', [
-                    'id'     => $key,
+                    'key'     => $key,
         ]));
     }
     
