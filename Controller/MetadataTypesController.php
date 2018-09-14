@@ -95,4 +95,11 @@ class MetadataTypesController extends BaseController
 
         return $machine_name;
     }
+    
+     public function removeTask()
+    {
+        $key = $this->request->getStringParam('id');
+        $this->metadataTypeModel->remove($key);
+    }
+
 }
