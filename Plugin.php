@@ -7,6 +7,9 @@ use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
+use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
+use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
+
 
 
 class Plugin extends Base
@@ -32,6 +35,17 @@ class Plugin extends Base
         $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
         $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
         $this->template->hook->attach('template:task:show:before-description', 'metaMagik:task/metasummary');
+        
+        //Filters
+        $this->container->extend('taskLexer', function($taskLexer, $c) {
+            $taskLexer->withFilter(MetaFieldFilter::getInstance()->setCurrentUserId($c['userSession']->getId()));
+            return $taskLexer;
+        });
+        
+        $this->container->extend('taskLexer', function($taskLexer, $c) {
+            $taskLexer->withFilter(MetaValueFilter::getInstance()->setCurrentUserId($c['userSession']->getId()));
+            return $taskLexer;
+        });
 
         //User
         $this->template->hook->attach('template:user:sidebar:information', 'metaMagik:user/sidebar');
