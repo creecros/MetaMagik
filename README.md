@@ -64,9 +64,9 @@ Perform searches for metadata values. `metaval:"value"`
 Credits
 ------------
 
-Original Metadata Plugin author: BlueTeck
-Unused non working code in original code that greatly assisted in adding the settings panel: Daniele Lenares
-Some guy who suckered me into writing this code, and provided the idea and desire: Julien Buratto
+* Original Metadata Plugin author: BlueTeck
+* Unused non working code in original code that greatly assisted in adding the settings panel: Daniele Lenares
+* Some guy who suckered me into writing this code, and provided the idea and desire: Julien Buratto
 
 
 
