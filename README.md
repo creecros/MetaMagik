@@ -12,7 +12,7 @@ Plugin for https://github.com/fguillot/kanboard
 Author
 ------
 
-- Craig Crosby
+- [Craig Crosby](https://github.com/creecros)
 - License MIT
 
 Installation
