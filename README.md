@@ -2,9 +2,13 @@ MetaMagik Kanboard Plugin (Under Development)
 ==========================
 
 This plugin uses Metadata to create Customizable Fields.
+
 A settings panel, allows you to create fields.
+
 Fields will show up when creating/modifying tasks.
+
 Metadata Sidebars for tasks, projects, and users to add remove metadata.
+
 Filters for searching metadata.
 
 Plugin for https://github.com/fguillot/kanboard
