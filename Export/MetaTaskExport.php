@@ -10,12 +10,11 @@ use Kanboard\Model\SwimlaneModel;
 use Kanboard\Model\TaskModel;
 use Kanboard\Model\UserModel;
 use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 
 /**
  * Task Export
  *
- * @package  export
- * @author   Frederic Guillot
  */
 class MetaTaskExport extends Base
 {
@@ -153,7 +152,7 @@ class MetaTaskExport extends Base
      */
     protected function getColumns()
     {
-        return array(
+        $basearray = array(
             e('Task Id'),
             e('Reference'),
             e('Project'),
@@ -180,5 +179,13 @@ class MetaTaskExport extends Base
             e('Tags'),
             e('Meta'),
         );
+        
+        $metaheads = $this->metadataTypeModel->getAll();
+        
+        foreach ($metaheads as $header) {
+            array_push($basearray, $header['human_name']);
+        }
+        
+        return $basearray;
     }
 }
