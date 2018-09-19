@@ -5,6 +5,7 @@ namespace Kanboard\Plugin\MetaMagik;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
+use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
