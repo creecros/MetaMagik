@@ -27,6 +27,9 @@ class Plugin extends Base
         $this->container['taskCreationModel'] = $this->container->factory(function ($c) {
             return new NewTaskCreationModel($c);
         });
+        $this->container['taskDuplicationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskDuplicationModel($c);
+        });
         
         //Project
         $this->template->hook->attach('template:project:sidebar', 'metaMagik:project/sidebar');
