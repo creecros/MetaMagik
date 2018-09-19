@@ -39,6 +39,9 @@ class Plugin extends Base
         $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');
         $this->template->setTemplateOverride('export/task', 'metaMagik:export/task');
         
+        //Routes
+        $this->route->addRoute('addRoute('export/metatasks/:project_id', 'NewExportController', 'tasks');
+        
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
             $taskLexer->withFilter(MetaFieldFilter::getInstance()->setDatabase($c['db']));
