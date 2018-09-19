@@ -135,8 +135,12 @@ class MetaTaskExport extends Base
             $taskTags = array_column($tags[$task['id']], 'name');
             $task['tags'] = implode(', ', $taskTags);
         }
+       $x = 0;
         if (!empty($meta)) {
-            $task['meta'] = implode(',', $meta);
+            foreach ($meta as $string) {
+            $x += 1;
+            $task['meta'. $x] = $string; // implode(',', $meta);
+            }
         } else {
             $task['meta'] = '';
         }
@@ -177,7 +181,6 @@ class MetaTaskExport extends Base
             e('Time spent'),
             e('Priority'),
             e('Tags'),
-            e('Meta'),
         );
         
         $metaheads = $this->metadataTypeModel->getAll();
