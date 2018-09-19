@@ -44,6 +44,7 @@ class MetaTaskExport extends Base
                     array_push($metaval, $value);
               }
           }
+        }
 
             $task = $this->format($task, $colors, $tags, $metaval);
             $results[] = array_values($task);
