@@ -5,6 +5,7 @@ namespace Kanboard\Plugin\MetaMagik;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
+use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
@@ -36,6 +37,12 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
+        $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');
+        $this->template->setTemplateOverride('export/tasks', 'metaMagik:export/tasks');
+        
+        //Routes
+        $this->route->addRoute('export/metatasks/:project_id', 'NewExportController', 'tasks');
+        
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
             $taskLexer->withFilter(MetaFieldFilter::getInstance()->setDatabase($c['db']));
@@ -65,6 +72,9 @@ class Plugin extends Base
         return [
             'Plugin\MetaMagik\Model' => [
                 'MetadataTypeModel',
+            ],
+            'Plugin\MetaMagik\Export' => [
+                'MetaTaskExport',
             ],
         ];
     }
