@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Model;
+namespace Kanboard\Plugin\MetaMagik\Model;
 
 use Kanboard\Model\TaskMetadataModel;
 use Kanboard\Model\TagDuplicationModel;
