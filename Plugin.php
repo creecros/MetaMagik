@@ -36,6 +36,9 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
+        $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');
+        $this->template->setTemplateOverride('export/task', 'metaMagik:export/task');
+        
         //Filters
         $this->container->extend('taskLexer', function($taskLexer, $c) {
             $taskLexer->withFilter(MetaFieldFilter::getInstance()->setDatabase($c['db']));
