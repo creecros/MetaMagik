@@ -11,7 +11,7 @@ use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
  * @package  Kanboard\Controller
  * @author   Frederic Guillot
  */
-class ExportController extends BaseController
+class NewExportController extends BaseController
 {
     /**
      * Common export method
