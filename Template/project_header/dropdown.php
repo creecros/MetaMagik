@@ -52,7 +52,7 @@
 
         <?php if ($this->user->hasProjectAccess('NewExportController', 'tasks', $project['id'])): ?>
             <li>
-                <?= $this->modal->medium('upload', t('Exports'), 'NewExportController', 'tasks', array('project_id' => $project['id'])) ?>
+                <?= $this->modal->medium('upload', t('Exports'), 'NewExportController', 'tasks', ['plugin' => 'metaMagik', 'project_id' => $project['id']]) ?>
             </li>
         <?php endif ?>
 
