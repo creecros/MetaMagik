@@ -34,13 +34,15 @@ class MetaTaskExport extends Base
         $tags = $this->taskTagModel->getTagsByTaskIds($taskIds);
         $colors = $this->colorModel->getList();
         $results = array($this->getColumns());
-
+        $metafields = $this->metadataTypeModel->getAll()
 
         foreach ($tasks as &$task) {
           $metadata = $this->taskMetadataModel->getAll($task['id']);
           $metaval = array();
           foreach ($metadata as $key => $value) {
-          array_push($metaval, $value);
+              if (in_array($key, $metafields['human_name'])) {
+                    array_push($metaval, $value);
+              }
           }
 
             $task = $this->format($task, $colors, $tags, $metaval);
