@@ -1,6 +1,8 @@
 <?php
 
-namespace Kanboard\Controller;
+namespace Kanboard\Plugin\MetaMagik\Controller;
+
+use Kanboard\Controller\BaseController;
 
 /**
  * Export Controller
