@@ -73,6 +73,9 @@ class Plugin extends Base
             'Plugin\MetaMagik\Model' => [
                 'MetadataTypeModel',
             ],
+            'Plugin\MetaMagik\Export' => [
+                'MetaTaskExport',
+            ],
         ];
     }
 
