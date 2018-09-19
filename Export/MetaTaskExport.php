@@ -40,7 +40,7 @@ class MetaTaskExport extends Base
         foreach ($metafields as $fields) { array_push($fieldtest, $fields['human_name']); }
 
         foreach ($tasks as $task) {
-          $metadata = $this->taskMetadataModel->getAll($task['id']);
+          $metadata = $this->findMissingFields($task['id']);
           $metaval = array();
           foreach ($metadata as $key => $value) {
               if (in_array($key, $fieldtest)) {
@@ -153,6 +153,38 @@ class MetaTaskExport extends Base
 
         return $task;
     }
+    
+    /**
+    * Making sure missing fields are accounted for
+    */
+    
+    protected function findMissingFields($task_id)
+    {
+        $custom_types = $this->metadataTypeModel->getAll();
+        $metadata = $this->taskMetadataModel->getAll($task_id);
+        $custom_fields = array();
+        $meta_fields = array();
+        
+        foreach ($custom_types as $type) {
+            array_push($custom_fields, $type['human_name']);
+        }
+        
+        foreach ($metadata as $key => $value) {
+            array_push($meta_fields, $key);
+        }
+        
+        foreach ($custom_fields as $field) {
+            if (!in_array($field, $meta_fields)) {
+                $metadata['$field'] = '';
+            }
+        }
+        
+        ksort($metadata);
+        
+        return $metadata;
+        
+    }
+        
 
     /**
      * Get column titles
