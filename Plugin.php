@@ -8,7 +8,7 @@ use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
 use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
-use Kanboard\Plugin\MetaMagik\NewTaskDuplicationModel;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 
