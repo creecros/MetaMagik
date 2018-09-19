@@ -36,7 +36,7 @@ class MetaTaskExport extends Base
         $results = array($this->getColumns());
         $metafields = $this->metadataTypeModel->getAll()
 
-        foreach ($tasks as &$task) {
+        foreach ($tasks as $task) {
           $metadata = $this->taskMetadataModel->getAll($task['id']);
           $metaval = array();
           foreach ($metadata as $key => $value) {
@@ -44,7 +44,7 @@ class MetaTaskExport extends Base
                     array_push($metaval, $value);
               }
           }
-        }
+        
 
             $task = $this->format($task, $colors, $tags, $metaval);
             $results[] = array_values($task);
