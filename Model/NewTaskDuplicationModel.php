@@ -2,6 +2,16 @@
 
 namespace Kanboard\Model;
 
+use Kanboard\Model\TaskMetadataModel;
+use Kanboard\Model\TagDuplicationModel;
+use Kanboard\Model\ProjectPermissionModel;
+use Kanboard\Model\CategoryModel;
+use Kanboard\Model\SwimlaneModel;
+use Kanboard\Model\ColumnModel;
+use Kanboard\Model\ProjectTaskPriorityModel;
+use Kanboard\Model\TaskFinderModel;
+use Kanboard\Model\TaskCreationModel;
+use Kanboard\Model\SubtaskModel;
 use Kanboard\Core\Base;
 
 /**
@@ -10,7 +20,7 @@ use Kanboard\Core\Base;
  * @package  Kanboard\Model
  * @author   Frederic Guillot
  */
-class TaskDuplicationModel extends Base
+class NewTaskDuplicationModel extends Base
 {
     /**
      * Fields to copy when duplicating a task
@@ -54,7 +64,10 @@ class TaskDuplicationModel extends Base
 
         if ($new_task_id !== false) {
             $this->tagDuplicationModel->duplicateTaskTags($task_id, $new_task_id);
+            $meta = $this->taskMetadataModel->getAll($task_id);
+            foreach ($meta as $key => $value) { $this->taskMetadataModel->save($new_task_id, [$key => $value]); }
         }
+        
 
         return $new_task_id;
     }
