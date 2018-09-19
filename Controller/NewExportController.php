@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
+use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 
 /**
  * Export Controller
