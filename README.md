@@ -1,15 +1,21 @@
-MetaMagik Kanboard Plugin (Under Development)
+MetaMagik Kanboard Plugin (Beta)
 ==========================
 
-This plugin uses Metadata to create Customizable Fields.
+Forked from [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metadata) and added functionality ontop of previous plugin, **there is no need to use both plugins**
 
-A settings panel, allows you to create fields.
+1. This plugin uses Metadata to create Customizable Fields.
 
-Fields will show up when creating/modifying tasks.
+2. A settings panel, allows you to create fields.
 
-Metadata Sidebars for tasks, projects, and users to add remove metadata.
+3. Fields will show up when creating/modifying tasks.
 
-Filters for searching metadata.
+4. Metadata is duplicated during task duplication.
+
+5. Exporting tasks to CSV will include custom fields.
+
+6. Metadata Sidebars for tasks, projects, and users to add remove metadata.
+
+7. Filters for searching metadata.
 
 Plugin for https://github.com/fguillot/kanboard
 
@@ -17,6 +23,7 @@ Author
 ------
 
 - [Craig Crosby](https://github.com/creecros)
+- Fork of [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metadata)
 - License MIT
 
 Installation
