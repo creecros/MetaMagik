@@ -17,7 +17,7 @@ use Kanboard\Model\TaskMetadataModel;
  * @package  export
  * @author   Frederic Guillot
  */
-class TaskExport extends Base
+class MetaTaskExport extends Base
 {
     /**
      * Fetch tasks and return the prepared CSV
