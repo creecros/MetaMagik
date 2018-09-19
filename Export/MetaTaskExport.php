@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Export;
+namespace Kanboard\Plugin\MetaMagik\Export;
 
 use Kanboard\Core\Base;
 use Kanboard\Model\CategoryModel;
