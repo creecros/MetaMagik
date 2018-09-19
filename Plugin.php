@@ -90,7 +90,7 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('Manage Metadata');
+        return t('Custom Task Fields and Manage Metadata');
     }
 
     public function getPluginAuthor()
