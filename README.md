@@ -65,6 +65,13 @@ Perform searches for metadata values. `metaval:"value"`
 
 ![image](https://user-images.githubusercontent.com/26339368/45580850-e51dab00-b863-11e8-96e3-c8ff832e70a2.png)
 
+Export to CSV will include your custom fields and data during Task Export
+
+![image](https://user-images.githubusercontent.com/26339368/45769838-c2e2af00-bc0e-11e8-95b6-34c23876f03f.png)
+
+![image](https://user-images.githubusercontent.com/26339368/45769796-af374880-bc0e-11e8-9587-83ab717da733.png)
+
+
 Credits
 ------------
 
