@@ -184,9 +184,16 @@ class MetaTaskExport extends Base
         );
         
         $metaheads = $this->metadataTypeModel->getAll();
-        sort($metaheads);
+        $metaheaders_sorted = array();
+        
         foreach ($metaheads as $header) {
-            array_push($basearray, $header['human_name']);
+            array_push($metaheaders_sorted, $header['human_name']);
+        }   
+        
+        sort($metaheaders_sorted);
+        
+        foreach ($metaheaders_sorted as $header) {
+            array_push($basearray, $header);
         }
         
         return $basearray;
