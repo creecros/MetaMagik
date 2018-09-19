@@ -38,7 +38,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
         $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');
-        $this->template->setTemplateOverride('export/task', 'metaMagik:export/task');
+        $this->template->setTemplateOverride('export/tasks', 'metaMagik:export/tasks');
         
         //Routes
         $this->route->addRoute('export/metatasks/:project_id', 'NewExportController', 'tasks');
