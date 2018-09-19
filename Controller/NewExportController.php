@@ -58,7 +58,7 @@ class NewExportController extends BaseController
      */
     public function tasks()
     {
-        $this->common('metaTaskExport', 'export', t('Tasks'), 'metatasks', t('Tasks Export'));
+        $this->common('metaTaskExport', 'export', t('Tasks'), 'tasks', t('Tasks Export'));
     }
 
     /**
