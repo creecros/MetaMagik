@@ -19,8 +19,6 @@
     <?= $this->form->text('options', $values, $errors) ?>
 
 
-    <?= // $this->form->checkbox('is_required', 'Is required?', '1', []) ?>
-
     <?= $this->form->label(t('Attached Entity'), 'attach_to') ?>
     <?= $this->form->select('attached_to', [
         ''        => '--',
