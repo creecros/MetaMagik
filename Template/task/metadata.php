@@ -13,6 +13,7 @@
         <th class="column-20"><?= t('Action') ?></th>
     </tr>
     <?php foreach ($metadata as $key => $value): ?>
+    <?php if (!empty($value)): ?>
     <tr>
         <td><?= $key ?></td>
         <td><?= $value ?></td>
@@ -27,6 +28,7 @@
             </ul>
         </td>
     </tr>
+    <?php endif ?>
     <?php endforeach ?>
     </table>
 <?php endif ?>
