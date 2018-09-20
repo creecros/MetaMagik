@@ -39,7 +39,6 @@
         <tr>
             <th>Field Name</th>
             <th>Type</th>
-            <th>Required</th>
             <th>Options</th>
             <th>Action</th>
         </tr>
@@ -50,7 +49,6 @@
             <tr>
                 <td><?= $type['human_name'] ?></td>
                 <td><?= $type['data_type'] ?></td>
-                <td><?= $type['is_required'] ?></td>
                 <td><?= $type['options'] ?></td>
                 <td>
                    <ul>
