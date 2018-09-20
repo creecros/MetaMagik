@@ -45,7 +45,7 @@ Usage
 
 Settings>Custom Fields: panel for creating custom fields for tasks
 
-![image](https://user-images.githubusercontent.com/26339368/45580649-c1f1fc00-b861-11e8-8f85-08ef52745fb2.png)
+![image](https://user-images.githubusercontent.com/26339368/45789083-f263dc80-bc4b-11e8-90dd-9d3431f811e1.png)
 
 Fields setup in Settings will appear in the task creation panel:
 
