@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?= t('Task Metadata Types') ?></h2>
+    <h2><?= t('Custom Fields') ?></h2>
 </div>
 
 <form id="metadata-type-creation-form" method="post" action="<?= $this->url->href('MetadataTypesController', 'config', ['plugin' => 'MetaMagik']) ?>" autocomplete="off">
