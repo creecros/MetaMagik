@@ -45,7 +45,7 @@ class MetadataTypesController extends BaseController
             'values' => $values,
             'errors' => $errors,
             'types'  => $metadataTypes,
-            'title'  => t('Settings').' &gt; '.t('Metadata Types'),
+            'title'  => t('Settings').' &gt; '.t('Custom Fields'),
         ]));
     }
 
