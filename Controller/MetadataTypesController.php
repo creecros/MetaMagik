@@ -59,7 +59,11 @@ class MetadataTypesController extends BaseController
     private function validateValues($values)
     {
         $errors = [];
-
+        
+        if (strpos($values['human_name'], ' ')) {
+            $errors['human_name'] = [t('Please, do not use spaces.')];
+        }
+        
         if ($values['human_name'] == '') {
             $errors['human_name'] = [t('This cannot be empty.')];
         }
