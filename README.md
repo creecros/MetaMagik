@@ -1,4 +1,4 @@
-MetaMagik Kanboard Plugin (Beta)
+MetaMagik Kanboard Plugin
 ==========================
 
 Forked from [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metadata) and added functionality ontop of previous plugin, **there is no need to use both plugins**
