@@ -25,8 +25,8 @@ Plugin for https://github.com/fguillot/kanboard
 Author
 ------
 
-- [Craig Crosby](https://github.com/creecros)
-- Original Fork: [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metadata)
+- [Craig Crosby](https://github.com/creecros) - Latest additions
+- [BlueTeck](https://github.com/BlueTeck) - Original Fork: [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metadata)
 - License MIT
 
 Installation
