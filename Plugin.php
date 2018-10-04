@@ -95,7 +95,7 @@ class Plugin extends Base
 
     public function getPluginAuthor()
     {
-        return 'Craig Crosby';
+        return 'Craig Crosby + BlueTeck';
     }
 
     public function getPluginVersion()
