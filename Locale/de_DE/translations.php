@@ -13,4 +13,8 @@ return [
     'Options - comma seperated list for dropdown, radio, or checkbox group. 255 chars max.' => 'Optionen - kommagetrennte Liste für Dropdown-Liste, Radio oder Checkbox-Gruppe. 255 Zeichen max.',
     'Attached Entity'                             => 'Angehängte Entität',
     'No types have been defined yet.'             => 'Es wurden noch keine Typen definiert.',
+    'Field Name'                                  => 'Feldname',
+    'Types'                                       => 'Typen',
+    'Options'                                     => 'Optionen',
+    'Action'                                      => 'Aktion',
 ];
