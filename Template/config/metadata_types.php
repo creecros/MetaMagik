@@ -37,10 +37,10 @@
 <?php if (!empty($types)): ?>
     <table class="table-stripped">
         <tr>
-            <th>Field Name</th>
-            <th>Type</th>
-            <th>Options</th>
-            <th>Action</th>
+            <th><?= t('Field Name') ?></th>
+            <th><?= t('Type') ?></th>
+            <th><?= t('Options') ?></th>
+            <th><?= t('Action') ?></th>
         </tr>
         <?php 
         foreach ($types as $type): 
