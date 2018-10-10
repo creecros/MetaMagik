@@ -14,7 +14,7 @@ return [
     'Attached Entity'                             => 'Angehängte Entität',
     'No types have been defined yet.'             => 'Es wurden noch keine Typen definiert.',
     'Field Name'                                  => 'Feldname',
-    'Types'                                       => 'Typen',
+    'Type'                                        => 'Typen',
     'Options'                                     => 'Optionen',
     'Action'                                      => 'Aktion',
 ];
