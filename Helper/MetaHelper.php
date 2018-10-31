@@ -18,7 +18,7 @@ class MetaHelper extends Base
         $metasettings = $this->metadataTypeModel->getAll();
         $html = '';
         $meta_opt = array();
-        
+        uksort($metasettings, 'strcasecmp');
         if (isset($values['id'])) {
             foreach ($metasettings as $setting) {
                 if ($setting['attached_to'] == 'task') {
@@ -70,7 +70,7 @@ class MetaHelper extends Base
         $meta_type = array();
         $meta_deopt = array();
         $metadata = $this->taskMetadataModel->getAll($values['id']);
-        
+        uksort($metadata, 'strcasecmp');
         foreach ($metasettings as $setting) {
             $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
             $key = $setting['human_name'];

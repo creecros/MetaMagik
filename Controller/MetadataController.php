@@ -16,7 +16,7 @@ class MetadataController extends BaseController
         $project = $this->getProject();
 
         $metadata = $this->projectMetadataModel->getAll($project['id']);
-
+        
         $this->response->html($this->helper->layout->project('metaMagik:project/metadata', ['title' => t('Metadata'),
                     'project'                                                                      => $project,
                     'metadata'                                                                     => $metadata, ]));
@@ -28,7 +28,7 @@ class MetadataController extends BaseController
         $task = $this->getTask();
 
         $metadata = $this->taskMetadataModel->getAll($task['id']);
-
+        uksort($metadata, 'strcasecmp');
         $this->response->html($this->helper->layout->task('metaMagik:task/metadata', ['title' => t('Metadata'),
                     'task'                                                                   => $task,
                     'add_form'                                                               => true,
@@ -42,7 +42,7 @@ class MetadataController extends BaseController
         $task = $this->getTask();
 
         $metadata = $this->taskMetadataModel->getAll($task['id']);
-
+        uksort($metadata, 'strcasecmp');
         $this->response->html($this->helper->layout->task('metaMagik:task/metadata', ['title' => t('Metadata'),
                     'task'                                                                   => $task,
                     'add_form'                                                               => false,
