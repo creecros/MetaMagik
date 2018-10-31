@@ -26,7 +26,7 @@ class MetadataTypeModel extends Base
     public function getAll()
     {
         $metadataTypes = $this->db->table(self::TABLE)
-            ->asc('human_name')
+            ->asc('machine_name')
             ->findAll();
 
         return $metadataTypes;
