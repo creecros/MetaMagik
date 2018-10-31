@@ -40,7 +40,7 @@ class MetadataTypesController extends BaseController
         }
 
         $metadataTypes = $this->metadataTypeModel->getAll();
-
+        uksort($metadataTypes, 'strcasecmp');
         $this->response->html($this->helper->layout->config('MetaMagik:config/metadata_types', [
             'values' => $values,
             'errors' => $errors,
