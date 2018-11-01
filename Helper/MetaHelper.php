@@ -82,6 +82,7 @@ class MetaHelper extends Base
 
         
         foreach ($metadata as $key => $value) {
+        if (array_key_exists($key , $meta_type)) {
          if ($meta_type[$key] == 'text') {
              $values['metamagikkey_' . $key] = $metadata[$key];
              $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
@@ -122,6 +123,7 @@ class MetaHelper extends Base
              $meta_opt = array();
          }
         }
+       }
 
         return $html;
     }
