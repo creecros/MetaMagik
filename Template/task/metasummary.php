@@ -11,13 +11,21 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
+        <tr>
+          <th><?= t('Custom Field') ?></th>
+          <th><?= t('Value') ?></th>
+        </tr>
+        <tr>
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
+        <td>
         <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change position') ?>"></i>&nbsp;
-        <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
+        <strong><?= $key ?></strong>
+                </td>
+                <td><?= $value ?></td>
         <?php endif ?>
     <?php endforeach ?>
-
+        </tr>
 </div>
 </section>
 <?php endif ?>
