@@ -21,7 +21,7 @@ if (empty($metadata)):
 <tbody>
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-        <tr id="<?= $i++ ?>">
+        <tr data-subtask-id="<?= $i++ ?>">
                   <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change subtask position"></i>&nbsp;<strong><?= $key ?></strong></td>
                   <td><?= $value ?></td>
         </tr>
