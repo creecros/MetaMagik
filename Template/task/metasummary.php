@@ -16,17 +16,19 @@ if (empty($metadata)):
           <th><?= t('Custom Field') ?></th>
           <th><?= t('Value') ?></th>
         </tr>
-        <tr>
+        
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
+                <tr>
         <td>
         <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change position') ?>"></i>&nbsp;
         <strong><?= $key ?></strong>
                 </td>
                 <td><?= $value ?></td>
+                        </tr>
         <?php endif ?>
     <?php endforeach ?>
-        </tr>
+        
         </table>
 </div>
 </section>
