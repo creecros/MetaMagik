@@ -1,5 +1,6 @@
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 uksort($metadata, 'strcasecmp');
