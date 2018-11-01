@@ -3,6 +3,7 @@
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 uksort($metadata, 'strcasecmp');
+$i = 0;
 if (empty($metadata)): 
 ?>
 <?php else: ?>
@@ -19,7 +20,7 @@ if (empty($metadata)):
         
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-                <tr>
+                <tr id="<?php $i++ ?>">
         <td>
         <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change position') ?>"></i>&nbsp;
         <strong><?= $key ?></strong>
