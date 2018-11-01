@@ -12,12 +12,15 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
+        <div class="container text-center">
         <table>
+                <thead>
         <tr>
           <th><?= t('Custom Field') ?></th>
           <th><?= t('Value') ?></th>
         </tr>
-        
+                </thead>
+                <tbody>
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
                 <tr id="<?php $i++ ?>">
@@ -29,8 +32,12 @@ if (empty($metadata)):
                         </tr>
         <?php endif ?>
     <?php endforeach ?>
-        
+                </tbody>
         </table>
 </div>
+        </div>
+<script type="text/javascript">
+  $('tbody').sortable();
+</script>
 </section>
 <?php endif ?>
