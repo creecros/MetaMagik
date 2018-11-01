@@ -13,6 +13,7 @@ if (empty($metadata)):
 <div class="accordion-content">
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
+        <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change position') ?>"></i>&nbsp;
         <p><strong><?= $key ?><?= t(': ') ?></strong><?= $value ?></p>
         <?php endif ?>
     <?php endforeach ?>
