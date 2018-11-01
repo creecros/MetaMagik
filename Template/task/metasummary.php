@@ -18,7 +18,7 @@ if (empty($metadata)):
           <th><?= t('Value') ?></th>
         </tr>
 </thead>
-<tbody class="ui-sortable">
+<tbody>
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
         <tr id="<?= $i++ ?>">
