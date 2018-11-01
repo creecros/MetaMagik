@@ -21,7 +21,7 @@ if (empty($metadata)):
 <tbody class="ui-sortable">
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-        <tr id="<?= $i++ ?>" class="ui-sortable-handle">
+        <tr id="<?= $i++ ?>">
                   <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change subtask position"></i>&nbsp;<strong><?= $key ?></strong></td>
                   <td><?= $value ?></td>
         </tr>
