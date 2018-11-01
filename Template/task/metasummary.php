@@ -24,9 +24,8 @@ if (empty($metadata)):
                 <tbody>
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-                <tr id="<?php $i++ ?>">
+                <tr id="<?= $i++ ?>">
         <td>
-        <i class="fa fa-arrows-alt draggable-row-handle" title="<?= t('Change position') ?>"></i>&nbsp;
         <strong><?= $key ?></strong>
                 </td>
                 <td><?= $value ?></td>
