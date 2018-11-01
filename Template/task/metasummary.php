@@ -2,6 +2,7 @@
 
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
+uksort($metadata, 'strcasecmp');
 if (empty($metadata)): 
 ?>
 <?php else: ?>
