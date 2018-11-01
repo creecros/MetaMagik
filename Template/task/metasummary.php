@@ -1,6 +1,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">   
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 uksort($metadata, 'strcasecmp');
@@ -21,10 +22,10 @@ if (empty($metadata)):
           <th><?= t('Value') ?></th>
         </tr>
                 </thead>
-                <tbody>
+                <tbody class="ui-sortable">
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-                <tr id="<?= $i++ ?>">
+                <tr id="<?= $i++ ?>" class="ui-sortable-handle">
         <td>
         <strong><?= $key ?></strong>
                 </td>
