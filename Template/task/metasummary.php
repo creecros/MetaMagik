@@ -11,7 +11,7 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-<table class="metadata-table table-striped table-scrolling">
+<table class="metadata-table table-striped table-scrolling"  data-save-position-url="<?= $this->url->href('SubtaskController', 'movePosition', array('project_id' => $task['project_id'], 'task_id' => $task['id'])) ?>">
 <thead>
         <tr>
           <th><?= t('Custom Field') ?></th>
