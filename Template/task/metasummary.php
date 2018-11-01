@@ -11,7 +11,7 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-<table>
+<table class="metadata-table table-striped table-scrolling">
 <thead>
         <tr>
           <th><?= t('Custom Field') ?></th>
