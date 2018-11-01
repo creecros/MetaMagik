@@ -11,6 +11,7 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
+        <table>
         <tr>
           <th><?= t('Custom Field') ?></th>
           <th><?= t('Value') ?></th>
@@ -26,6 +27,7 @@ if (empty($metadata)):
         <?php endif ?>
     <?php endforeach ?>
         </tr>
+        </table>
 </div>
 </section>
 <?php endif ?>
