@@ -1,7 +1,4 @@
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script> 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">   
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 uksort($metadata, 'strcasecmp');
@@ -14,31 +11,25 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-        <div class="container text-center">
-        <table>
-                <thead>
+<table>
+<thead>
         <tr>
           <th><?= t('Custom Field') ?></th>
           <th><?= t('Value') ?></th>
         </tr>
-                </thead>
-                <tbody class="ui-sortable">
+</thead>
+<tbody class="ui-sortable">
   <?php foreach ($metadata as $key => $value): ?>
         <?php if (!empty($value)): ?>
-                <tr id="<?= $i++ ?>" class="ui-sortable-handle">
-        <td>
-        <strong><?= $key ?></strong>
-                </td>
-                <td><?= $value ?></td>
-                        </tr>
+        <tr id="<?= $i++ ?>" class="ui-sortable-handle">
+                  <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change subtask position"></i>&nbsp;<strong><?= $key ?></strong></td>
+                  <td><?= $value ?></td>
+        </tr>
         <?php endif ?>
     <?php endforeach ?>
-                </tbody>
-        </table>
+</tbody>
+</table>
 </div>
-        </div>
-<script type="text/javascript">
-  $('tbody').sortable();
-</script>
+
 </section>
 <?php endif ?>
