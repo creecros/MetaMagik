@@ -1,6 +1,6 @@
 KB.on('dom.ready', function() {
 
-    function savePosition(id, position) {
+    function savePosition(metadataId, position) {
         var url = $(".metadata-table").data("save-position-url");
 
         $.ajax({
@@ -10,7 +10,7 @@ KB.on('dom.ready', function() {
             type: "POST",
             processData: false,
             data: JSON.stringify({
-                "id": id,
+                "id": metadataId,
                 "position": position
             })
         });
