@@ -53,7 +53,10 @@
         $key = $type['id']
         ?>
             <tr data-metadata-id="<?= $type['id'] ?>">
-                <td><?= $type['human_name'] ?></td>
+                <td>
+                    <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
+                    <?= $type['human_name'] ?>
+                </td>
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['options'] ?></td>
                 <td>
