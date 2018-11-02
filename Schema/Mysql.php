@@ -8,9 +8,17 @@ const VERSION = 3;
 
 function version_3(PDO $pdo)
 {
-    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN position VARCHAR(255)');
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN position INTEGER DEFAULT 1');
+    // Migrate all metadata_types position
+    $position = 1;
+    $urq = $pdo->prepare('UPDATE metadata_types SET position=? WHERE id=?');
+    $rq = $pdo->prepare('SELECT * FROM metadata_types ORDER BY id ASC');
+    $rq->execute();
+    foreach ($rq->fetchAll(PDO::FETCH_ASSOC) as $metadata_types) {
+        $urq->execute(array($position, $metadata_types['id']));
+        $position++;
+    }
 }
-
 function version_2(PDO $pdo)
 {
     $pdo->exec('ALTER TABLE metadata_types ADD COLUMN options VARCHAR(255)');
