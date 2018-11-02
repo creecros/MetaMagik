@@ -2,7 +2,7 @@
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 $custom_fields = $this->task->metadataTypeModel->getAll();
-if ($_SESSION['user']['role'] !== 'app-admin') { $edits = false; }
+if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits = false; }
 if (empty($custom_fields)): 
 ?>
 <?php else: ?>
