@@ -35,7 +35,7 @@ KB.on('dom.ready', function() {
         stop: function(event, ui) {
             var metadata = ui.item;
             metadata.removeClass("draggable-item-selected");
-            savePosition(metadata.data("id"), metadata.index() + 1);
+            savePosition(metadata.data("metadata-id"), metadata.index() + 1);
         },
         start: function(event, ui) {
             ui.item.addClass("draggable-item-selected");
