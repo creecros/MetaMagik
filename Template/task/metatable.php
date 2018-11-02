@@ -1,6 +1,6 @@
 <table
        class="metadata-table table-striped table-scrolling"
-       data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('task_id' => $task['id'])) ?>"
+       data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
 >
 <thead>
         <tr>
