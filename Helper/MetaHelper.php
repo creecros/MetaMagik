@@ -81,8 +81,9 @@ class MetaHelper extends Base
         }
 
         
-        foreach ($metadata as $key => $value) {
-        if (array_key_exists($key , $meta_type)) {
+        foreach ($metasettings as $setting) {
+         $key = $setting['human_name'];
+         $value = $this->taskMetadataModel->get($values['id'], $key, '');
          if ($meta_type[$key] == 'text') {
              $values['metamagikkey_' . $key] = $metadata[$key];
              $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
@@ -122,7 +123,7 @@ class MetaHelper extends Base
              $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $meta_opt, $values); 
              $meta_opt = array();
          }
-        }
+        
        }
 
         return $html;
