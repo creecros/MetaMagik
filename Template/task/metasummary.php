@@ -1,8 +1,7 @@
 
 <?php 
-$metadata = $this->task->taskMetadataModel->getAll($task['id']);
-$i = 0;
-if (empty($metadata)): 
+$custom_fields = $this->task->metadataTypeModel->getAll();
+if (empty($custom_fields)): 
 ?>
 <?php else: ?>
 <section class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
@@ -10,7 +9,10 @@ if (empty($metadata)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-<table class="metadata-table table-striped table-scrolling">
+<table
+       class="metadata-table table-striped table-scrolling"
+       data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('task_id' => $task['id'])) ?>"
+>
 <thead>
         <tr>
           <th><?= t('Custom Field') ?></th>
@@ -18,11 +20,11 @@ if (empty($metadata)):
         </tr>
 </thead>
 <tbody>
-  <?php foreach ($metadata as $key => $value): ?>
-        <?php if (!empty($value)): ?>
-        <tr data-subtask-id="<?= $i++ ?>">
-                  <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change subtask position"></i>&nbsp;<strong><?= $key ?></strong></td>
-                  <td><?= $value ?></td>
+  <?php foreach ($custom_fields as $custom_field): ?>
+        <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], ''))): ?>
+        <tr data-id="<?= $custom_field['id'] ?>">
+                  <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;<strong><?= $custom_field['human_name'] ?></strong></td>
+                  <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
         </tr>
         <?php endif ?>
     <?php endforeach ?>
