@@ -11,7 +11,7 @@ if (empty($custom_fields)):
         <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
     </div>
 <div class="accordion-content">
-        <?= $this->render('metamagik:task/metatable', array(
+        <?= $this->render('metaMagik:task/metatable', array(
             'custom_fields' => $custom_fields,
             'task' => $task,
             'editable' => $edits
