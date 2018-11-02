@@ -35,19 +35,28 @@
 </form>
 <hr>
 <?php if (!empty($types)): ?>
-    <table class="table-stripped">
+<table
+       class="metadata-table table-striped table-scrolling"
+       data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
+>
+    <thead>
         <tr>
             <th><?= t('Field Name') ?></th>
             <th><?= t('Type') ?></th>
             <th><?= t('Options') ?></th>
             <th><?= t('Action') ?></th>
         </tr>
+    </thead>
+    <tbody>
         <?php 
         foreach ($types as $type): 
         $key = $type['id']
         ?>
-            <tr>
-                <td><?= $type['human_name'] ?></td>
+            <tr data-metadata-id="<?= $type['id'] ?>">
+                <td>
+                    <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
+                    <?= $type['human_name'] ?>
+                </td>
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['options'] ?></td>
                 <td>
@@ -59,7 +68,8 @@
                 </td>
             </tr>
         <?php endforeach ?>
-    </table>
+</tbody>
+</table>
 <?php else: ?>
     <div class="listing">
         <?= t('No types have been defined yet.') ?>
