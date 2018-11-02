@@ -38,7 +38,21 @@ class MetadataTypeModel extends Base
             ->eq('id', $id)
             ->remove();
     }
-
+    
+    public function existsInTask($task_id)
+    {
+        $cf = $this->getAll();  
+        $set = false;
+        foreach ($cf as $f) {
+            if ($this->taskMetadataModel->exists($task_id, $f['human_name'])) {
+                $set = true;
+                break;
+            }
+        }
+        
+        return $set;
+    }                
+ 
     public function changePosition($id, $position)
     {
         if ($position < 1 || $position > $this->db->table(self::TABLE)->count()) {

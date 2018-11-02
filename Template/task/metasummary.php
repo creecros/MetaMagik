@@ -2,8 +2,9 @@
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
 $custom_fields = $this->task->metadataTypeModel->getAll();
+$set = $this->task->metadataTypeModel->existsInTask($task['id']);
 if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits = false; }
-if (empty($custom_fields)): 
+if (!$set): 
 ?>
 <?php else: ?>
 <section class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
