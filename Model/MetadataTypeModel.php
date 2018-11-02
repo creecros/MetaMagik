@@ -41,13 +41,16 @@ class MetadataTypeModel extends Base
     
     public function existsInTask($task_id)
     {
-        $cf = $this->getAll();        
+        $cf = $this->getAll();  
+        $set = false;
         foreach ($cf as $f) {
             if ($this->taskMetadataModel->exists($task_id, $f['human_name'])) {
-                return true;
+                $set = true;
                 break;
             }
         }
+        
+        return $set;
     }                
  
     public function changePosition($id, $position)
