@@ -11,7 +11,7 @@
 <tbody>
   <?php foreach ($custom_fields as $custom_field): ?>
         <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], ''))): ?>
-        <tr data-id="<?= $custom_field['id'] ?>">
+        <tr data-metadata-id="<?= $custom_field['id'] ?>">
                   <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;<strong><?= $custom_field['human_name'] ?></strong></td>
                   <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
         </tr>
