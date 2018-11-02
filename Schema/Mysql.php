@@ -4,7 +4,12 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 2;
+const VERSION = 3;
+
+function version_3(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN position VARCHAR(255)');
+}
 
 function version_2(PDO $pdo)
 {
