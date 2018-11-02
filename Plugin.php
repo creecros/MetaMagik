@@ -63,6 +63,9 @@ class Plugin extends Base
 
         // Add link to new plugin settings
         $this->template->hook->attach('template:config:sidebar', 'metaMagik:config/sidebar');
+        
+        //java
+        $this->hook->on('template:layout:js', array('template' => 'plugins/MetaMagik/Assets/js/meta-drag-and-drop.js'));
     }
 
     public function onStartup()
