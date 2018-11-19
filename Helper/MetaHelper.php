@@ -101,11 +101,11 @@ class MetaHelper extends Base
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
                 $html .= $this->renderMetaTableField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
-            } elseif ($setting['data_type'] == 'users') {
+            } elseif ($setting['data_type'] == 'users') {explode(',', $setting['options'])
                 $html .= $this->renderMetaUsersField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
+                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? explode(',', $metadata[$key]) : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
             }
         }
 
