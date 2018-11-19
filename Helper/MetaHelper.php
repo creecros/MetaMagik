@@ -69,10 +69,10 @@ class MetaHelper extends Base
     public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
     {
         $metasettings = $this->metadataTypeModel->getAllInColumn($column_number);
-        $metadata = $this->taskMetadataModel->getAll($values['id']);
         $html = '';
 
         if (isset($values['id'])) {
+        $metadata = $this->taskMetadataModel->getAll($values['id']);
             foreach ($metasettings as $setting) {
                 if ($setting['attached_to'] == 'task') {
                     $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
