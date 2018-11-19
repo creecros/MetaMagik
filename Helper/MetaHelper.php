@@ -37,14 +37,6 @@ class MetaHelper extends Base
 
         $html = "";
         $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-        
-        if ($type == 'check') { 
-             $wtf = explode(',', $metadata[$key]);
-              
-             foreach ($wtf as $key_fix) {
-                     $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
-             }
-        }
 
         switch ($type){
             case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value]); break;
@@ -95,9 +87,16 @@ class MetaHelper extends Base
 
         foreach ($metasettings as $setting) {
             $key = $setting['human_name'];
-            if (isset($values['id'])) {
+            if (isset($values['id']) && $setting['data_type'] !== 'check') {
                 $values['metamagikkey_' . $key] = $metadata[$key];
+            } elseif (isset($values['id']) && $setting['data_type'] == 'check') {
+                $wtf = explode(',', $metadata[$key]);
+              
+                foreach ($wtf as $key_fix) {
+                     $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
+                } 
             }
+            
             $new_attributes = $attributes;
             if($setting['is_required']) {
                 $new_attributes['required'] = "required";
