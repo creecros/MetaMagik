@@ -58,14 +58,13 @@ class MetaFieldFilter extends BaseFilter implements FilterInterface
     {
         $metafield = $this->db
             ->table(self::TABLE)
-            ->eq('name', '%' . $this->value . '%')
+            ->ilike('name', '%'.$this->value.'%')
             ->asc('task_id')
-            ->findAll();
+            ->findAllByColumn('task_id');
             
         $task_ids = $metafield;
 
-        $this->query->in(TaskModel::TABLE.'.id', $task_ids);
+        return $this->query->in(TaskModel::TABLE.'.id', $task_ids);
 
-        return $this;
     }
 }

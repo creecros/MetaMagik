@@ -4,8 +4,27 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 2;
+const VERSION = 4;
 
+function version_4(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types CHANGE COLUMN `options` `options` VARCHAR(10000);');
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN column_number INTEGER DEFAULT 1');
+}
+
+function version_3(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN position INTEGER DEFAULT 1');
+    // Migrate all metadata_types position
+    $position = 1;
+    $urq = $pdo->prepare('UPDATE metadata_types SET position=? WHERE id=?');
+    $rq = $pdo->prepare('SELECT * FROM metadata_types ORDER BY id ASC');
+    $rq->execute();
+    foreach ($rq->fetchAll(PDO::FETCH_ASSOC) as $metadata_types) {
+        $urq->execute(array($position, $metadata_types['id']));
+        $position++;
+    }
+}
 function version_2(PDO $pdo)
 {
     $pdo->exec('ALTER TABLE metadata_types ADD COLUMN options VARCHAR(255)');

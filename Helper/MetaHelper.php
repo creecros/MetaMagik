@@ -2,8 +2,8 @@
 
 namespace Kanboard\Plugin\MetaMagik\Helper;
 
-use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 use Kanboard\Core\Base;
+use Kanboard\Model\UserModel;
 
 /**
  * Meta helper
@@ -11,119 +11,101 @@ use Kanboard\Core\Base;
  */
 class MetaHelper extends Base
 {
-    
 
-    public function renderMetaFields(array $values, array $errors = array(), array $attributes = array())
+    public function renderMetaTextField($key, $value, array $errors = array(), array $attributes = array())
     {
-        $metasettings = $this->metadataTypeModel->getAll();
-        $html = '';
-        $meta_opt = array();
-        
-        if (isset($values['id'])) {
-            foreach ($metasettings as $setting) {
-                if ($setting['attached_to'] == 'task') {
-                    $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
-                        if (!$metaisset) {
-                         $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
-                        }
-                 }
-            }
-        } else {        
-            foreach ($metasettings as $setting) {
-                if ($setting['attached_to'] == 'task') {
-                     
-                    if ($setting['data_type'] == 'text') {
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-                        $html .= $this->helper->form->text('metamagikkey_' . $setting['human_name'], $values, $errors, $attributes, 'form-input-small'); 
-                        $meta_opt = array();
-                    } else if ($setting['data_type'] == 'list') {
-                        $opt_explode = explode(',', $setting['options']);
-                        foreach ($opt_explode as $key => $value) {
-                            $meta_opt[$value] = $value;
-                        }
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-                        $html .= $this->helper->form->select('metamagikkey_' . $setting['human_name'], $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
-                        $meta_opt = array();
-                    } else if ($setting['data_type'] == 'radio') {
-                        $opt_explode = explode(',', $setting['options']);
-                        foreach ($opt_explode as $key => $value) {
-                            $meta_opt[$value] = $value;
-                        }
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name']);
-                        $html .= $this->helper->form->radios('metamagikkey_' . $setting['human_name'], $meta_opt, $values); 
-                        $meta_opt = array();
-                    } else if ($setting['data_type'] == 'check') {
-                        $opt_explode = explode(',', $setting['options']);
-                        foreach ($opt_explode as $key => $value) {
-                            $meta_opt[$value] = $value;
-                        }
-                        $html .= $this->helper->form->label($setting['human_name'], 'metamagikkey_' . $setting['human_name'] . '[]');
-                        $html .= $this->helper->form->checkboxes('metamagikkey_' . $setting['human_name'] . '[]', $meta_opt, $values); 
-                        $meta_opt = array();
-                    }
+        $html = "";
+        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->text('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
+        return $html;
+    }
 
-                }
-            }
-        }
-        
-        $meta_opt = array();
-        $meta_type = array();
-        $meta_deopt = array();
-        $metadata = $this->taskMetadataModel->getAll($values['id']);
-        
-        foreach ($metasettings as $setting) {
-            $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
-            $key = $setting['human_name'];
-            if ($metaisset) { 
-                $meta_deopt[$key] = $setting['options']; 
-                $meta_type[$key] = $setting['data_type'];
-            }
+    public function renderMetaNumberField($key, $value, array $errors = array(), array $attributes = array())
+    {
+        $html = "";
+        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->number('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
+        return $html;
+    }
+
+    public function renderMetaListField($key, $value, array $list, $type, array $errors = array(), array $attributes = array())
+    {
+        $map_list = [];
+        foreach ($list as $name => $value) {
+            $map_list[$value] = $value;
         }
 
-        
-        foreach ($metadata as $key => $value) {
-         if ($meta_type[$key] == 'text') {
-             $values['metamagikkey_' . $key] = $metadata[$key];
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-             $html .= $this->helper->form->text('metamagikkey_' . $key, $values, $errors, $attributes, 'form-input-small');
-             $meta_opt = array();
-         } else if ($meta_type[$key] == 'list') {
-             $values['metamagikkey_' . $key] = $metadata[$key];
-             $opt_explode = explode(',', $meta_deopt[$key]);
-             foreach ($opt_explode as $name => $value) {
-                            $meta_opt[$value] = $value;
-             }
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-             $html .= $this->helper->form->select('metamagikkey_' . $key, $meta_opt, $values, $errors, $attributes, 'form-input-small'); 
-             $meta_opt = array();
-         } else if ($meta_type[$key] == 'radio') {
-             $values['metamagikkey_' . $key] = $metadata[$key];
-             $opt_explode = explode(',', $meta_deopt[$key]);
-             foreach ($opt_explode as $name => $value) {
-                            $meta_opt[$value] = $value;
-             }
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-             $html .= $this->helper->form->radios('metamagikkey_' . $key, $meta_opt, $values); 
-             $meta_opt = array();
-         } else if ($meta_type[$key] == 'check') {
-             $wtf = explode(',', $metadata[$key]);
-              
-             foreach ($wtf as $key_fix) {
-                     $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
-             }
-                
-             $opt_explode = explode(',', $meta_deopt[$key]);
-             foreach ($opt_explode as $name => $value) {
-                            $meta_opt[$value] = $value;
-             }
-             
-             $html .= $this->helper->form->label($key, 'metamagikkey_' . $key . '[]');
-             $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $meta_opt, $values); 
-             $meta_opt = array();
-         }
+        $html = "";
+        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+
+        switch ($type){
+            case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value]); break;
+            case "list": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small'); break;
+            case "check": $html .= $this->helper->form->checkboxes('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value]); break;
         }
 
         return $html;
     }
-    
+
+    public function renderMetaUsersField($key, $value, array $errors = array(), array $attributes = array()){
+        $aux_user = new UserModel($this->container);
+        $users_table = $aux_user->getActiveUsersList(false);
+        $users = [];
+        foreach ($users_table as $name => $valuex) {
+            $users[] = $valuex;
+        }
+        return $this->renderMetaListField($key, $value, $users, 'list', $errors, $attributes);
+    }
+
+    public function renderMetaTableField($key, $value, $table_name, $keycolumn, $valuecolumn, array $errors = array(), array $attributes = array()){
+        $meta_opt[''] = '';
+        $aux_table = $this->db->table($table_name)->columns($keycolumn, $valuecolumn)->findAll();
+        foreach ($aux_table as $valuex) {
+            $meta_opt[$valuex[$keycolumn]] = $valuex[$valuecolumn];
+        }
+        return $this->renderMetaListField($key, $value, $meta_opt, 'list', $errors, $attributes);
+    }
+
+    public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
+    {
+        $metasettings = $this->metadataTypeModel->getAllInColumn($column_number);
+        $metadata = $this->taskMetadataModel->getAll($values['id']);
+        $html = '';
+
+        if (isset($values['id'])) {
+            foreach ($metasettings as $setting) {
+                if ($setting['attached_to'] == 'task') {
+                    $metaisset = $this->taskMetadataModel->exists($values['id'], $setting['human_name']);
+                    if (!$metaisset) {
+                        $this->taskMetadataModel->save($values['id'], [$setting['human_name'] => '']);
+                    }
+                }
+            }
+        }
+
+        foreach ($metasettings as $setting) {
+            $key = $setting['human_name'];
+            $values['metamagikkey_' . $key] = $metadata[$key];
+            $new_attributes = $attributes;
+            if($setting['is_required']) {
+                $new_attributes['required'] = "required";
+            }
+            if ($setting['data_type'] == 'text') {
+                $html .= $this->renderMetaTextField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+            } elseif ($setting['data_type'] == 'number') {
+                $html .= $this->renderMetaNumberField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+            } else if ($setting['data_type'] == 'table') {
+                $opt_explode = explode(',', $setting['options']);
+                $html .= $this->renderMetaTableField($key, $metadata[$key] ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
+            } elseif ($setting['data_type'] == 'users') {
+                $html .= $this->renderMetaUsersField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+            } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
+                $opt_explode = explode(',', $setting['options']);
+                $html .= $this->renderMetaListField($key, $metadata[$key] ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
+            }
+        }
+
+        return $html;
+    }
+
 }

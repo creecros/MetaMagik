@@ -16,7 +16,7 @@ class MetadataController extends BaseController
         $project = $this->getProject();
 
         $metadata = $this->projectMetadataModel->getAll($project['id']);
-
+        
         $this->response->html($this->helper->layout->project('metaMagik:project/metadata', ['title' => t('Metadata'),
                     'project'                                                                      => $project,
                     'metadata'                                                                     => $metadata, ]));
