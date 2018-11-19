@@ -12,12 +12,24 @@
         'text'    => 'Text',
         'list'    => 'Dropdown List',
         'radio'   => 'Radio List',
-        'check'   => 'Checkbox Group',    
+        'check'   => 'Checkbox Group',
+        'users'   => 'User List',
+        'table'   => 'Key-value from BD',
+        'number'  => 'Number',
     ], $values, $errors, ['required']) ?>
     
     <?= $this->form->label(t('Options - comma seperated list for dropdown, radio, or checkbox group. 255 chars max.'), 'options') ?>
     <?= $this->form->text('options', $values, $errors) ?>
 
+    <?= $this->form->label(t('Column'), 'column_number') ?>
+    <?= $this->form->select('column_number', [
+        '1' => '1',
+        '2' => '2',
+        '3' => '3',
+    ], $values, $errors, ['required']) ?>
+
+    <?= $this->form->label(t('Required'), 'is_required') ?>
+    <?= $this->form->checkbox('is_required', t('Required'), 1, true) ?>
 
     <?= $this->form->label(t('Attached Entity'), 'attach_to') ?>
     <?= $this->form->select('attached_to', [

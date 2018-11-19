@@ -4,7 +4,13 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 3;
+const VERSION = 4;
+
+function version_4(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN column_number INTEGER DEFAULT 1');
+
+}
 
 function version_3(PDO $pdo)
 {

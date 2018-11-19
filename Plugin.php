@@ -38,7 +38,9 @@ class Plugin extends Base
         //Task
         $this->template->hook->attach('template:task:sidebar:information', 'metaMagik:task/sidebar');
         $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
-        $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta');
+        $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta1');
+        $this->template->hook->attach('template:task:form:second-column', 'metaMagik:task/rendermeta2');
+        $this->template->hook->attach('template:task:form:third-column', 'metaMagik:task/rendermeta3');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
         $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');

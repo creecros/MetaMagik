@@ -31,7 +31,17 @@ class MetadataTypeModel extends Base
 
         return $metadataTypes;
     }
-    
+
+    public function getAllInColumn($column_number)
+    {
+        $metadataTypes = $this->db->table(self::TABLE)
+            ->eq("column_number",$column_number)
+            ->asc('position')
+            ->findAll();
+
+        return $metadataTypes;
+    }
+
      public function remove($id)
     {
         return $this->db->table(self::TABLE)
