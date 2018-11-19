@@ -83,6 +83,7 @@ class MetaHelper extends Base
             }
         } else {
             $metadata = array();
+        }
 
         foreach ($metasettings as $setting) {
             $key = $setting['human_name'];
