@@ -105,7 +105,7 @@ class MetaHelper extends Base
                 $html .= $this->renderMetaUsersField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
+                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? $metadata[$key] : [], $opt_explode, $setting['data_type'], $errors, $new_attributes);
             }
         }
 
