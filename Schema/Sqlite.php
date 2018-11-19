@@ -8,7 +8,6 @@ const VERSION = 4;
 
 function version_4(PDO $pdo)
 {
-    $pdo->exec('ALTER TABLE metadata_types ALTER COLUMN options TYPE VARCHAR(10000);');     // ???
     $pdo->exec('ALTER TABLE metadata_types ADD COLUMN column_number INTEGER DEFAULT 1');
 }
 
