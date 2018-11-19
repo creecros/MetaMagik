@@ -107,7 +107,7 @@ class MetaHelper extends Base
                 $html .= $this->renderMetaNumberField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaTableField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
+                $html .= $this->renderMetaTableField($key, $values, $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'users') {
                 $html .= $this->renderMetaUsersField($key, $values, $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
