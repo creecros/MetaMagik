@@ -87,23 +87,25 @@ class MetaHelper extends Base
 
         foreach ($metasettings as $setting) {
             $key = $setting['human_name'];
-            $values['metamagikkey_' . $key] = $metadata[$key];
+            if (isset($values['id'])) {
+                $values['metamagikkey_' . $key] = $metadata[$key];
+            }
             $new_attributes = $attributes;
             if($setting['is_required']) {
                 $new_attributes['required'] = "required";
             }
             if ($setting['data_type'] == 'text') {
-                $html .= $this->renderMetaTextField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+                $html .= $this->renderMetaTextField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'number') {
-                $html .= $this->renderMetaNumberField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+                $html .= $this->renderMetaNumberField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaTableField($key, $metadata[$key] ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
+                $html .= $this->renderMetaTableField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'users') {
-                $html .= $this->renderMetaUsersField($key, $metadata[$key] ? $metadata[$key] : "", $errors, $new_attributes);
+                $html .= $this->renderMetaUsersField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaListField($key, $metadata[$key] ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
+                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
             }
         }
 
