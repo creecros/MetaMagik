@@ -39,9 +39,9 @@ class MetaHelper extends Base
         $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
 
         switch ($type){
-            case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value]); break;
-            case "list": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small'); break;
-            case "check": $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $map_list, ['metamagikkey_' . $key => $value]); break;
+            case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, $values); break;
+            case "list": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, $values, $errors, $attributes, 'form-input-small'); break;
+            case "check": $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $map_list, $values); break;
         }
 
         return $html;
