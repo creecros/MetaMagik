@@ -28,7 +28,7 @@ class MetaHelper extends Base
         return $html;
     }
 
-    public function renderMetaListField($key, $value, array $list, $type, array $errors = array(), array $attributes = array())
+    public function renderMetaListField($key, $values, array $list, $type, array $errors = array(), array $attributes = array())
     {
         $map_list = [];
         foreach ($list as $name => $value) {
@@ -109,10 +109,10 @@ class MetaHelper extends Base
                 $opt_explode = explode(',', $setting['options']);
                 $html .= $this->renderMetaTableField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'users') {
-                $html .= $this->renderMetaUsersField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
+                $html .= $this->renderMetaUsersField($key, $values, $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {
                 $opt_explode = explode(',', $setting['options']);
-                $html .= $this->renderMetaListField($key, isset($metadata[$key]) ? $metadata[$key] : "", $opt_explode, $setting['data_type'], $errors, $new_attributes);
+                $html .= $this->renderMetaListField($key, $values, $opt_explode, $setting['data_type'], $errors, $new_attributes);
             }
         }
 
