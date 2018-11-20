@@ -1,5 +1,9 @@
+<table>
+<tr>
+<?php for ($i = 1, $i <=3, $i++): ?>
+<td>
 <table
-       class="metadata-table table-striped table-scrolling"
+       class="metadata-table-<?= $i ?> table-striped table-scrolling"
        data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
 >
 <thead>
@@ -10,7 +14,7 @@
 </thead>
 <tbody>
   <?php foreach ($custom_fields as $custom_field): ?>
-        <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], ''))): ?>
+        <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) && $custom_field['column_number'] == $i): ?>
         <tr data-metadata-id="<?= $custom_field['id'] ?>">
                   <td>
                          <?php if ($_SESSION['user']['role'] == 'app-admin'): ?>
@@ -22,4 +26,8 @@
         <?php endif ?>
     <?php endforeach ?>
 </tbody>
+</table>
+</td>
+<?php endfor ?>
+</tr>
 </table>
