@@ -66,8 +66,7 @@ class MetadataTypeModel extends Base
     public function changePosition($id, $position, $column_number)
     {
 
-        if ($position == 0) { $position = 1; }
-        if ($position < 1 || $position > $this->db->table(self::TABLE)->count()) {
+        if ($position < 1 || $position > $this->db->table(self::TABLE)->eq('column_number', $column_number)->count()) {
             return false;
         }
         error_log('id = ' . $id, 0);
