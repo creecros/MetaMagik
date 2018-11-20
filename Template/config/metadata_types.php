@@ -10,13 +10,6 @@
     clear: both;
 }
 </style>
-<script type="text/javascript">
-  $(function () {
-    $(".metadata-table, .metadata-table").sortable({
-      connectWith: ".sortable"
-    });
-  });
-</script>
 
 <div class="page-header">
     <h2><?= t('Custom Fields') ?></h2>
