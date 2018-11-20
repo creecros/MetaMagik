@@ -12,7 +12,7 @@ KB.on('dom.ready', function() {
             data: JSON.stringify({
                 "id": metadataId,
                 "position": position,
-                "column-number": columnNumber
+                "columnnumber": columnNumber
             })
         });
     }
