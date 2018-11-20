@@ -1,6 +1,6 @@
 <table>
 <tr>
-<?php for ($i = 1, $i <=3, $i++): ?>
+<?php for ($i = 1; $i <=3; $i++): ?>
 <td>
 <table
        class="metadata-table-<?= $i ?> table-striped table-scrolling"
