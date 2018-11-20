@@ -1,3 +1,16 @@
+<style>
+.column {
+    float: left;
+    width: 30%;
+    padding: 10px;
+}
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+
 <div class="page-header">
     <h2><?= t('Custom Fields') ?></h2>
 </div>
@@ -47,6 +60,9 @@
     <?= $this->form->csrf() ?>
 </form>
 <hr>
+<div class="row">
+<?php for ($i = 1; $i <=3; $i++): ?>
+<div class="column">
 <?php if (!empty($types)): ?>
 <table
        class="metadata-table table-striped table-scrolling"
@@ -88,4 +104,6 @@
         <?= t('No types have been defined yet.') ?>
     </div>
 <?php endif ?>
-
+</div>
+<?php endfor ?>
+</div>
