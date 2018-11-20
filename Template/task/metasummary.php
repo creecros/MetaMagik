@@ -15,7 +15,7 @@ if (!$set):
         <?= $this->render('metaMagik:task/metatable', array(
             'custom_fields' => $custom_fields,
             'task' => $task,
-            'editable' => false
+            'editable' => false //change false to $edits to enable admin draggable interface, turned off because when some fields are empty, the sort will get wonky.
         )) ?>
 </div>
 
