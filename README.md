@@ -89,7 +89,7 @@ Credits
 ------------
 
 * Original Metadata Plugin author: [BlueTeck](https://github.com/BlueTeck)
-* Additional Metadata Types and Ability to place on different columns in Task Form: [Cortex](https://github.com/ncortex)
+* Additional Metadata Types and some organization for adding more types down the road: [Cortex](https://github.com/ncortex)
 * Unused non working code in original code that greatly assisted in adding the settings panel: [Daniele Lenares](https://github.com/dnlnrs)
 * Some guy who suckered me into writing this code, and provided the idea and desire: [Julien Buratto](https://github.com/TheCloud)
 
