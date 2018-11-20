@@ -1,7 +1,13 @@
-<table>
-<tr>
+<style>
+.column {
+    float: left;
+    width: 30%;
+    padding: 10px;
+}
+</style>
+<div>
 <?php for ($i = 1; $i <=3; $i++): ?>
-<td>
+<div class="column">
 <table
        class="metadata-table-<?= $i ?> table-striped table-scrolling"
        data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
@@ -27,7 +33,6 @@
     <?php endforeach ?>
 </tbody>
 </table>
-</td>
+</div>
 <?php endfor ?>
-</tr>
-</table>
+</div>
