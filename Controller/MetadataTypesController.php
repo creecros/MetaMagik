@@ -123,15 +123,7 @@ class MetadataTypesController extends BaseController
 
         if (! empty($values) && $_SESSION['user']['role'] == 'app-admin') {
             $result = $this->metadataTypeModel->changePosition($values['id'], $values['position'], $values['columnnumber']);
-            if ($result == 'abc is true') { 
-                $abc = true; 
-                $newResult = true;
-            } else { 
-                $abc = false;
-                $newResult = $result;
-            }
             $this->response->json(array('result' => $result));
-            if ($abc) { $this->response->redirect($this->helper->url->to('MetadataTypesController', 'config', array('plugin' => 'Customizer'))); }
         } else {
             throw new AccessForbiddenException();
         }
