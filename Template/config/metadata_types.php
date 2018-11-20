@@ -66,6 +66,7 @@
 <?php for ($i = 1; $i <=3; $i++): ?>
 <div class="column">   
 <table
+       id="<?= $i ?>"
        class="metadata-table table-striped table-scrolling"
        data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
 >
@@ -77,14 +78,14 @@
             <th><?= t('Action') ?></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="<?= $i ?>">
         <?php 
         foreach ($types as $type): 
         $key = $type['id']
         ?>
         <?php if ($type['column_number'] == $i): ?>
 
-            <tr data-metadata-id="<?= $type['id'] ?>" data-metadata-col="<?= $i ?>">
+            <tr data-metadata-id="<?= $type['id'] ?>">
                 <td>
                     <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
                     <?= $type['human_name'] ?>
