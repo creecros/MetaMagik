@@ -15,7 +15,7 @@ if (!$set):
         <?= $this->render('metaMagik:task/metatable', array(
             'custom_fields' => $custom_fields,
             'task' => $task,
-            'editable' => $edits
+            'editable' => false
         )) ?>
 </div>
 
