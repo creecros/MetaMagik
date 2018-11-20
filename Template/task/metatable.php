@@ -24,7 +24,7 @@
           <th><?= t('Value') ?></th>
         </tr>
 </thead>
-<tbody id="<?= $i ?>">
+<tbody id="<?= $i ?>" class="connected">
   <?php foreach ($custom_fields as $custom_field): ?>
         <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) && $custom_field['column_number'] == $i): ?>
         <tr data-metadata-id="<?= $custom_field['id'] ?>">
