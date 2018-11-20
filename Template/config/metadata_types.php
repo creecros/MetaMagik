@@ -14,7 +14,7 @@
         'radio'   => 'Radio List',
         'check'   => 'Checkbox Group',
         'users'   => 'User List',
-        'table'   => 'Key-value from BD',
+        'table'   => 'Key-value from DB',
         'number'  => 'Number',
     ], $values, $errors, ['required']) ?>
     
