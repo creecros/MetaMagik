@@ -1,6 +1,6 @@
 KB.on('dom.ready', function() {
 
-    function savePosition(metadataId, position) {
+    function savePosition(metadataId, position, columnNumber) {
         var url = $(".metadata-table").data("save-position-url");
 
         $.ajax({
@@ -11,7 +11,8 @@ KB.on('dom.ready', function() {
             processData: false,
             data: JSON.stringify({
                 "id": metadataId,
-                "position": position
+                "position": position,
+                "columnnumber": columnNumber
             })
         });
     }
@@ -23,6 +24,7 @@ KB.on('dom.ready', function() {
     });
 
     $(".metadata-table tbody").sortable({
+        connectWith: ".ui-sortable",
         forcePlaceholderSize: true,
         handle: "td:first i",
         helper: function(e, ui) {
@@ -34,8 +36,9 @@ KB.on('dom.ready', function() {
         },
         stop: function(event, ui) {
             var metadata = ui.item;
+            var newcol = metadata.parent().attr("id");
             metadata.removeClass("draggable-item-selected");
-            savePosition(metadata.data("metadata-id"), metadata.index() + 1);
+            savePosition(metadata.data("metadata-id"), metadata.index() + 1, newcol);
         },
         start: function(event, ui) {
             ui.item.addClass("draggable-item-selected");
