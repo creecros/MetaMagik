@@ -9,7 +9,7 @@ Forked from [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metada
 Added Features:
 ================
 
-1. Customizable Fields for tasks. (Textbox, Dropdowns, CheckBoxes, Radios)
+1. Customizable Fields for tasks. (Textbox, Number, Dropdowns, CheckBoxes, Radios, User Lists, Lists from DB)
 2. A settings panel which allows you to create custom fields for tasks.
 3. Fields will show up when creating/modifying tasks.
 4. Custom fields added to task details.
@@ -48,15 +48,15 @@ Usage
 
 Settings>Custom Fields: panel for creating custom fields for tasks
 
-![image](https://user-images.githubusercontent.com/26339368/45789083-f263dc80-bc4b-11e8-90dd-9d3431f811e1.png)
+![image](https://user-images.githubusercontent.com/26339368/48794160-2187e000-ecc7-11e8-89de-c2c83bde5425.png)
 
 Fields setup in Settings will appear in the task creation panel:
 
-![image](https://user-images.githubusercontent.com/26339368/45580679-f5348b00-b861-11e8-831c-2012424005c5.png)
+![image](https://user-images.githubusercontent.com/26339368/48794210-48dead00-ecc7-11e8-9731-2eb57ef8f226.png)
 
 Metadata will appear under Task Details in an Accordian:
 
-![image](https://user-images.githubusercontent.com/26339368/45580726-79870e00-b862-11e8-88db-397d6cdff417.png)
+![image](https://user-images.githubusercontent.com/26339368/48794118-fe5d3080-ecc6-11e8-844b-af76a71d7249.png)
 
 Metadata will also show up as a tooltip on the Board:
 
