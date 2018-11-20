@@ -36,7 +36,7 @@ KB.on('dom.ready', function() {
         },
         stop: function(event, ui) {
             var metadata = ui.item;
-            var newcol = $(this).parent().attr("id");
+            var newcol = metadata.parent().attr("id");
             metadata.removeClass("draggable-item-selected");
             savePosition(metadata.data("metadata-id"), metadata.index() + 1, newcol);
         },
