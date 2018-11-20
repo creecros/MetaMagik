@@ -25,6 +25,7 @@ KB.on('dom.ready', function() {
 
     $(".metadata-table tbody").sortable({
         connectWith: ".connected",
+        items: "tr:not(.disabled)",
         forcePlaceholderSize: true,
         handle: "td:first i",
         helper: function(e, ui) {
