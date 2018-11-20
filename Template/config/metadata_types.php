@@ -79,8 +79,8 @@
         </tr>
     </thead>
     <tbody id="<?= $i ?>" class="connected">
+        <?php $x = 0 ?>
         <?php 
-        $x = 0
         foreach ($types as $type): 
         $key = $type['id']
         ?>
