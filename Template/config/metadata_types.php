@@ -92,11 +92,7 @@
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['options'] ?></td>
                 <td>
-                   <ul>
-                        <li>
-                            <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
-                        </li>
-                    </ul>
+                    <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                 </td>
             </tr>
         <?php endif ?>
