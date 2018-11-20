@@ -120,6 +120,7 @@ class MetadataTypesController extends BaseController
     public function movePosition()
     {
         $values = $this->request->getJson();
+        error_log($values['column-number'], 1);
         if (! empty($values) && $_SESSION['user']['role'] == 'app-admin') {
             $result = $this->metadataTypeModel->changePosition($values['id'], $values['position'], $values['column-number']);
             $this->response->json(array('result' => $result));
