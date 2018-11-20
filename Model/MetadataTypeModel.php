@@ -86,8 +86,7 @@ class MetadataTypeModel extends Base
         }
 
         $results[] = $this->db->table(self::TABLE)->eq('id', $id)->update(array('position' => $position, 'column_number' => $column_number));
-        if ($abc) { $results[] = 'abc is true'; }
-        return !in_array(false, $results, true);
+        if ($abc) { return 'abc is true'; } else { return !in_array(false, $results, true); }
     }
     
 }
