@@ -80,12 +80,17 @@
         </tr>
     </thead>
     <tbody id="<?= $i ?>" class="connected">
+            <tr class="disabled">
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+            </tr>
         <?php 
         foreach ($types as $type): 
         $key = $type['id']
         ?>
         <?php if ($type['column_number'] == $i): ?>
-           <?php $x = 1 ?>
             <tr data-metadata-id="<?= $type['id'] ?>">
                 <td>
                     <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
@@ -99,14 +104,6 @@
             </tr>
         <?php endif ?>
         <?php endforeach ?>
-        <?php if ($x == 0): ?>
-            <tr class="disabled">
-                <td style="border: none"></td>
-                <td style="border: none"></td>
-                <td style="border: none"></td>
-                <td style="border: none"></td>
-            </tr>
-        <?php endif ?>
 </tbody>
 </table>
 </div>
