@@ -65,13 +65,14 @@ class MetadataTypeModel extends Base
  
     public function changePosition($id, $position, $column_number)
     {
-        error_log('id = ' . $id, 0);
-        error_log('pos = ' . $position, 0);
-        error_log('colnum = ' . $column_number, 0);
-        if ($position = 0) { $position = 1; }
+
+        if ($position == 0) { $position = 1; }
         if ($position < 1 || $position > $this->db->table(self::TABLE)->count()) {
             return false;
         }
+        error_log('id = ' . $id, 0);
+        error_log('pos = ' . $position, 0);
+        error_log('colnum = ' . $column_number, 0);
 
         $ids = $this->db->table(self::TABLE)->eq('column_number', $column_number)->neq('id', $id)->asc('position')->findAllByColumn('id');
         $offset = 1;
