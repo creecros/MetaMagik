@@ -64,6 +64,7 @@
 <?php if (!empty($types)): ?>
 <div class="row">
 <?php for ($i = 1; $i <=3; $i++): ?>
+<?php $x = 0 ?>
 <div class="column">   
 <table
        id="<?= $i ?>"
@@ -79,7 +80,6 @@
         </tr>
     </thead>
     <tbody id="<?= $i ?>" class="connected">
-        <?php $x = 0 ?>
         <?php 
         foreach ($types as $type): 
         $key = $type['id']
@@ -98,15 +98,15 @@
                 </td>
             </tr>
         <?php endif ?>
+        <?php endforeach ?>
         <?php if ($x == 0): ?>
             <tr>
                 <td></td>
                 <td></td>
-                <td>></td>
+                <td></td>
                 <td></td>
             </tr>
         <?php endif ?>
-        <?php endforeach ?>
 </tbody>
 </table>
 </div>
