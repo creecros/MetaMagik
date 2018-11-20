@@ -121,7 +121,7 @@ class MetadataTypesController extends BaseController
     {
         $values = $this->request->getJson();
         if (! empty($values) && $_SESSION['user']['role'] == 'app-admin') {
-            $result = $this->metadataTypeModel->changePosition($values['id'], $values['position']);
+            $result = $this->metadataTypeModel->changePosition($values['id'], $values['position'], $values['column-number']);
             $this->response->json(array('result' => $result));
         } else {
             throw new AccessForbiddenException();
