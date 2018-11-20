@@ -1,6 +1,6 @@
 KB.on('dom.ready', function() {
 
-    function savePosition(metadataId, position) {
+    function savePosition(metadataId, position, columnNumber) {
         var url = $(".metadata-table").data("save-position-url");
 
         $.ajax({
@@ -11,7 +11,8 @@ KB.on('dom.ready', function() {
             processData: false,
             data: JSON.stringify({
                 "id": metadataId,
-                "position": position
+                "position": position,
+                "column-number": columnNumber
             })
         });
     }
@@ -36,7 +37,7 @@ KB.on('dom.ready', function() {
         stop: function(event, ui) {
             var metadata = ui.item;
             metadata.removeClass("draggable-item-selected");
-            savePosition(metadata.data("metadata-id"), metadata.index() + 1);
+            savePosition(metadata.data("metadata-id"), metadata.index() + 1, metadata.data("metadata-col"));
         },
         start: function(event, ui) {
             ui.item.addClass("draggable-item-selected");
