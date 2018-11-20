@@ -29,8 +29,8 @@
         <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) && $custom_field['column_number'] == $i): ?>
         <tr data-metadata-id="<?= $custom_field['id'] ?>">
                   <td>
-                         <?php if ($_SESSION['user']['role'] == 'app-admin'): ?>
-                            <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
+                         <?php if ($_SESSION['user']['role'] == 'app-admin'): // turned off because draggable gets wonky when there are empty fields?>
+                         <!--   <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp; -->
                          <?php endif ?>
                          <strong><?= $custom_field['human_name'] ?></strong></td>
                   <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
