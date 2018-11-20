@@ -101,7 +101,7 @@
         <?php endforeach ?>
         <?php if ($x == 0): ?>
             <tr>
-                <td></td>
+                <td><i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i></td>
                 <td></td>
                 <td></td>
                 <td></td>
