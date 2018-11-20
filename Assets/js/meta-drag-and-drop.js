@@ -23,6 +23,7 @@ KB.on('dom.ready', function() {
     });
 
     $(".metadata-table tbody").sortable({
+        connectWith: ".sortable",
         forcePlaceholderSize: true,
         handle: "td:first i",
         helper: function(e, ui) {
