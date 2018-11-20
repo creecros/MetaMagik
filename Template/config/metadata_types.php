@@ -78,7 +78,7 @@
             <th><?= t('Action') ?></th>
         </tr>
     </thead>
-    <tbody id="<?= $i ?>">
+    <tbody id="<?= $i ?>" class="connected">
         <?php 
         foreach ($types as $type): 
         $key = $type['id']
