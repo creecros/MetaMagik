@@ -100,8 +100,8 @@
         <?php endif ?>
         <?php endforeach ?>
         <?php if ($x == 0): ?>
-            <tr>
-                <td style="border: none"><i class="ui-sortable"></i></td>
+            <tr class="disabled">
+                <td style="border: none"></td>
                 <td style="border: none"></td>
                 <td style="border: none"></td>
                 <td style="border: none"></td>
