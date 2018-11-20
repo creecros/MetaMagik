@@ -23,8 +23,8 @@ KB.on('dom.ready', function() {
         $(this).parent().parent().removeClass("draggable-item-hover");
     });
 
-    $("table.metadata-table").sortable({
-        connectWith: "table.metadata-table",
+    $(".metadata-table tbody").sortable({
+        connectWith: ".connected",
         forcePlaceholderSize: true,
         handle: "td:first i",
         helper: function(e, ui) {
