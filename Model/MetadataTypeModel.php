@@ -70,7 +70,7 @@ class MetadataTypeModel extends Base
             return false;
         }
         
-        if ($this->db->table(self::TABLE)->eq('column_number', $column_number)->count() == 0) { $abc = true; } esle { $abc = false; }
+        if ($this->db->table(self::TABLE)->eq('column_number', $column_number)->count() == 0) { $abc = true; } else { $abc = false; }
 
         $ids = $this->db->table(self::TABLE)->eq('column_number', $column_number)->neq('id', $id)->asc('position')->findAllByColumn('id');
         $offset = 1;
