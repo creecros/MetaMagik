@@ -63,13 +63,13 @@ class MetadataTypeModel extends Base
         return $set;
     }                
  
-    public function changePosition($id, $position)
+    public function changePosition($id, $position, $column_number)
     {
         if ($position < 1 || $position > $this->db->table(self::TABLE)->count()) {
             return false;
         }
 
-        $ids = $this->db->table(self::TABLE)->neq('id', $id)->asc('position')->findAllByColumn('id');
+        $ids = $this->db->table(self::TABLE)->eq('column-number', $column_number)->neq('id', $id)->asc('position')->findAllByColumn('id');
         $offset = 1;
         $results = array();
 
@@ -82,7 +82,7 @@ class MetadataTypeModel extends Base
             $offset++;
         }
 
-        $results[] = $this->db->table(self::TABLE)->eq('id', $id)->update(array('position' => $position));
+        $results[] = $this->db->table(self::TABLE)->eq('id', $id)->update(array('position' => $position, 'column-number' => $column_number));
 
         return !in_array(false, $results, true);
     }
