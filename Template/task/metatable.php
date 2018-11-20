@@ -14,6 +14,7 @@
 <?php for ($i = 1; $i <=3; $i++): ?>
 <div class="column">
 <table
+       id="<?= $i ?>" 
        class="metadata-table table-striped table-scrolling"
        data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
 >
@@ -23,7 +24,7 @@
           <th><?= t('Value') ?></th>
         </tr>
 </thead>
-<tbody>
+<tbody id="<?= $i ?>">
   <?php foreach ($custom_fields as $custom_field): ?>
         <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) && $custom_field['column_number'] == $i): ?>
         <tr data-metadata-id="<?= $custom_field['id'] ?>">
