@@ -60,10 +60,11 @@
     <?= $this->form->csrf() ?>
 </form>
 <hr>
+
+<?php if (!empty($types)): ?>
 <div class="row">
 <?php for ($i = 1; $i <=3; $i++): ?>
-<div class="column">
-<?php if (!empty($types)): ?>
+<div class="column">   
 <table
        class="metadata-table table-striped table-scrolling"
        data-save-position-url="<?= $this->url->href('MetadataTypesController', 'movePosition', array('plugin' => 'metaMagik')) ?>"
@@ -81,6 +82,8 @@
         foreach ($types as $type): 
         $key = $type['id']
         ?>
+        <?php if ($type['column_number'] == $i): ?>
+
             <tr data-metadata-id="<?= $type['id'] ?>">
                 <td>
                     <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
@@ -96,14 +99,16 @@
                     </ul>
                 </td>
             </tr>
+        <?php endif ?>
         <?php endforeach ?>
 </tbody>
 </table>
+</div>
+<?php endfor ?>
+</div>
 <?php else: ?>
     <div class="listing">
         <?= t('No types have been defined yet.') ?>
     </div>
 <?php endif ?>
-</div>
-<?php endfor ?>
-</div>
+
