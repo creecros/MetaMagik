@@ -88,13 +88,15 @@ class MetaHelper extends Base
         foreach ($metasettings as $setting) {
             $key = $setting['human_name'];
             if (isset($values['id']) && $setting['data_type'] !== 'check') {
-                $values['metamagikkey_' . $key] = $metadata[$key];
+                if (isset($metadata['key']) { $values['metamagikkey_' . $key] = $metadata[$key] }
             } elseif (isset($values['id']) && $setting['data_type'] == 'check') {
-                $wtf = explode(',', $metadata[$key]);
+                if (isset($metadata['key']) {
+                    $wtf = explode(',', $metadata[$key]);
               
-                foreach ($wtf as $key_fix) {
-                     $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
-                } 
+                    foreach ($wtf as $key_fix) {
+                        $values['metamagikkey_' . $key . '[]'][$key_fix] = $key_fix;
+                    } 
+                }
             }
             
             $new_attributes = $attributes;
