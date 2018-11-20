@@ -123,7 +123,7 @@ class MetadataTypesController extends BaseController
 
         if (! empty($values) && $_SESSION['user']['role'] == 'app-admin') {
             $result = $this->metadataTypeModel->changePosition($values['id'], $values['position'], $values['columnnumber']);
-            if ($result[count($result) + 1] == 'abc is true') { 
+            if ($result[array_count_values($result) + 1] == 'abc is true') { 
                 $abc = true; 
                 array_pop($result);
             } else { 
