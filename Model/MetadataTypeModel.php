@@ -70,8 +70,6 @@ class MetadataTypeModel extends Base
             return false;
         }
         
-        if ($this->db->table(self::TABLE)->eq('column_number', $column_number)->count() == 0) { $abc = true; } else { $abc = false; }
-
         $ids = $this->db->table(self::TABLE)->eq('column_number', $column_number)->neq('id', $id)->asc('position')->findAllByColumn('id');
         $offset = 1;
         $results = array();
@@ -86,7 +84,7 @@ class MetadataTypeModel extends Base
         }
 
         $results[] = $this->db->table(self::TABLE)->eq('id', $id)->update(array('position' => $position, 'column_number' => $column_number));
-        if ($abc) { return 'abc is true'; } else { return !in_array(false, $results, true); }
+        return !in_array(false, $results, true);
     }
     
 }
