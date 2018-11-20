@@ -4,8 +4,13 @@
     width: 30%;
     padding: 10px;
 }
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 </style>
-<div>
+<div class="row">
 <?php for ($i = 1; $i <=3; $i++): ?>
 <div class="column">
 <table
