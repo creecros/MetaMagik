@@ -84,7 +84,7 @@
         ?>
         <?php if ($type['column_number'] == $i): ?>
 
-            <tr data-metadata-id="<?= $type['id'] ?>">
+            <tr data-metadata-id="<?= $type['id'] ?>" data-metadata-col="<?= $i ?>">
                 <td>
                     <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
                     <?= $type['human_name'] ?>
