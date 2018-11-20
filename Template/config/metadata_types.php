@@ -101,10 +101,10 @@
         <?php endforeach ?>
         <?php if ($x == 0): ?>
             <tr>
-                <td><i class="ui-sortable"></i></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td style="border: none"><i class="ui-sortable"></i></td>
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+                <td style="border: none"></td>
             </tr>
         <?php endif ?>
 </tbody>
