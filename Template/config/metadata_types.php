@@ -80,11 +80,12 @@
     </thead>
     <tbody id="<?= $i ?>" class="connected">
         <?php 
+        $x = 0
         foreach ($types as $type): 
         $key = $type['id']
         ?>
         <?php if ($type['column_number'] == $i): ?>
-
+           <?php $x = 1 ?>
             <tr data-metadata-id="<?= $type['id'] ?>">
                 <td>
                     <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
@@ -95,6 +96,14 @@
                 <td>
                     <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                 </td>
+            </tr>
+        <?php endif ?>
+        <?php if ($x == 0): ?>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>></td>
+                <td></td>
             </tr>
         <?php endif ?>
         <?php endforeach ?>
