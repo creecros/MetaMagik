@@ -18,8 +18,9 @@
         'number'  => 'Number',
     ], $values, $errors, ['required']) ?>
     
-    <?= $this->form->label(t('Options - comma seperated list for dropdown, radio, or checkbox group. 255 chars max.'), 'options') ?>
+    <?= $this->form->label(t('Options'), 'options') ?>
     <?= $this->form->text('options', $values, $errors) ?>
+    <p><?= e('Example: <code>value1,value2,value3</code> for list types. For Key-value from DB: <code>tablename,keycolumn,valuecolumn</code>.') ?></p>
 
     <?= $this->form->label(t('Column'), 'column_number') ?>
     <?= $this->form->select('column_number', [
