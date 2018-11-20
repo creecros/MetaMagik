@@ -16,6 +16,7 @@ Added Features:
 5. Metadata is duplicated during task duplication.
 6. Exporting tasks to CSV will include custom fields.
 7. Filters for searching metadata.
+8. Can now set the column for the field to appear in, and placement is setup through drag and drop placement
 
 Original Features:
 ==================
