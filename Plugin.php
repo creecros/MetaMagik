@@ -11,8 +11,7 @@ use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
-
-
+use Kanboard\Core\Security\Role;
 
 class Plugin extends Base
 {
@@ -68,6 +67,9 @@ class Plugin extends Base
         
         //java
         $this->hook->on('template:layout:js', array('template' => 'plugins/MetaMagik/Assets/js/meta-drag-and-drop.js'));
+        
+        //Roles
+        $this->projectAccessMap->add('metadata', 'index', Role::PROJECT_MEMBER);
     }
 
     public function onStartup()
