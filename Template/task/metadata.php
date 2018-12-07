@@ -10,13 +10,16 @@
     <tr>
         <th class="column-40"><?= t('Key') ?></th>
         <th class="column-40"><?= t('Value') ?></th>
+        <?php if ($this->user->hasProjectAccess('metadata', 'index', $task['project_id'])): ?>
         <th class="column-20"><?= t('Action') ?></th>
+        <?php endif ?>
     </tr>
     <?php foreach ($metadata as $key => $value): ?>
     <?php if (!empty($value)): ?>
     <tr>
         <td><?= $key ?></td>
         <td><?= $value ?></td>
+        <?php if ($this->user->hasProjectAccess('metadata', 'index', $task['project_id'])): ?>
         <td>
             <ul>
                 <li>
@@ -27,6 +30,7 @@
                 </li>
             </ul>
         </td>
+        <?php endif ?>
     </tr>
     <?php endif ?>
     <?php endforeach ?>
