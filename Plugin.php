@@ -70,7 +70,7 @@ class Plugin extends Base
         
         //Roles
         $this->projectAccessMap->add('metadata', 'index', Role::PROJECT_MEMBER);
-        $this->projectAccessMap->add('MetadataController', '*', Role::PROJECT_MEMBER);
+        $this->projectAccessMap->add('MetadataController', array('save*', 'remove*', 'confirm*', 'edit*'), Role::PROJECT_MEMBER);
         $this->projectAccessMap->add('MetadataTypesController', '*', Role::PROJECT_MEMBER);
     }
 
