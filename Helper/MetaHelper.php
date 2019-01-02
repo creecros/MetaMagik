@@ -19,6 +19,14 @@ class MetaHelper extends Base
         $html .= $this->helper->form->text('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
         return $html;
     }
+    
+    public function renderDateField($key, $value, array $errors = array(), array $attributes = array())
+    {
+        $html = "";
+        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->input('date', 'metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
+        return $html;
+    }
 
     public function renderMetaNumberField($key, $value, array $errors = array(), array $attributes = array())
     {
@@ -107,6 +115,8 @@ class MetaHelper extends Base
                 $html .= $this->renderMetaTextField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'number') {
                 $html .= $this->renderMetaNumberField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
+            } elseif ($setting['data_type'] == 'date') {
+                $html .= $this->renderDateField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
                 $html .= $this->renderMetaTableField($key, $values, $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
