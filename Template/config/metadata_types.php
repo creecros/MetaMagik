@@ -29,6 +29,7 @@
         'users'   => 'User List',
         'table'   => 'Key-value from DB',
         'number'  => 'Number',
+        'date'  => 'Date',
     ], $values, $errors, ['required']) ?>
     
     <?= $this->form->label(t('Options'), 'options') ?>
