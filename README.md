@@ -9,7 +9,15 @@ Forked from [Metadata Plugin](https://github.com/BlueTeck/kanboard_plugin_metada
 Added Features:
 ================
 
-1. Customizable Fields for tasks. (Textbox, Number, Dropdowns, CheckBoxes, Radios, User Lists, Lists from DB)
+1. Customizable Fields for tasks. 
+   - Textbox
+   - Number
+   - Dropdowns
+   - CheckBoxes
+   - Radios
+   - User Lists
+   - Lists from DB
+   - Date (older browsers may not support the popup calendar)
 2. A settings panel which allows you to create custom fields for tasks.
 3. Fields will show up when creating/modifying tasks.
 4. Custom fields added to task details.
