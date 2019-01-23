@@ -4,6 +4,7 @@ namespace Kanboard\Plugin\MetaMagik\Model;
 
 use Kanboard\Model\TaskMetadataModel;
 use Kanboard\Model\TagDuplicationModel;
+use Kanboard\Model\TaskDuplicationModel;
 use Kanboard\Model\ProjectPermissionModel;
 use Kanboard\Model\CategoryModel;
 use Kanboard\Model\SwimlaneModel;
