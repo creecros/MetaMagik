@@ -9,6 +9,7 @@ use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskProjectDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
