@@ -29,6 +29,9 @@ class Plugin extends Base
         });
         $this->container['taskDuplicationModel'] = $this->container->factory(function ($c) {
             return new NewTaskDuplicationModel($c);
+        });        
+        $this->container['taskProjectDuplicationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskProjectDuplicationModel($c);
         });
         
         //Project
@@ -109,7 +112,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.2.3';
+        return '1.3.0';
     }
 
     public function getPluginHomepage()
