@@ -9,6 +9,7 @@ use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskProjectDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
@@ -29,6 +30,9 @@ class Plugin extends Base
         });
         $this->container['taskDuplicationModel'] = $this->container->factory(function ($c) {
             return new NewTaskDuplicationModel($c);
+        });        
+        $this->container['taskProjectDuplicationModel'] = $this->container->factory(function ($c) {
+            return new NewTaskProjectDuplicationModel($c);
         });
         
         //Project
@@ -109,7 +113,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.2.3';
+        return '1.2.4';
     }
 
     public function getPluginHomepage()
