@@ -64,6 +64,7 @@ class NewTaskDuplicationModel extends Base
 
         if ($new_task_id !== false) {
             $this->tagDuplicationModel->duplicateTaskTags($task_id, $new_task_id);
+            $this->taskLinkModel->create($new_task_id, $task_id, 4);
             $meta = $this->taskMetadataModel->getAll($task_id);
             foreach ($meta as $key => $value) { $this->taskMetadataModel->save($new_task_id, [$key => $value]); }
         }
