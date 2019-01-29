@@ -25,6 +25,7 @@ class MetadataTypesController extends BaseController
             $validation_errors = $this->validateValues($values);
 
             if (!$validation_errors) {
+                $values['human_name'] = $this->fixHumanName($values['human_name']); 
                 $machine_name = $this->createMachineName($values['human_name']);
                 $values['machine_name'] = $machine_name;
                 $type_id = $this->db->table(MetadataTypeModel::TABLE)->persist($values);
@@ -102,6 +103,18 @@ class MetadataTypesController extends BaseController
         $machine_name = preg_replace('/[\s]/', '_', $machine_name);
 
         return $machine_name;
+    }
+    
+    private function fixHumanName($human_name = '')
+    {
+        // Remove special characters
+        $human_name = preg_replace('/[^A-Za-z0-9_\s-]/', '', $human_name);
+        // Cleanup multiple dashes or whitespaces
+        $human_name = preg_replace('/[\s-]+/', ' ', $human_name);
+        // Replace whitespaces with underscores
+        $human_name = preg_replace('/[\s]/', '_', $human_name);
+
+        return $human_name;
     }
     
     public function confirmTask()
