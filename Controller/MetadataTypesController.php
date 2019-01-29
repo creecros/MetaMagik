@@ -96,7 +96,7 @@ class MetadataTypesController extends BaseController
     {
         $machine_name = strtolower($human_name);
         // Remove special characters
-        $machine_name = preg_replace('/[^Aa-Zz0-9_\s-]/', '', $machine_name);
+        $machine_name = preg_replace('/[^a-z0-9_\s-]/', '', $machine_name);
         // Cleanup multiple dashes or whitespaces
         $machine_name = preg_replace('/[\s-]+/', ' ', $machine_name);
         // Replace whitespaces with underscores
