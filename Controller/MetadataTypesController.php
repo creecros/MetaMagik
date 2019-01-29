@@ -108,7 +108,7 @@ class MetadataTypesController extends BaseController
     private function fixHumanName($human_name = '')
     {
         // Remove special characters
-        $human_name = preg_replace('/[^a-z0-9_\s-]/', '', $human_name);
+        $human_name = preg_replace('/[^A-Za-z0-9_\s-]/', '', $human_name);
         // Cleanup multiple dashes or whitespaces
         $human_name = preg_replace('/[\s-]+/', ' ', $human_name);
         // Replace whitespaces with underscores
