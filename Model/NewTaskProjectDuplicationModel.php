@@ -18,8 +18,8 @@ use Kanboard\Core\Base;
 /**
  * Task Project Duplication
  *
- * @package  Kanboard\Model
- * @author   Frederic Guillot
+ * @package  Kanboard\Plugin\MetaMagik
+ * @author   Craig Crosby
  */
 class NewTaskProjectDuplicationModel extends TaskDuplicationModel
 {

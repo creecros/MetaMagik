@@ -9,7 +9,7 @@ use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
  * Export Controller
  *
  * @package  Kanboard\Controller
- * @author   Frederic Guillot
+ * @author Craig Crosby
  */
 class NewExportController extends BaseController
 {

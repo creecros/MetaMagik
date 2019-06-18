@@ -5,9 +5,10 @@ namespace Kanboard\Plugin\MetaMagik\Model;
 use Kanboard\Core\Base;
 
 /**
- * Class MetadataType.
+ * Class Kanboard\Plugin\MetaMagik\Model;
  *
  * @author Daniele Lenares <daniele.lenares@gmail.com>
+ * @author Craig Crosby <creecros@gmail.com>
  */
 class MetadataTypeModel extends Base
 {

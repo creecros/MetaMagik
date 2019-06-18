@@ -8,6 +8,7 @@ use Kanboard\Controller\BaseController;
  * Metadata.
  *
  * @author  BlueTeck
+ * @author Craig Crosby
  */
 class MetadataController extends BaseController
 {

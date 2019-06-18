@@ -7,6 +7,8 @@ use Kanboard\Model\UserModel;
 
 /**
  * Meta helper
+ * 
+ * author Craig Crosby
  *
  */
 class MetaHelper extends Base

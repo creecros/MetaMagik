@@ -14,6 +14,8 @@ use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 
 /**
  * Task Export
+ * 
+ * author Craig Crosby
  *
  */
 class MetaTaskExport extends Base

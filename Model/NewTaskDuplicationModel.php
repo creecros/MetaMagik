@@ -17,8 +17,8 @@ use Kanboard\Core\Base;
 /**
  * Task Duplication
  *
- * @package  Kanboard\Model
- * @author   Frederic Guillot
+ * @package  Kanboard\Plugin\MetaMagik
+ * @author   Craig Crosby
  */
 class NewTaskDuplicationModel extends Base
 {

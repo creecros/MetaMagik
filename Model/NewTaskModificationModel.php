@@ -12,8 +12,8 @@ use Kanboard\Core\Base;
 /**
  * Task Modification
  *
- * @package  Kanboard\Model
- * @author   Frederic Guillot
+ * @package  Kanboard\Plugin\MetaMagik
+ * @author   Craig Crosby
  */
 class NewTaskModificationModel extends Base
 {
@@ -30,7 +30,7 @@ class NewTaskModificationModel extends Base
         $task = $this->taskFinderModel->getById($values['id']);
 
         $this->updateTags($values, $task);
-        $this->updateMeta($values, $task);
+        if($this->checkKeys($values))$this->updateMeta($values, $task);
         $this->prepare($values);
         $result = $this->db->table(TaskModel::TABLE)->eq('id', $task['id'])->update($values);
 
@@ -39,6 +39,26 @@ class NewTaskModificationModel extends Base
         }
 
         return $result;
+    }
+    
+    /**
+     * Check for metakey
+     *
+     * @access public
+     * @param  array     $values
+     * @return boolean
+     */
+    public function checkKeys($values)
+    {
+    
+        if(count(preg_grep('/^metamagikkey[\d]*/', array_keys($values))) > 0)
+        {
+           return true;
+        }
+        else
+        {
+           return false;
+        }
     }
 
     /**

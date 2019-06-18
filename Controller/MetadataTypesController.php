@@ -7,7 +7,9 @@ use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
 
 /**
  * Class MetadataTypes.
- *
+ * 
+ * @author Craig Crosby
+ * 
  */
 class MetadataTypesController extends BaseController
 {

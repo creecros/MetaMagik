@@ -11,6 +11,8 @@ use PicoDb\Database;
 
 /**
  * Class Metadata Field Filter
+ * 
+ * author Craig Crosby
  *
  */
 class MetaFieldFilter extends BaseFilter implements FilterInterface
