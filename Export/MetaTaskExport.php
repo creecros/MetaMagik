@@ -35,14 +35,14 @@ class MetaTaskExport extends Base
         $taskIds = array_column($tasks, 'id');
         $tags = $this->taskTagModel->getTagsByTaskIds($taskIds);
         $colors = $this->colorModel->getList();
-        $results = array($this->getColumns());
-        $metafields = $this->metadataTypeModel->getAll();
+        $results = array($this->getColumns($project_id));
+        $metafields = $this->metadataTypeModel->getAllInScope($project_id);
         $fieldtest = array();
          
         foreach ($metafields as $fields) { array_push($fieldtest, $fields['human_name']); }
 
         foreach ($tasks as $task) {
-          $metadata = $this->findMissingFields($task['id']);
+          $metadata = $this->findMissingFields($task['id'], $project_id);
           $metaval = array();
           foreach ($metadata as $key => $value) {
               if (in_array($key, $fieldtest)) {
@@ -160,9 +160,9 @@ class MetaTaskExport extends Base
     * Making sure missing fields are accounted for
     */
     
-    protected function findMissingFields($task_id)
+    protected function findMissingFields($task_id, $project_id)
     {
-        $custom_types = $this->metadataTypeModel->getAll();
+        $custom_types = $this->metadataTypeModel->getAllInScope($project_id);
         $metadata = $this->taskMetadataModel->getAll($task_id);
         $custom_fields = array();
         $meta_fields = array();
@@ -194,7 +194,7 @@ class MetaTaskExport extends Base
      * @access protected
      * @return string[]
      */
-    protected function getColumns()
+    protected function getColumns($project_id)
     {
         $basearray = array(
             e('Task Id'),
@@ -223,7 +223,7 @@ class MetaTaskExport extends Base
             e('Tags'),
         );
         
-        $metaheads = $this->metadataTypeModel->getAll();
+        $metaheads = $this->metadataTypeModel->getAllInScope($project_id);
         $metaheaders_sorted = array();
         
         foreach ($metaheads as $header) {

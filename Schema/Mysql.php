@@ -4,7 +4,12 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 4;
+const VERSION = 5;
+
+function version_5(PDO $pdo)
+{
+    $pdo->exec("UPDATE metadata_types SET attached_to = 0 WHERE attached_to IS NULL OR attached_to = 'task'");
+}
 
 function version_4(PDO $pdo)
 {

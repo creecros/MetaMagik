@@ -4,6 +4,7 @@ namespace Kanboard\Plugin\MetaMagik\Helper;
 
 use Kanboard\Core\Base;
 use Kanboard\Model\UserModel;
+use Kanboard\Model\TaskFinderModel;
 
 /**
  * Meta helper
@@ -78,7 +79,7 @@ class MetaHelper extends Base
 
     public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
     {
-        $metasettings = $this->metadataTypeModel->getAllInColumn($column_number);
+        $metasettings = $this->metadataTypeModel->getAllInColumn($column_number, $this->taskFinderModel->getProjectId($values['id']));
         $html = '';
 
         if (isset($values['id'])) {

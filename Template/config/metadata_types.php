@@ -45,14 +45,17 @@
 
     <?= $this->form->label(t('Required'), 'is_required') ?>
     <?= $this->form->checkbox('is_required', t('Required'), 1, true) ?>
+    
+    <?php $projects = $this->task->projectModel->getAllByStatus(1);
+          $projectList = array(0 => 'Global'); ?>
+    <?php 
+          foreach($projects as $project) { 
+            $projectList[$project['id']] = $project['name'];
+          } 
+    ?>
 
-    <?= $this->form->label(t('Attached Entity'), 'attach_to') ?>
-    <?= $this->form->select('attached_to', [
-        ''        => '--',
-        //'user'    => 'User',
-        //'project' => 'Project',
-        'task'    => 'Task',
-    ], $values, $errors, ['required']) ?>
+    <?= $this->form->label(t('Project scope:'), 'attach_to') ?>
+    <?= $this->form->select('attached_to', $projectList, $values, $errors, ['required']) ?>
 
     <div class="form-actions">
         <button type="submit" class="btn btn-blue"><?= t('Save') ?></button>
@@ -77,11 +80,13 @@
             <th><?= t('Field Name') ?></th>
             <th><?= t('Type') ?></th>
             <th><?= t('Options') ?></th>
+            <th><?= t('Scope') ?></th>
             <th><?= t('Action') ?></th>
         </tr>
     </thead>
     <tbody id="<?= $i ?>" class="connected">
             <tr class="disabled">
+                <td style="border: none"></td>
                 <td style="border: none"></td>
                 <td style="border: none"></td>
                 <td style="border: none"></td>
@@ -99,6 +104,7 @@
                 </td>
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['options'] ?></td>
+                <td><?= $type['attached_to'] ?></td>
                 <td>
                     <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                 </td>

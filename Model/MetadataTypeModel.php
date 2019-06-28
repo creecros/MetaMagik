@@ -32,11 +32,33 @@ class MetadataTypeModel extends Base
 
         return $metadataTypes;
     }
-
-    public function getAllInColumn($column_number)
+    
+    /**
+     * Return all metadata types in scope.
+     *
+     * @return array
+     */
+    public function getAllInScope($scope)
     {
         $metadataTypes = $this->db->table(self::TABLE)
-            ->eq("column_number",$column_number)
+            ->beginOr()
+            ->eq('attached_to', 0)
+            ->eq('attached_to', $scope)
+            ->closeOr()
+            ->asc('position')
+            ->findAll();
+
+        return $metadataTypes;
+    }
+
+    public function getAllInColumn($column_number, $scope)
+    {
+        $metadataTypes = $this->db->table(self::TABLE)
+            ->eq('column_number', $column_number)
+            ->beginOr()
+            ->eq('attached_to', 0)
+            ->eq('attached_to', $scope)
+            ->closeOr()
             ->asc('position')
             ->findAll();
 
@@ -62,8 +84,15 @@ class MetadataTypeModel extends Base
         }
         
         return $set;
-    }                
- 
+    }   
+    
+    public function getScope($id)
+    {
+        return $this->db->table(self::TABLE)
+            ->eq('id', $id)
+            ->findAllByColumn('attached_to');
+    }  
+    
     public function changePosition($id, $position, $column_number)
     {
 
