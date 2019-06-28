@@ -35,6 +35,7 @@ Added Features:
 6. Exporting tasks to CSV will include custom fields.
 7. Filters for searching metadata.
 8. Can now set the column for the field to appear in, and placement is setup through drag and drop placement
+9. Field can be Global for all tasks, or for a particular Project only.
 
 Original Features:
 ==================
