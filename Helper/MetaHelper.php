@@ -79,7 +79,7 @@ class MetaHelper extends Base
 
     public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
     {
-        $metasettings = $this->metadataTypeModel->getAllInColumn($column_number, $this->taskFinderModel->getProjectId($values['id']));
+        $metasettings = $this->metadataTypeModel->getAllInColumn($column_number, $values['project_id']);
         $html = '';
 
         if (isset($values['id'])) {
