@@ -42,8 +42,15 @@ class MetaHelper extends Base
     public function renderMetaListField($key, $values, array $list, $type, array $errors = array(), array $attributes = array())
     {
         $map_list = [];
-        foreach ($list as $name => $value) {
-            $map_list[$value] = $value;
+        if($type == "kvlist") {
+            foreach ($list as $name => $value) {
+                $map_list[$value] = $name;
+            }
+        } else {
+            $list = array_merge(array(""=>""), $list);
+            foreach ($list as $name => $value) {
+                $map_list[$value] = $value;
+            }
         }
 
         $html = "";
@@ -52,6 +59,7 @@ class MetaHelper extends Base
         switch ($type){
             case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, $values); break;
             case "list": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, $values, $errors, $attributes, 'form-input-small'); break;
+            case "kvlist": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, $values, $errors, $attributes, 'form-input-small'); break;
             case "check": $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $map_list, $values); break;
         }
 
@@ -74,7 +82,7 @@ class MetaHelper extends Base
         foreach ($aux_table as $valuex) {
             $meta_opt[$valuex[$keycolumn]] = $valuex[$valuecolumn];
         }
-        return $this->renderMetaListField($key, $value, $meta_opt, 'list', $errors, $attributes);
+        return $this->renderMetaListField($key, $value, $meta_opt, 'kvlist', $errors, $attributes);
     }
 
     public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
