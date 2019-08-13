@@ -84,6 +84,13 @@ class MetaHelper extends Base
         }
         return $this->renderMetaListField($key, $value, $meta_opt, 'kvlist', $errors, $attributes);
     }
+    
+    public function renderMetaColumnCriteriaField($key, $value, $table_name, $keycolumn, $criteria, $valuecolumn, array $errors = array(), array $attributes = array()){
+        $meta_opt[''] = '';
+        $aux_table = $this->db->table($table_name)->eq($keycolumn, $criteria)->findAllByColumn($valuecolumn);
+
+        return $this->renderMetaListField($key, $value, $aux_table, 'list', $errors, $attributes);
+    }
 
     public function renderMetaFields(array $values, $column_number, array $errors = array(), array $attributes = array())
     {
@@ -131,6 +138,9 @@ class MetaHelper extends Base
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
                 $html .= $this->renderMetaTableField($key, $values, $opt_explode[0], $opt_explode[1], $opt_explode[2], $errors, $new_attributes);
+            } else if ($setting['data_type'] == 'columneqcriteria') {
+                $opt_explode = explode(',', $setting['options']);
+                $html .= $this->renderMetaColumnCriteriaField($key, $values, $opt_explode[0], $opt_explode[1], $opt_explode[2], $opt_explode[3], $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'users') {
                 $html .= $this->renderMetaUsersField($key, $values, $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'list' || $setting['data_type'] == 'radio' || $setting['data_type'] == 'check') {

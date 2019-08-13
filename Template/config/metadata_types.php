@@ -28,6 +28,7 @@
         'check'   => 'Checkbox Group',
         'users'   => 'User List',
         'table'   => 'Key-value from DB',
+        'columneqcriteria'   => 'Column from DB, based on equals Criteria',
         'number'  => 'Number',
         'date'  => 'Date',
     ], $values, $errors, ['required']) ?>
@@ -35,6 +36,7 @@
     <?= $this->form->label(t('Options'), 'options') ?>
     <?= $this->form->text('options', $values, $errors) ?>
     <p><?= e('Example: <code>value1,value2,value3</code> for list types. For Key-value from DB: <code>tablename,keycolumn,valuecolumn</code>.') ?></p>
+    <p><?= e('Example: For Column from DB, based on equals Criteria: <code>tablename,criteria_column,criteria,value_column</code>.') ?></p>
 
     <?= $this->form->label(t('Column'), 'column_number') ?>
     <?= $this->form->select('column_number', [
