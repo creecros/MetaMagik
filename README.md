@@ -31,7 +31,9 @@ Added Features:
    - CheckBoxes
    - Radios
    - User Lists
-   - Lists from DB
+   - Custom Lists from DB
+     - Key/Val
+     - Equals Criteria
    - Date (older browsers may not support the popup calendar)
 2. A settings panel which allows you to create custom fields for tasks.
 3. Fields will show up when creating/modifying tasks.
