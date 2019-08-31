@@ -6,6 +6,7 @@ use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Plugin\MetaMagik\Helper\MetaHelper;
 use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
+use Kanboard\Plugin\MetaMagik\Model\NewTaskFinderModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
@@ -22,6 +23,9 @@ class Plugin extends Base
         $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
         
         //Models
+        $this->container['taskFinderModel'] = $this->container->factory(function ($c) {
+            return new NewTaskFinderModel($c);
+        });
         $this->container['taskModificationModel'] = $this->container->factory(function ($c) {
             return new NewTaskModificationModel($c);
         });
