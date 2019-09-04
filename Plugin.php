@@ -23,9 +23,11 @@ class Plugin extends Base
         $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
         
         //Models
-        $this->container['taskFinderModel'] = $this->container->factory(function ($c) {
-            return new NewTaskFinderModel($c);
-        });
+        if (!file_exists('plugins/Group_assign')){
+            $this->container['taskFinderModel'] = $this->container->factory(function ($c) {
+                return new NewTaskFinderModel($c);
+            });
+        }
         $this->container['taskModificationModel'] = $this->container->factory(function ($c) {
             return new NewTaskModificationModel($c);
         });
@@ -117,7 +119,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.0';
+        return '1.4.1';
     }
 
     public function getPluginHomepage()
