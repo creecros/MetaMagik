@@ -46,13 +46,17 @@ class MetaHelper extends Base
             foreach ($list as $name => $value) {
                 $map_list[$value] = $name;
             }
-        } else {
+        } else if($type == "list"){
             $list = array_merge(array(""=>""), $list);
             foreach ($list as $name => $value) {
                 $map_list[$value] = $value;
             }
+        } else {
+            foreach ($list as $name => $value) {
+                $map_list[$value] = $value;
+            }
         }
-
+        
         $html = "";
         $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
 
