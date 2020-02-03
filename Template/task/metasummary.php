@@ -1,7 +1,7 @@
 <br><br>
 <?php 
 $metadata = $this->task->taskMetadataModel->getAll($task['id']);
-$custom_fields = $this->task->metadataTypeModel->getAll();
+$custom_fields = $this->task->metadataTypeModel->getAllInScope($task['project_id']);
 $set = $this->task->metadataTypeModel->existsInTask($task['id']);
 if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits = false; }
 if (!$set): 
