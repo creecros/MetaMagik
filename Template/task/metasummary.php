@@ -7,17 +7,19 @@ if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits =
 if (!$set): 
 ?>
 <?php else: ?>
-<section class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
-<div class="accordion-title">
-        <h3><a href="#" class="fa accordion-toggle"></a> <?= t('MetaMagik') ?></h3>
-    </div>
+<details class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
+<summary class="accordion-title">
+        <?= t('MetaMagik') ?>
+    </summary>
 <div class="accordion-content">
-        <?= $this->render('metaMagik:task/metatable', array(
+        <article class="markdown">
+		<?= $this->render('metaMagik:task/metatable', array(
             'custom_fields' => $custom_fields,
             'task' => $task,
             'editable' => $edits
         )) ?>
+		</article>
 </div>
 
-</section>
+</details>
 <?php endif ?>
