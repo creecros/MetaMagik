@@ -7,7 +7,7 @@ if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits =
 if (!$set): 
 ?>
 <?php else: ?>
-<details class="accordion-section <?= empty($metadata) ? 'accordion-collapsed' : '' ?>">
+<details class="accordion-section" <?= empty($metadata) ? 'accordion-collapsed' : '' ?>>
 <summary class="accordion-title">
         <?= t('MetaMagik') ?>
     </summary>
