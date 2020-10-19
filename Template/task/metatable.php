@@ -39,7 +39,11 @@
                             <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
                          <?php endif ?>
                          <strong><?= $custom_field['human_name'] ?></strong></td>
+                <?php if ($custom_field['data_type'] == 'textarea'): ?>
+                  <td><?= $this->text->markdown($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) ?></td>
+                <?php else: ?>
                   <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
+                <?php endif ?>
         </tr>
         <?php endif ?>
     <?php endforeach ?>
