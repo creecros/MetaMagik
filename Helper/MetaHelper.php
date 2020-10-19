@@ -23,6 +23,14 @@ class MetaHelper extends Base
         return $html;
     }
     
+    public function renderMetaTextAreaField($key, $value, array $errors = array(), array $attributes = array())
+    {
+        $html = "";
+        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->textarea('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes);
+        return $html;
+    }
+    
     public function renderDateField($key, $value, array $errors = array(), array $attributes = array())
     {
         $html = "";
@@ -135,6 +143,8 @@ class MetaHelper extends Base
             }
             if ($setting['data_type'] == 'text') {
                 $html .= $this->renderMetaTextField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
+            } elseif ($setting['data_type'] == 'textarea') {
+                $html .= $this->renderMetaTextAreaField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'number') {
                 $html .= $this->renderMetaNumberField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'date') {

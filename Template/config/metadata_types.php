@@ -23,6 +23,7 @@
     <?= $this->form->select('data_type', [
         ''        => '--',
         'text'    => 'Text',
+        'textarea'    => 'Text Area',
         'list'    => 'Dropdown List',
         'radio'   => 'Radio List',
         'check'   => 'Checkbox Group',
