@@ -26,6 +26,7 @@ Added Features:
 
 1. Customizable Fields for tasks. 
    - Textbox
+   - Text Area
    - Number
    - Dropdowns
    - CheckBoxes
