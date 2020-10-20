@@ -44,6 +44,7 @@ Added Features:
 7. Filters for searching metadata.
 8. Can now set the column for the field to appear in, and placement is setup through drag and drop placement
 9. Field can be Global for all tasks, or for a particular Project only.
+10. Field types now include an option to add as a footer to the task cards in board view
 
 Original Features:
 ==================
@@ -111,6 +112,10 @@ Export to CSV will include your custom fields and data during Task Export
 ![image](https://user-images.githubusercontent.com/26339368/45769838-c2e2af00-bc0e-11e8-95b6-34c23876f03f.png)
 
 ![image](https://user-images.githubusercontent.com/26339368/45769796-af374880-bc0e-11e8-9587-83ab717da733.png)
+
+When fields are included as footers to task cards
+
+![image](https://user-images.githubusercontent.com/26339368/96617808-16ce8f00-12d2-11eb-8a70-4ce542f7bd7a.png)
 
 
 Credits
