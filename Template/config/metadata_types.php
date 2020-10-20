@@ -49,6 +49,9 @@
     <?= $this->form->label(t('Required'), 'is_required') ?>
     <?= $this->form->checkbox('is_required', t('Required'), 1, true) ?>
     
+    <?= $this->form->label(t('Include as Footer Icon?'), 'footer_inc') ?>
+    <?= $this->form->checkbox('footer_inc', t('Include'), 1, true) ?>
+    
     <?php $projects = $this->task->projectModel->getAllByStatus(1);
           $projectList = array(0 => 'Global'); ?>
     <?php 

@@ -47,6 +47,7 @@ class Plugin extends Base
         //Task
         $this->template->hook->attach('template:task:sidebar:information', 'metaMagik:task/sidebar');
         $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/footer_icon');
+        $this->template->hook->attach('template:board:task:icons', 'metaMagik:task/meta_footers');
         $this->template->hook->attach('template:task:form:first-column', 'metaMagik:task/rendermeta1');
         $this->template->hook->attach('template:task:form:second-column', 'metaMagik:task/rendermeta2');
         $this->template->hook->attach('template:task:form:third-column', 'metaMagik:task/rendermeta3');
@@ -119,7 +120,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.5';
+        return '1.4.6';
     }
 
     public function getPluginHomepage()

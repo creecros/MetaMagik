@@ -4,7 +4,12 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 5;
+const VERSION = 6;
+
+function version_6(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types ADD COLUMN footer_inc TINYINT(1) DEFAULT 0');
+}
 
 function version_5(PDO $pdo)
 {
