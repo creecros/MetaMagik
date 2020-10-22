@@ -79,6 +79,9 @@ class Plugin extends Base
         //java
         $this->hook->on('template:layout:js', array('template' => 'plugins/MetaMagik/Assets/js/meta-drag-and-drop.js'));
         
+        //css
+        $this->hook->on('template:layout:css', array('template' => 'plugins/MetaMagik/Assets/css/metamagik.css'));
+        
         //Roles
         $this->projectAccessMap->add('metadata', 'index', Role::PROJECT_MEMBER);
         $this->projectAccessMap->add('MetadataController', array('saveUser', 'saveTask', 'saveProject', 'removeUser', 'removeTask', 'removeProject', 'confirmUser', 'confirmTask', 'confirmProject', 'editUser', 'editTask', 'editProject'), Role::PROJECT_MEMBER);
@@ -120,7 +123,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.6';
+        return '1.4.7';
     }
 
     public function getPluginHomepage()

@@ -38,7 +38,7 @@
                          <?php if ($_SESSION['user']['role'] == 'app-admin'): ?>
                             <i class="fa fa-arrows-alt draggable-row-handle ui-sortable-handle" title="Change metadata position"></i>&nbsp;
                          <?php endif ?>
-                         <strong><?= $custom_field['human_name'] ?></strong></td>
+                         <strong><?= $custom_field['beauty_name'] ?></strong></td>
                 <?php if ($custom_field['data_type'] == 'textarea'): ?>
                   <td><?= $this->text->markdown($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) ?></td>
                 <?php else: ?>
