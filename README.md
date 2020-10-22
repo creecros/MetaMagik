@@ -45,6 +45,7 @@ Added Features:
 8. Can now set the column for the field to appear in, and placement is setup through drag and drop placement
 9. Field can be Global for all tasks, or for a particular Project only.
 10. Field types now include an option to add as a footer to the task cards in board view
+11. CSS added for metamagik Textarea fields and Footer Fields
 
 Original Features:
 ==================
