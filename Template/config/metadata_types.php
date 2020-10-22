@@ -18,7 +18,7 @@
 <form id="metadata-type-creation-form" method="post" action="<?= $this->url->href('MetadataTypesController', 'config', ['plugin' => 'MetaMagik']) ?>" autocomplete="off">
     <?= $this->form->label(t('Name'), 'human_name') ?>
     <?= $this->form->text('human_name', $values, $errors, ['required']) ?>
-
+    <p><?= e('You may not use spaces, but underscores will be converted to spaces for field labels, for those who care.') ?></p>
     <?= $this->form->label(t('Type'), 'data_type') ?>
     <?= $this->form->select('data_type', [
         ''        => '--',
@@ -87,6 +87,8 @@
             <th><?= t('Type') ?></th>
             <th><?= t('Options') ?></th>
             <th><?= t('Scope') ?></th>
+            <th><?= t('Required') ?></th>
+            <th><?= t('On Footer') ?></th>
             <th><?= t('Action') ?></th>
         </tr>
     </thead>
@@ -111,6 +113,8 @@
                 <td><?= $type['data_type'] ?></td>
                 <td><?= $type['options'] ?></td>
                 <td><?= $type['attached_to'] ?></td>
+                <td><?= $type['is_required'] ?></td>
+                <td><?= $type['footer_inc'] ?></td>
                 <td>
                     <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                 </td>

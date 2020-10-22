@@ -6,6 +6,7 @@ use Kanboard\Core\Base;
 use Kanboard\Model\UserModel;
 use Kanboard\Model\TaskFinderModel;
 
+
 /**
  * Meta helper
  * 
@@ -14,11 +15,19 @@ use Kanboard\Model\TaskFinderModel;
  */
 class MetaHelper extends Base
 {
+    
+    private function beautyName($human_name = '')
+    {
+        // Replace underscores with whitespaces
+        $beauty_name = preg_replace('/_/', ' ', $human_name);
 
+        return $beauty_name;
+    }
+    
     public function renderMetaTextField($key, $value, array $errors = array(), array $attributes = array())
     {
         $html = "";
-        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->label($this->beautyName($key), 'metamagikkey_' . $key);
         $html .= $this->helper->form->text('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
         return $html;
     }
@@ -26,15 +35,15 @@ class MetaHelper extends Base
     public function renderMetaTextAreaField($key, $value, array $errors = array(), array $attributes = array())
     {
         $html = "";
-        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
-        $html .= $this->helper->form->textarea('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes);
+        $html .= $this->helper->form->label($this->beautyName($key), 'metamagikkey_' . $key);
+        $html .= $this->helper->form->textarea('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'metamagik-form-textarea');
         return $html;
     }
     
     public function renderDateField($key, $value, array $errors = array(), array $attributes = array())
     {
         $html = "";
-        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->label($this->beautyName($key), 'metamagikkey_' . $key);
         $html .= $this->helper->form->input('date', 'metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
         return $html;
     }
@@ -42,7 +51,7 @@ class MetaHelper extends Base
     public function renderMetaNumberField($key, $value, array $errors = array(), array $attributes = array())
     {
         $html = "";
-        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->label($this->beautyName($key), 'metamagikkey_' . $key);
         $html .= $this->helper->form->number('metamagikkey_' . $key, ['metamagikkey_' . $key => $value], $errors, $attributes, 'form-input-small');
         return $html;
     }
@@ -66,7 +75,7 @@ class MetaHelper extends Base
         }
         
         $html = "";
-        $html .= $this->helper->form->label($key, 'metamagikkey_' . $key);
+        $html .= $this->helper->form->label($this->beautyName($key), 'metamagikkey_' . $key);
 
         switch ($type){
             case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, $values); break;

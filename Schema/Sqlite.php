@@ -4,7 +4,19 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 6;
+const VERSION = 7;
+
+function version_7(PDO $pdo)
+{
+    $pdo->exec("ALTER TABLE metadata_types ADD COLUMN beauty_name VARCHAR(255) NOT NULL DEFAULT ''");
+    $urq = $pdo->prepare('UPDATE metadata_types SET beauty_name=? WHERE id=?');
+    $rq = $pdo->prepare('SELECT * FROM metadata_types ORDER BY id ASC');
+    $rq->execute();
+    foreach ($rq->fetchAll(PDO::FETCH_ASSOC) as $metadata_types) {
+        $urq->execute(array(preg_replace('/_/', ' ', $metadata_types['human_name']), $metadata_types['id']));
+    }
+
+}
 
 function version_6(PDO $pdo)
 {

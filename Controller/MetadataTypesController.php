@@ -29,7 +29,9 @@ class MetadataTypesController extends BaseController
             if (!$validation_errors) {
                 $values['human_name'] = $this->fixHumanName($values['human_name']); 
                 $machine_name = $this->createMachineName($values['human_name']);
+                $beauty_name = $this->beautyName($values['human_name']);
                 $values['machine_name'] = $machine_name;
+                $values['beauty_name'] = $beauty_name;
                 $type_id = $this->db->table(MetadataTypeModel::TABLE)->persist($values);
                 if ($type_id) {
                     $this->flash->success(t('Metadata type created successfully.'));
@@ -85,7 +87,7 @@ class MetadataTypesController extends BaseController
 
         return empty($errors) ? false : $errors;
     }
-
+    
     /**
      * Create a machine name of the metadata type
      * from the friendly name inserted by the user.
@@ -105,6 +107,22 @@ class MetadataTypesController extends BaseController
         $machine_name = preg_replace('/[\s]/', '_', $machine_name);
 
         return $machine_name;
+    }
+    
+    /**
+     * Create a beautiful name of the metadata type
+     * from the human name inserted by the user.
+     *
+     * @param string $human_name The human name of the metadata type
+     *
+     * @return string
+     */
+    private function beautyName($human_name = '')
+    {
+        // Replace underscores with whitespaces
+        $beauty_name = preg_replace('/_/', ' ', $human_name);
+
+        return $beauty_name;
     }
     
     private function fixHumanName($human_name = '')
