@@ -93,6 +93,13 @@ class MetadataTypeModel extends Base
             ->findAllByColumn('attached_to');
     }  
     
+    public function getReqs()
+    {
+        return $this->db->table(self::TABLE)
+            ->eq('is_required', true)
+            ->findAllByColumn('human_name');
+    }  
+    
     public function changePosition($id, $position, $column_number)
     {
 

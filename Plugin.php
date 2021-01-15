@@ -11,6 +11,7 @@ use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskProjectDuplicationModel;
+use Kanboard\Plugin\MetaMagik\Validator\NewTaskValidator;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
@@ -39,6 +40,9 @@ class Plugin extends Base
         });        
         $this->container['taskProjectDuplicationModel'] = $this->container->factory(function ($c) {
             return new NewTaskProjectDuplicationModel($c);
+        });
+        $this->container['taskValidator'] = $this->container->factory(function ($c) {
+            return new NewTaskValidator($c);
         });
         
         //Project
@@ -123,7 +127,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.7';
+        return '1.4.8';
     }
 
     public function getPluginHomepage()

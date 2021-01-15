@@ -170,9 +170,11 @@ class MetaHelper extends Base
                 $opt_explode = explode(',', $setting['options']);
                 $html .= $this->renderMetaListField($key, $values, $opt_explode, $setting['data_type'], $errors, $new_attributes);
             }
+            
         }
-
+        
         return $html;
     }
+
 
 }
