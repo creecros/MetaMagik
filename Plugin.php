@@ -44,7 +44,7 @@ class Plugin extends Base
         $this->container['taskValidator'] = $this->container->factory(function ($c) {
             return new NewTaskValidator($c);
         });
-        
+
         //Project
         $this->template->hook->attach('template:project:sidebar', 'metaMagik:project/sidebar');
 
@@ -57,7 +57,6 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:form:third-column', 'metaMagik:task/rendermeta3');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         
-        $this->template->setTemplateOverride('project_header/dropdown', 'metaMagik:project_header/dropdown');
         $this->template->setTemplateOverride('export/tasks', 'metaMagik:export/tasks');
         
         //Routes
@@ -127,7 +126,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.8';
+        return '1.4.9';
     }
 
     public function getPluginHomepage()
