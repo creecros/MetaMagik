@@ -8,15 +8,15 @@ use Kanboard\Plugin\MetaMagik\Analytics\CustomFieldAnalytics;
 use Kanboard\Controller\BaseController;
 
 /**
- * Project Analytic Controller
+ * Custom Field Analytic Controller
  *
- * @package  Kanboard\Controller
- * @author   Frederic Guillot
+ * @package  MetaMagik
+ * @author   Craig Crosby
  */
 class AnalyticExtensionController extends BaseController
 {
     /**
-     * Show tasks distribution graph
+     * Show custom field values as distribution graph
      *
      * @access public
      */
