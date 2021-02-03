@@ -11,6 +11,7 @@ use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskProjectDuplicationModel;
+use Kanboard\Plugin\MetaMagik\Analytics\CustomFieldAnalytics;
 use Kanboard\Plugin\MetaMagik\Validator\NewTaskValidator;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
@@ -56,6 +57,9 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:form:second-column', 'metaMagik:task/rendermeta2');
         $this->template->hook->attach('template:task:form:third-column', 'metaMagik:task/rendermeta3');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
+        $this->template->hook->attach('template:analytic:sidebar', 'metaMagik:analytic/layout_hook');
+        
+        
         
         $this->template->setTemplateOverride('export/tasks', 'metaMagik:export/tasks');
         
@@ -105,6 +109,9 @@ class Plugin extends Base
             ],
             'Plugin\MetaMagik\Export' => [
                 'MetaTaskExport',
+            ],
+            'Plugin\MetaMagik\Analytics' => [
+                'CustomFieldAnalytics',
             ],
         ];
     }
