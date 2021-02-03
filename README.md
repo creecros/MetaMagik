@@ -46,6 +46,7 @@ Added Features:
 9. Field can be Global for all tasks, or for a particular Project only.
 10. Field types now include an option to add as a footer to the task cards in board view
 11. CSS added for metamagik Textarea fields and Footer Fields
+12. Analytics for Custom Field Values of Number Type within a project
 
 Original Features:
 ==================
@@ -117,6 +118,11 @@ Export to CSV will include your custom fields and data during Task Export
 When fields are included as footers to task cards
 
 ![image](https://user-images.githubusercontent.com/26339368/96617808-16ce8f00-12d2-11eb-8a70-4ce542f7bd7a.png)
+
+Analytics for Custom Field Values within a Project, for Number Types
+
+![image](https://user-images.githubusercontent.com/26339368/106786225-4eacd880-661c-11eb-8dee-b7f09dfd261e.png)
+
 
 
 Credits
