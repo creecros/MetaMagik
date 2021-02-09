@@ -61,7 +61,11 @@ class CustomFieldAnalytics extends Base
         $metrics = array();
         $total = 0;
         $fields = $this->metadataTypeModel->getAllInScope($project_id);
-        $tasks = $this->getTasks($project_id, $from, $to);
+        
+        $newfrom = $this->dateParser->getTimestamp($from." 00:00");
+        $newto = $this->dateParser->getTimestamp($to." 23:59");
+        
+        $tasks = $this->getTasks($project_id, $newfrom, $newto);
 
         foreach ($fields as $field) {
             
