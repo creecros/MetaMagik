@@ -111,8 +111,8 @@ class CustomFieldAnalytics extends Base
         return $this->db
             ->table(TaskModel::TABLE)
             ->eq('project_id', $project_id)
-            ->gte('date_creation', strtotime($from))
-            ->lte('date_creation', strtotime($to))
+            ->gte('date_creation', $from)
+            ->lte('date_creation', $to)
             ->asc('id')
             ->findAll();
     }
