@@ -93,9 +93,13 @@ class MetadataTypeModel extends Base
             ->findAllByColumn('attached_to');
     }  
     
-    public function getReqs()
+    public function getReqs($scope)
     {
         return $this->db->table(self::TABLE)
+            ->beginOr()
+            ->eq('attached_to', 0)
+            ->eq('attached_to', $scope)
+            ->closeOr()
             ->eq('is_required', true)
             ->findAllByColumn('human_name');
     }  

@@ -80,7 +80,7 @@ class NewTaskValidator extends BaseValidator
             new Validators\Required('title', t('The title is required')),
         );
         
-        $metaReqs = $this->metadataTypeModel->getReqs();
+        $metaReqs = $this->metadataTypeModel->getReqs($values['project_id']);
         
         foreach ($metaReqs as $req) {
             $rules = array_merge($rules, array(
