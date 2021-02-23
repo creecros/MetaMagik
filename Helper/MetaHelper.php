@@ -135,7 +135,7 @@ class MetaHelper extends Base
         foreach ($metasettings as $setting) {
             $key = $setting['human_name'];
             if (isset($values['id']) && $setting['data_type'] !== 'check') {
-                if (isset($metadata[$key])) { $values['metamagikkey_' . $key] = $metadata[$key]; }
+                if (isset($metadata[$key]) && !$this->valueCheck($key, $values)) { $values['metamagikkey_' . $key] = $metadata[$key]; }
             } elseif (isset($values['id']) && $setting['data_type'] == 'check') {
                 if (isset($metadata[$key])) {
                     $wtf = explode(',', $metadata[$key]);
@@ -151,12 +151,20 @@ class MetaHelper extends Base
                 $new_attributes['required'] = "required";
             }
             if ($setting['data_type'] == 'text') {
+                ($this->valueCheck($key, $values)) ?
+                $html .= $this->renderMetaTextField($key, $values['metamagikkey_'.$key], $errors, $new_attributes):
                 $html .= $this->renderMetaTextField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'textarea') {
+                ($this->valueCheck($key, $values)) ?
+                $html .= $this->renderMetaTextAreaField($key, $values['metamagikkey_'.$key], $errors, $new_attributes):
                 $html .= $this->renderMetaTextAreaField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'number') {
+                ($this->valueCheck($key, $values)) ?
+                $html .= $this->renderMetaNumberField($key, $values['metamagikkey_'.$key], $errors, $new_attributes):
                 $html .= $this->renderMetaNumberField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } elseif ($setting['data_type'] == 'date') {
+                ($this->valueCheck($key, $values)) ?
+                $html .= $this->renderDateField($key, $values['metamagikkey_'.$key], $errors, $new_attributes):
                 $html .= $this->renderDateField($key, isset($metadata[$key]) ? $metadata[$key] : "", $errors, $new_attributes);
             } else if ($setting['data_type'] == 'table') {
                 $opt_explode = explode(',', $setting['options']);
@@ -174,6 +182,12 @@ class MetaHelper extends Base
         }
         
         return $html;
+    }
+    
+    private function valueCheck($key, $values) {
+        
+        return array_key_exists('metamagikkey_' . $key, $values);
+        
     }
 
 

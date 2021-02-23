@@ -133,7 +133,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.4.13';
+        return '1.4.14';
     }
 
     public function getPluginHomepage()
