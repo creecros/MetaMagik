@@ -81,7 +81,14 @@ class MetaHelper extends Base
             case "radio": $html .= $this->helper->form->radios('metamagikkey_' . $key, $map_list, $values); break;
             case "list": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, $values, $errors, $attributes, 'form-input-small'); break;
             case "kvlist": $html .= $this->helper->form->select('metamagikkey_' . $key, $map_list, $values, $errors, $attributes, 'form-input-small'); break;
-            case "check": $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $map_list, $values); break;
+            case "check": 
+                if ($this->valueCheck($key, $values)) { 
+                    $values['metamagikkey_' . $key . '[]'] = array();
+                    foreach($values['metamagikkey_' . $key] as $reformatted_key => $value) {
+                        foreach($value as $v) { $values['metamagikkey_' . $key . '[]'][$v] = $v; }
+                    }
+                }
+                $html .= $this->helper->form->checkboxes('metamagikkey_' . $key . '[]', $map_list, $values); break;
         }
 
         return $html;
