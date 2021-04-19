@@ -39,6 +39,16 @@ class MetadataTypeModel extends Base
             ->findOne();
     }
     
+    public function checkName($name, $id)
+    {
+        $test = $this->db->table(self::TABLE)
+            ->neq('id', $id)
+            ->eq('human_name', $name)
+            ->findAll();
+            
+        if (isset($test)) {return true;} else {return false;}
+    }
+    
     
     /**
      * Return all metadata types in scope.

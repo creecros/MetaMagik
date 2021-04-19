@@ -73,21 +73,26 @@ class MetadataTypesController extends BaseController
                 $beauty_name = $this->beautyName($values['human_name']);
                 $values['machine_name'] = $machine_name;
                 $values['beauty_name'] = $beauty_name;
-                $this->db->table(MetadataTypeModel::TABLE)
-                    ->eq('id', $values['id'])
-                    ->update(['human_name' => $values['human_name'],
-                    'beauty_name' => $values['machine_name'],
-                    'machine_name' => $values['beauty_name'],
-                    'is_required' => $values['is_required'],
-                    'data_type' => $values['data_type'],
-                    'attached_to' => $values['attached_to'],
-                    'footer_inc' => $values['footer_inc'],
-                    'options' => $values['options']
-                    ]);
-                $table = 'task_has_metadata';
-                $this->db->table(MetadataExtendModel::TABLE)
-                    ->eq('name', $values['old_name'])
-                    ->update(['name' => $values['human_name']]);
+                $check = $this->metadataTypeModel->checkName($values['human_name'], $values['id']);
+                if ($check) {
+                    $this->db->table(MetadataTypeModel::TABLE)
+                        ->eq('id', $values['id'])
+                        ->update(['human_name' => $values['human_name'],
+                        'beauty_name' => $values['machine_name'],
+                        'machine_name' => $values['beauty_name'],
+                        'is_required' => $values['is_required'],
+                        'data_type' => $values['data_type'],
+                        'attached_to' => $values['attached_to'],
+                        'footer_inc' => $values['footer_inc'],
+                        'options' => $values['options']
+                        ]);
+                    $table = 'task_has_metadata';
+                    $this->db->table(MetadataExtendModel::TABLE)
+                        ->eq('name', $values['old_name'])
+                        ->update(['name' => $values['human_name']]);
+                } else {
+                    $this->flash->failure(t('Error saving the metadata type. Retry.'));
+                }
             } else {
                 $errors = $validation_errors;
                 $this->flash->failure(t('There are errors in your submission.'));
