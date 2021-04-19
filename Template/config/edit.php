@@ -23,6 +23,7 @@
     <?= $this->form->text('options', $values, $errors) ?>
     <p><?= e('Example: <code>value1,value2,value3</code> for list types. For Key-value from DB: <code>tablename,keycolumn,valuecolumn</code>.') ?></p>
     <p><?= e('Example: For Column from DB, based on equals Criteria: <code>tablename,criteria_column,criteria,value_column</code>.') ?></p>
+    <p><?= e('Example: For Numbers, anything in the Options field will show up before the value, for instance, to add a dollar sign before the number.') ?></p>
 
     <?= $this->form->label(t('Column'), 'column_number') ?>
     <?= $this->form->select('column_number', [
