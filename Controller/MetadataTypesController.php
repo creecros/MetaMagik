@@ -4,6 +4,7 @@ namespace Kanboard\Plugin\MetaMagik\Controller;
 
 use Kanboard\Controller\BaseController;
 use Kanboard\Plugin\MetaMagik\Model\MetadataTypeModel;
+use Kanboard\Plugin\MetaMagik\Model\MetadataExtendModel;
 
 /**
  * Class MetadataTypes.
@@ -52,6 +53,51 @@ class MetadataTypesController extends BaseController
             'types'  => $metadataTypes,
             'title'  => t('Settings').' &gt; '.t('Custom Fields'),
         ]));
+    }
+
+    public function updateType()
+    {
+        $errors = [];
+        $values = [];
+
+        if ($this->request->isPost()) {
+            $values = $this->request->getValues();
+            if (!isset($values['is_required'])) { $values['is_required'] = 0; }
+            if (!isset($values['footer_inc'])) { $values['footer_inc'] = 0; }
+
+            $validation_errors = $this->validateValues($values);
+
+            if (!$validation_errors) {
+                $values['human_name'] = $this->fixHumanName($values['human_name']); 
+                $machine_name = $this->createMachineName($values['human_name']);
+                $beauty_name = $this->beautyName($values['human_name']);
+                $values['machine_name'] = $machine_name;
+                $values['beauty_name'] = $beauty_name;
+                $this->db->table(MetadataTypeModel::TABLE)
+                    ->eq('id', $values['id'])
+                    ->update(['human_name' => $values['human_name'],
+                    'beauty_name' => $values['machine_name'],
+                    'machine_name' => $values['beauty_name'],
+                    'is_required' => $values['is_required'],
+                    'data_type' => $values['data_type'],
+                    'attached_to' => $values['attached_to'],
+                    'footer_inc' => $values['footer_inc'],
+                    'options' => $values['options']
+                    ]);
+                $table = 'task_has_metadata';
+                $this->db->table(MetadataExtendModel::TABLE)
+                    ->eq('name', $values['old_name'])
+                    ->update(['name' => $values['human_name']]);
+            } else {
+                $errors = $validation_errors;
+                $this->flash->failure(t('There are errors in your submission.'));
+            }
+        }
+
+        $metadataTypes = $this->metadataTypeModel->getAll();
+        
+        $this->response->redirect($this->helper->url->to('MetadataTypesController', 'config', ['plugin' => 'MetaMagik']));
+
     }
 
     /**
@@ -142,6 +188,19 @@ class MetadataTypesController extends BaseController
         $key = $this->request->getStringParam('key');
         $this->response->html($this->template->render('metaMagik:config/remove', [
                     'key'     => $key,
+        ]));
+    }
+    
+    public function editType()
+    {
+        $key = $this->request->getStringParam('key');
+        $errors = [];
+        $values = $this->metadataTypeModel->getType($key);
+
+        $this->response->html($this->helper->layout->config('MetaMagik:config/edit', [
+            'errors' => $errors,
+            'values'  => $values,
+            'title'  => t('Settings').' &gt; '.t('Custom Fields'),
         ]));
     }
     

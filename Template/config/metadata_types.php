@@ -117,6 +117,7 @@
                 <td><?= $type['footer_inc'] ?></td>
                 <td>
                     <?= $this->modal->small('remove', t('Remove'), 'MetadataTypesController', 'confirmTask', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
+                    <?= $this->modal->small('edit', t('Edit'), 'MetadataTypesController', 'editType', ['plugin' => 'metaMagik', 'key' => $key], false, 'popover') ?>
                 </td>
             </tr>
         <?php endif ?>

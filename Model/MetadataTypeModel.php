@@ -7,7 +7,6 @@ use Kanboard\Core\Base;
 /**
  * Class Kanboard\Plugin\MetaMagik\Model;
  *
- * @author Daniele Lenares <daniele.lenares@gmail.com>
  * @author Craig Crosby <creecros@gmail.com>
  */
 class MetadataTypeModel extends Base
@@ -32,6 +31,14 @@ class MetadataTypeModel extends Base
 
         return $metadataTypes;
     }
+    
+    public function getType($id)
+    {
+        return $this->db->table(self::TABLE)
+            ->eq('id', $id)
+            ->findOne();
+    }
+    
     
     /**
      * Return all metadata types in scope.
@@ -71,6 +78,7 @@ class MetadataTypeModel extends Base
             ->eq('id', $id)
             ->remove();
     }
+    
     
     public function existsInTask($task_id)
     {
