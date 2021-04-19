@@ -78,8 +78,8 @@ class MetadataTypesController extends BaseController
                     $this->db->table(MetadataTypeModel::TABLE)
                         ->eq('id', $values['id'])
                         ->update(['human_name' => $values['human_name'],
-                        'beauty_name' => $values['machine_name'],
-                        'machine_name' => $values['beauty_name'],
+                        'beauty_name' => $values['beauty_name'],
+                        'machine_name' => $values['machine_name'],
                         'is_required' => $values['is_required'],
                         'data_type' => $values['data_type'],
                         'attached_to' => $values['attached_to'],

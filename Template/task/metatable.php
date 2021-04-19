@@ -41,6 +41,8 @@
                          <strong><?= $custom_field['beauty_name'] ?></strong></td>
                 <?php if ($custom_field['data_type'] == 'textarea'): ?>
                   <td><?= $this->text->markdown($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) ?></td>
+                <?php elseif ($custom_field['data_type'] == 'number'): ?>
+                  <td><?= $custom_field['options'].$this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
                 <?php else: ?>
                   <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
                 <?php endif ?>
