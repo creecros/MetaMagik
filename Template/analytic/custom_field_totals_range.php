@@ -35,7 +35,7 @@
                 <?= $this->text->e($metric['column_title']) ?>
             </td>
             <td>
-                <?= $metric['nb_tasks'] ?>
+                <?= $metric['append'].$metric['nb_tasks'] ?>
             </td>
             <td>
                 <?= n($metric['percentage']) ?>%

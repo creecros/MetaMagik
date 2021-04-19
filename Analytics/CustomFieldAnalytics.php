@@ -40,6 +40,7 @@ class CustomFieldAnalytics extends Base
                 $metrics[] = array(
                     'column_title' => $field['human_name'],
                     'nb_tasks' => $field_total,
+                    'append' => $field['options'],
                 );
             }
             
@@ -83,6 +84,7 @@ class CustomFieldAnalytics extends Base
                 $metrics[] = array(
                     'column_title' => $field['human_name'],
                     'nb_tasks' => $field_total,
+                    'append' => $field['options'],
                 );
             }
             
