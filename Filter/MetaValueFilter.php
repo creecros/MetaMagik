@@ -66,7 +66,7 @@ class MetaValueFilter extends BaseFilter implements FilterInterface
             
         $task_ids = $metafield;
 
-        return $this->query->in(TaskModel::TABLE.'.id', $task_ids);
+        if (isset($task_ids) && !empty($task_ids)) { return $this->query->in(TaskModel::TABLE.'.id', $task_ids); } else { return $this->query->in(TaskModel::TABLE.'.id', [0]); }
 
     }
 }
