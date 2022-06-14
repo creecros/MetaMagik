@@ -2,6 +2,10 @@
 
 /*------ PAGE HEADER ------*/
 
-.metamagik-form-textarea {
+.task-form-main-column .metamagik-form-textarea {
+    width:700px;
+}
+
+.task-form-secondary-column .metamagik-form-textarea {
     width:auto;
 }
