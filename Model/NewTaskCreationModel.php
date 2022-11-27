@@ -31,6 +31,7 @@ class NewTaskCreationModel extends Base
         $tags = array();
         $metaholder = array();
         
+        $origValues = array_merge(array(), $values);
         
         if (isset($values['tags'])) {
             $tags = $values['tags'];
@@ -46,7 +47,7 @@ class NewTaskCreationModel extends Base
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
         
-        $values = array_merge($values, $metaholder);
+        $values = $origValues;
         
         if ($task_id !== false) {
             if ($position > 0 && $values['position'] > 1) {
@@ -63,7 +64,7 @@ class NewTaskCreationModel extends Base
                 $task_id,
                 array(TaskModel::EVENT_CREATE_UPDATE, TaskModel::EVENT_CREATE),
                 array(),
-                $values
+                $origValues
                 ));
         }
         
