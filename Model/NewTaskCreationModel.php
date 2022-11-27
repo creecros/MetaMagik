@@ -30,8 +30,8 @@ class NewTaskCreationModel extends Base
         $position = empty($values['position']) ? 0 : $values['position'];
         $tags = array();
         $metaholder = array();
-
-
+        
+        
         if (isset($values['tags'])) {
             $tags = $values['tags'];
             unset($values['tags']);
@@ -45,29 +45,33 @@ class NewTaskCreationModel extends Base
         
         $this->prepare($values);
         $task_id = $this->db->table(TaskModel::TABLE)->persist($values);
-
-
+        
+        $values = array_merge($values, $metaholder);
+        
         if ($task_id !== false) {
             if ($position > 0 && $values['position'] > 1) {
                 $this->taskPositionModel->movePosition($values['project_id'], $task_id, $values['column_id'], $position, $values['swimlane_id'], false);
             }
-
+            
             if (! empty($tags)) {
                 $this->taskTagModel->save($values['project_id'], $task_id, $tags);
             }
-
+            
+            $this->createMeta($metaholder, $task_id);
+            
             $this->queueManager->push($this->taskEventJob->withParams(
                 $task_id,
-                array(TaskModel::EVENT_CREATE_UPDATE, TaskModel::EVENT_CREATE)
-            ));
+                array(TaskModel::EVENT_CREATE_UPDATE, TaskModel::EVENT_CREATE),
+                array(),
+                $values
+                ));
         }
-
-        $this->createMeta($metaholder, $task_id);
+        
         $this->hook->reference('model:task:creation:aftersave', $task_id);
-
+        
         return (int) $task_id;
     }
-
+    
     /**
      * Prepare data
      *
@@ -78,32 +82,32 @@ class NewTaskCreationModel extends Base
     {
         $values = $this->dateParser->convert($values, array('date_due'), true);
         $values = $this->dateParser->convert($values, array('date_started'), true);
-
+        
         $this->helper->model->removeFields($values, array('another_task', 'duplicate_multiple_projects'));
         $this->helper->model->resetFields($values, array('creator_id', 'owner_id', 'date_due', 'date_started', 'score', 'category_id', 'time_estimated', 'time_spent'));
-
+        
         if (empty($values['column_id'])) {
             $values['column_id'] = $this->columnModel->getFirstColumnId($values['project_id']);
         }
-
+        
         if (empty($values['color_id'])) {
             $values['color_id'] = $this->colorModel->getDefaultColor();
         }
-
+        
         if (empty($values['title'])) {
             $values['title'] = t('Untitled');
         }
-
+        
         if ($this->userSession->isLogged()) {
             $values['creator_id'] = $this->userSession->getId();
         }
-
+        
         $values['swimlane_id'] = empty($values['swimlane_id']) ? $this->swimlaneModel->getFirstActiveSwimlaneId($values['project_id']) : $values['swimlane_id'];
         $values['date_creation'] = time();
         $values['date_modification'] = $values['date_creation'];
         $values['date_moved'] = $values['date_creation'];
         $values['position'] = $this->taskFinderModel->countByColumnAndSwimlaneId($values['project_id'], $values['column_id'], $values['swimlane_id']) + 1;
-
+        
         $this->hook->reference('model:task:creation:prepare', $values);
     }
     
@@ -125,31 +129,31 @@ class NewTaskCreationModel extends Base
         $metadoublecheck = $this->metadataTypeModel->getAll();
         foreach ($metadoublecheck as $check) {
             $exists = array_key_exists('metamagikkey_' . $check['human_name'], $metaholder);
-            if (!$exists) { 
+            if (!$exists) {
                 $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $metaholder);
                 if (!$existsdoublecheck) { $metaholder['metamagikkey_' . $check['human_name']] = ''; }
             }
         }
         
         foreach ($metaholder as $key => $value) {
-                $realkey = str_replace('metamagikkey_', '', $key);
-                $keyval = $metaholder[$key];
-                if (empty($keyval)) { $keyval = ''; }
-                if (!is_array($keyval)) {
+            $realkey = str_replace('metamagikkey_', '', $key);
+            $keyval = $metaholder[$key];
+            if (empty($keyval)) { $keyval = ''; }
+            if (!is_array($keyval)) {
                 $this->taskMetadataModel->save($task_id, [$realkey => $keyval]);
                 unset($metaholder[$key]);
-                } else {
-                    $key_imploded = array();
-                    foreach ($keyval as $k => $v) {
+            } else {
+                $key_imploded = array();
+                foreach ($keyval as $k => $v) {
                     if ($v) { array_push($key_imploded, implode(',', $v)); }
-                    }
-                    $keys_extracted = implode(',', $key_imploded);
-                    if (empty($keys_extracted)) { $keys_extracted = ''; }
-                    $this->taskMetadataModel->save($task_id, [$realkey => $keys_extracted]);
-                    unset($metaholder[$key]);
                 }
+                $keys_extracted = implode(',', $key_imploded);
+                if (empty($keys_extracted)) { $keys_extracted = ''; }
+                $this->taskMetadataModel->save($task_id, [$realkey => $keys_extracted]);
+                unset($metaholder[$key]);
             }
-       
-                   
+        }
+        
+        
     }
 }
