@@ -1,5 +1,5 @@
 KB.on('dom.ready', function() {
-
+    
     function savePosition(metadataId, position, columnNumber) {
         var url = $(".metadata-table").data("save-position-url");
 
@@ -46,3 +46,5 @@ KB.on('dom.ready', function() {
         }
     }).disableSelection();
 });
+
+
