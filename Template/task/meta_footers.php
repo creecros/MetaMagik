@@ -10,6 +10,8 @@ if ($task['nb_metadata'] > 0):
                 <span class="metamagik-footer-value-md"><?= $this->text->markdown($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) ?></span>
                 <?php elseif ($custom_field['data_type'] == 'number'): ?>
                 <span class="metamagik-footer-value"><?= $custom_field['options'].$this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></span>
+                <?php elseif ($custom_field['data_type'] == 'date'): ?>
+                <span class="metamagik-footer-value"><input type="date" value="<?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?>" style="width:auto;border:none;background-color:transparent;" readonly /></span>
                 <?php else: ?>
                 <span class="metamagik-footer-value"><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></span>
                 <?php endif ?>
