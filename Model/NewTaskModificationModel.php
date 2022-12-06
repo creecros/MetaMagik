@@ -28,17 +28,24 @@ class NewTaskModificationModel extends Base
     public function update(array $values, $fire_events = true)
     {
         $task = $this->taskFinderModel->getById($values['id']);
-
+        
         $this->updateTags($values, $task);
-        if($this->checkKeys($values))$this->updateMeta($values, $task);
+        
         $this->prepare($values);
-        $result = $this->db->table(TaskModel::TABLE)->eq('id', $task['id'])->update($values);
-
-        if ($fire_events && $result) {
-            $this->fireEvents($task, $values);
-        }
-
-        return $result;
+        
+        $values = array_filter($values);
+        $origValues = array_merge(array(), $values);
+        
+        if($this->checkKeys($values))
+            $this->updateMeta($values, $task);
+            
+            $result = $this->db->table(TaskModel::TABLE)->eq('id', $task['id'])->update($values);
+            
+            if ($fire_events && $result) {
+                $this->fireEvents($task, $origValues);
+            }
+            
+            return $result;
     }
     
     /**
@@ -50,17 +57,17 @@ class NewTaskModificationModel extends Base
      */
     public function checkKeys($values)
     {
-    
+        
         if(count(preg_grep('/^metamagikkey[\d]*/', array_keys($values))) > 0)
         {
-           return true;
+            return true;
         }
         else
         {
-           return false;
+            return false;
         }
     }
-
+    
     /**
      * Fire events
      *
@@ -71,21 +78,21 @@ class NewTaskModificationModel extends Base
     protected function fireEvents(array $task, array $changes)
     {
         $events = array();
-
+        
         if ($this->isAssigneeChanged($task, $changes)) {
             $events[] = TaskModel::EVENT_ASSIGNEE_CHANGE;
         } elseif ($this->isModified($task, $changes)) {
             $events[] = TaskModel::EVENT_CREATE_UPDATE;
             $events[] = TaskModel::EVENT_UPDATE;
         }
-
+        
         if (! empty($events)) {
             $this->queueManager->push($this->taskEventJob
                 ->withParams($task['id'], $events, $changes, array(), $task)
-            );
+                );
         }
     }
-
+    
     /**
      * Return true if the task have been modified
      *
@@ -100,7 +107,7 @@ class NewTaskModificationModel extends Base
         unset($diff['date_modification']);
         return count($diff) > 0;
     }
-
+    
     /**
      * Return true if the field is the only modified value
      *
@@ -115,7 +122,7 @@ class NewTaskModificationModel extends Base
         unset($diff['date_modification']);
         return isset($changes['owner_id']) && $task['owner_id'] != $changes['owner_id'] && count($diff) === 1;
     }
-
+    
     /**
      * Prepare data before task modification
      *
@@ -126,16 +133,16 @@ class NewTaskModificationModel extends Base
     {
         $values = $this->dateParser->convert($values, array('date_due'), true);
         $values = $this->dateParser->convert($values, array('date_started'), true);
-
+        
         $this->helper->model->removeFields($values, array('id'));
         $this->helper->model->resetFields($values, array('date_due', 'date_started', 'score', 'category_id', 'time_estimated', 'time_spent'));
         $this->helper->model->convertIntegerFields($values, array('priority', 'is_active', 'recurrence_status', 'recurrence_trigger', 'recurrence_factor', 'recurrence_timeframe', 'recurrence_basedate'));
-
+        
         $values['date_modification'] = time();
-
+        
         $this->hook->reference('model:task:modification:prepare', $values);
     }
-
+    
     /**
      * Update tags
      *
@@ -154,9 +161,10 @@ class NewTaskModificationModel extends Base
     protected function updateMeta(array &$values, array $original_task)
     {
         $metadoublecheck = $this->metadataTypeModel->getAll();
+        
         foreach ($metadoublecheck as $check) {
             $exists = array_key_exists('metamagikkey_' . $check['human_name'], $values);
-            if (!$exists) { 
+            if (!$exists) {
                 $existsdoublecheck = array_key_exists('metamagikkey_' . $check['human_name'] . '[]', $values);
                 if (!$existsdoublecheck) { $values['metamagikkey_' . $check['human_name']] = ''; }
             }
@@ -171,12 +179,12 @@ class NewTaskModificationModel extends Base
                 $keyval = $values[$key];
                 if (empty($keyval)) { $keyval = ''; }
                 if (!is_array($keyval)) {
-                $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
-                unset($values[$key]);
+                    $this->taskMetadataModel->save($original_task['id'], [$realkey => $keyval]);
+                    unset($values[$key]);
                 } else {
                     $key_imploded = array();
                     foreach ($keyval as $k => $v) {
-                    if ($v) { array_push($key_imploded, implode(',', $v)); }
+                        if ($v) { array_push($key_imploded, implode(',', $v)); }
                     }
                     $keys_extracted = implode(',', $key_imploded);
                     if (empty($keys_extracted)) { $keys_extracted = ''; }
@@ -184,6 +192,6 @@ class NewTaskModificationModel extends Base
                     unset($values[$key]);
                 }
             }
-        }           
+        }
     }
 }
