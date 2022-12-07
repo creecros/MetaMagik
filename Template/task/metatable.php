@@ -44,7 +44,8 @@
                 <?php elseif ($custom_field['data_type'] == 'number'): ?>
                   <td><?= $custom_field['options'].$this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
                 <?php elseif ($custom_field['data_type'] == 'date'): ?>
-                  <td><input type="date" value="<?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?>" style="width:auto;border:none;" readonly /></td>
+                <?php $date = strtotime($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')); ?>
+                <td><?= $this->dt->date($date) ?></td>
                 <?php else: ?>
                   <td><?= $this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '') ?></td>
                 <?php endif ?>
