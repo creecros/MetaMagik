@@ -16,6 +16,8 @@ use Kanboard\Plugin\MetaMagik\Validator\NewTaskValidator;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
+use Kanboard\Plugin\MetaMagik\Api\Procedure\NewCreateTaskProcedure;
+
 
 class Plugin extends Base
 {
@@ -93,6 +95,10 @@ class Plugin extends Base
         $this->projectAccessMap->add('metadata', 'index', Role::PROJECT_MEMBER);
         $this->projectAccessMap->add('MetadataController', array('saveUser', 'saveTask', 'saveProject', 'removeUser', 'removeTask', 'removeProject', 'confirmUser', 'confirmTask', 'confirmProject', 'editUser', 'editTask', 'editProject'), Role::PROJECT_MEMBER);
         $this->projectAccessMap->add('MetadataTypesController', '*', Role::PROJECT_MEMBER);
+        
+        //API
+        $this->api->getProcedureHandler()->withClassAndMethod('createTaskMeta', new NewCreateTaskProcedure($this->container), 'createTaskMeta');
+
     }
 
     public function onStartup()

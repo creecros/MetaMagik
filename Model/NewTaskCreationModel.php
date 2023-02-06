@@ -25,7 +25,7 @@ class NewTaskCreationModel extends Base
      * @param  array    $values   Form values
      * @return integer
      */
-    public function create(array $values)
+    public function create(array $values, $api_request = false)
     {
         $position = empty($values['position']) ? 0 : $values['position'];
         $tags = array();
@@ -38,10 +38,13 @@ class NewTaskCreationModel extends Base
             unset($values['tags']);
         }
         
-        $metaholder = $this->hideMeta($values);
-        
-        foreach ($metaholder as $key => $value){
-            unset($values[$key]);
+        if (!$api_request) { 
+            
+            $metaholder = $this->hideMeta($values); 
+            
+            foreach ($metaholder as $key => $value){
+                unset($values[$key]);
+            }
         }
         
         $this->prepare($values);
@@ -58,7 +61,7 @@ class NewTaskCreationModel extends Base
                 $this->taskTagModel->save($values['project_id'], $task_id, $tags);
             }
             
-            $this->createMeta($metaholder, $task_id);
+            if (!$api_request) { $this->createMeta($metaholder, $task_id); }
             
             $this->queueManager->push($this->taskEventJob->withParams(
                 $task_id,
