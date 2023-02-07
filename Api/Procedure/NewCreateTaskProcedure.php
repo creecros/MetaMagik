@@ -3,7 +3,8 @@
 namespace Kanboard\Plugin\MetaMagik\Api\Procedure;
 
 use Kanboard\Api\Authorization\SubtaskAuthorization;
-use Kanboard\Api\Authorization\TaskAuthorization;
+use Kanboard\Api\Authorization\SubtaskAuthorization;
+use Kanboard\Api\Authorization\ProjectAuthorization;
 use Kanboard\Api\Procedure\BaseProcedure;
 use Kanboard\Filter\TaskProjectFilter;
 use Kanboard\Model\TaskModel;
