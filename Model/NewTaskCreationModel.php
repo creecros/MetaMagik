@@ -102,8 +102,8 @@ class NewTaskCreationModel extends Base
             $values['title'] = t('Untitled');
         }
         
-        if ($this->userSession->isLogged()) {
-            $values['creator_id'] = $this->userSession->getId();
+        if ($this->userSession->isLogged() && !empty($values['creator_id'])) {
+        $values['creator_id'] = $this->userSession->getId();
         }
         
         $values['swimlane_id'] = empty($values['swimlane_id']) ? $this->swimlaneModel->getFirstActiveSwimlaneId($values['project_id']) : $values['swimlane_id'];
