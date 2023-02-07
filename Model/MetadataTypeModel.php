@@ -67,6 +67,19 @@ class MetadataTypeModel extends Base
 
         return $metadataTypes;
     }
+    
+    public function getNameListInScope($scope)
+    {
+        $metadataTypes = $this->db->table(self::TABLE)
+            ->beginOr()
+            ->eq('attached_to', 0)
+            ->eq('attached_to', $scope)
+            ->closeOr()
+            ->asc('position')
+            ->findAllByColumn('human_name');
+
+        return array_combine($metadataTypes, $metadataTypes);
+    }
 
     public function getAllInColumn($column_number, $scope)
     {

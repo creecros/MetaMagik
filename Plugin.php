@@ -17,12 +17,15 @@ use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
 use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
 use Kanboard\Plugin\MetaMagik\Api\Procedure\NewCreateTaskProcedure;
+use Kanboard\Plugin\MetaMagik\Action\SetCustomField;
 
 
 class Plugin extends Base
 {
     public function initialize()
     {
+        $this->actionManager->register(new SetCustomField($this->container));
+
         //Helpers
         $this->helper->register('metaHelper', '\Kanboard\Plugin\MetaMagik\Helper\MetaHelper');
         
