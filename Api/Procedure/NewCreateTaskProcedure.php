@@ -11,7 +11,7 @@ use Kanboard\Model\TaskModel;
 
 
 /**
- * Subtask API controller
+ * CreateTask bypass Meta API controller
  *
  * @package  Kanboard\Plugin\MetaMagik
  * @author   Craig Crosby
@@ -24,7 +24,7 @@ class NewCreateTaskProcedure extends BaseProcedure
                                $recurrence_basedate = 0, $reference = '', array $tags = array(), $date_started = '',
                                $time_spent = null, $time_estimated = null)
     {
-        ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTask', $project_id);
+        ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTaskMeta', $project_id);
 
         if ($owner_id !== 0 && ! $this->projectPermissionModel->isAssignable($project_id, $owner_id)) {
             return false;
