@@ -33,7 +33,7 @@ class NewTaskModificationModel extends Base
         
         $this->prepare($values);
         
-        $values = array_filter($values);
+        //$values = array_filter($values);
         $origValues = array_merge(array(), $values);
         
         if($this->checkKeys($values))
