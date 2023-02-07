@@ -73,19 +73,21 @@ class NewTaskValidator extends BaseValidator
      * @param  array    $values           Form values
      * @return array    $valid, $errors   [0] = Success or not, [1] = List of errors
      */
-    public function validateCreation(array $values)
+    public function validateCreation(array $values, $from_api = false)
     {
         $rules = array(
             new Validators\Required('project_id', t('The project is required')),
             new Validators\Required('title', t('The title is required')),
         );
         
-        $metaReqs = $this->metadataTypeModel->getReqs($values['project_id']);
-        
-        foreach ($metaReqs as $req) {
-            $rules = array_merge($rules, array(
-                new Validators\Required('metamagikkey_' . $req, t('The field is required'))
-                ));
+        if (!$from_api) {
+            $metaReqs = $this->metadataTypeModel->getReqs($values['project_id']);
+            
+            foreach ($metaReqs as $req) {
+                $rules = array_merge($rules, array(
+                    new Validators\Required('metamagikkey_' . $req, t('The field is required'))
+                    ));
+            }
         }
 
         $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));

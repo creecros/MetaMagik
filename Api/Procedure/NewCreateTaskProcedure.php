@@ -8,6 +8,8 @@ use Kanboard\Api\Authorization\TaskAuthorization;
 use Kanboard\Api\Procedure\BaseProcedure;
 use Kanboard\Filter\TaskProjectFilter;
 use Kanboard\Model\TaskModel;
+use Kanboard\Model\ProjectPermissionModel;
+use Kanboard\Validator\TaskValidator;
 
 
 /**
@@ -27,6 +29,7 @@ class NewCreateTaskProcedure extends BaseProcedure
         ProjectAuthorization::getInstance($this->container)->check($this->getClassName(), 'createTaskMeta', $project_id);
 
         if ($owner_id !== 0 && ! $this->projectPermissionModel->isAssignable($project_id, $owner_id)) {
+            error_log('iwasfalse',0);
             return false;
         }
 
@@ -59,7 +62,7 @@ class NewCreateTaskProcedure extends BaseProcedure
             'time_estimated' => $time_estimated,
         );
 
-        list($valid, ) = $this->taskValidator->validateCreation($values);
+        list($valid, ) = $this->taskValidator->validateCreation($values, true);
 
         return $valid ? $this->taskCreationModel->create($values, true) : false;
     }
