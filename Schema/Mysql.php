@@ -4,7 +4,13 @@ namespace Kanboard\Plugin\MetaMagik\Schema;
 
 use PDO;
 
-const VERSION = 7;
+const VERSION = 8;
+
+function version_8(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE metadata_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+    $pdo->exec('ALTER TABLE metadata_has_type CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
+}
 
 function version_7(PDO $pdo)
 {
