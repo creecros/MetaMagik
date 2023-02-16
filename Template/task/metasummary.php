@@ -9,14 +9,15 @@ if (!$set):
 <?php else: ?>
 <details class="accordion-section" <?= empty($metadata) ? 'accordion-collapsed' : 'open' ?>>
 <summary class="accordion-title">
-        <?= t('Custom Fields') ?>
+        <h3><?= t('Custom Fields') ?></h3>
     </summary>
 <div class="accordion-content">
         <article class="markdown">
 		<?= $this->render('metaMagik:task/metatable', array(
             'custom_fields' => $custom_fields,
             'task' => $task,
-            'editable' => $edits
+            'editable' => $edits,
+            'printlayout' => (!isset($printlayout)) ? false : $printlayout
         )) ?>
 		</article>
 </div>

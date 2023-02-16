@@ -142,7 +142,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.5.3';
+        return '1.5.4';
     }
 
     public function getPluginHomepage()
