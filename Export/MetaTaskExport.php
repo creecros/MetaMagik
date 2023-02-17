@@ -177,7 +177,7 @@ class MetaTaskExport extends Base
         
         foreach ($custom_fields as $field) {
             if (!in_array($field, $meta_fields)) {
-                $metadata['$field'] = '';
+                $metadata[$field] = '';
             }
         }
         
