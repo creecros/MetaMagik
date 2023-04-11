@@ -102,7 +102,7 @@ class NewTaskCreationModel extends Base
             $values['title'] = t('Untitled');
         }
         
-        if ($this->userSession->isLogged() && !empty($values['creator_id'])) {
+        if ($this->userSession->isLogged() && empty($values['creator_id'])) {
         $values['creator_id'] = $this->userSession->getId();
         }
         
