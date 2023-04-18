@@ -9,8 +9,6 @@ use Kanboard\Plugin\MetaMagik\Export\MetaTaskExport;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskFinderModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskModificationModel;
 use Kanboard\Plugin\MetaMagik\Model\NewTaskCreationModel;
-use Kanboard\Plugin\MetaMagik\Model\NewTaskDuplicationModel;
-use Kanboard\Plugin\MetaMagik\Model\NewTaskProjectDuplicationModel;
 use Kanboard\Plugin\MetaMagik\Analytics\CustomFieldAnalytics;
 use Kanboard\Plugin\MetaMagik\Validator\NewTaskValidator;
 use Kanboard\Plugin\MetaMagik\Filter\MetaFieldFilter;
@@ -18,7 +16,6 @@ use Kanboard\Plugin\MetaMagik\Filter\MetaValueFilter;
 use Kanboard\Core\Security\Role;
 use Kanboard\Plugin\MetaMagik\Api\Procedure\NewCreateTaskProcedure;
 use Kanboard\Plugin\MetaMagik\Action\SetCustomField;
-
 
 class Plugin extends Base
 {
@@ -41,14 +38,18 @@ class Plugin extends Base
         $this->container['taskCreationModel'] = $this->container->factory(function ($c) {
             return new NewTaskCreationModel($c);
         });
-        $this->container['taskDuplicationModel'] = $this->container->factory(function ($c) {
-            return new NewTaskDuplicationModel($c);
-        });        
-        $this->container['taskProjectDuplicationModel'] = $this->container->factory(function ($c) {
-            return new NewTaskProjectDuplicationModel($c);
-        });
         $this->container['taskValidator'] = $this->container->factory(function ($c) {
             return new NewTaskValidator($c);
+        });
+
+        $this->hook->on('model:task:duplication:aftersave', function($hook_values) {
+            $meta = $this->taskMetadataModel->getAll($hook_values['source_task_id']);
+            foreach ($meta as $key => $value) { $this->taskMetadataModel->save($hook_values['destination_task_id'], [$key => $value]); }
+        });
+        
+        $this->hook->on('model:task:project_duplication:aftersave', function($hook_values) {
+            $meta = $this->taskMetadataModel->getAll($hook_values['source_task_id']);
+            foreach ($meta as $key => $value) { $this->taskMetadataModel->save($hook_values['destination_task_id'], [$key => $value]); }
         });
 
         //Project
@@ -63,9 +64,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:task:form:third-column', 'metaMagik:task/rendermeta3');
         $this->template->hook->attach('template:task:details:bottom', 'metaMagik:task/metasummary');
         $this->template->hook->attach('template:analytic:sidebar', 'metaMagik:analytic/layout_hook');
-        
-        
-        
+
         $this->template->setTemplateOverride('export/tasks', 'metaMagik:export/tasks');
         
         //Routes
@@ -101,7 +100,6 @@ class Plugin extends Base
         
         //API
         $this->api->getProcedureHandler()->withClassAndMethod('createTaskMeta', new NewCreateTaskProcedure($this->container), 'createTaskMeta');
-
     }
 
     public function onStartup()
@@ -142,7 +140,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.5.5';
+        return '1.5.6';
     }
 
     public function getPluginHomepage()
