@@ -38,7 +38,15 @@ class MetadataTypeModel extends Base
             ->eq('id', $id)
             ->findOne();
     }
-    
+
+    public function isTypeDate(string $name) : bool
+    {
+        $row = $this->db->table(self::TABLE)
+            ->eq('human_name', $name)
+            ->findOne();
+        return $row != null ? $row['data_type'] == 'date' : false;
+    }
+
     public function checkName($name, $id)
     {
         $test = $this->db->table(self::TABLE)
