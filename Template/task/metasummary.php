@@ -1,13 +1,12 @@
 <br><br>
 <?php 
-$metadata = $this->task->taskMetadataModel->getAll($task['id']);
 $custom_fields = $this->task->metadataTypeModel->getAllInScope($task['project_id']);
 $set = $this->task->metadataTypeModel->existsInTask($task['id']);
 if ($_SESSION['user']['role'] == 'app-admin') { $edits = true; } else { $edits = false; }
 if (!$set): 
 ?>
 <?php else: ?>
-<details class="accordion-section" <?= empty($metadata) ? 'accordion-collapsed' : 'open' ?>>
+<details class="accordion-section" <?= empty($custom_fields) ? 'accordion-collapsed' : 'open' ?>>
 <summary class="accordion-title">
         <h3><?= t('Custom Fields') ?></h3>
     </summary>
