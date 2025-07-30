@@ -67,8 +67,6 @@
             <tr class="disabled">
                 <td style="border: none"></td>
                 <td style="border: none"></td>
-                <td style="border: none"></td>
-                <td style="border: none"></td>
             </tr>
   <?php foreach ($custom_fields as $custom_field): ?>
         <?php if (!empty($this->task->taskMetadataModel->get($task['id'], $custom_field['human_name'], '')) && $custom_field['column_number'] == $i): ?>
