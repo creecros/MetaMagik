@@ -8,7 +8,7 @@ if (!$set):
 <?php else: ?>
 <details class="accordion-section" <?= empty($custom_fields) ? 'accordion-collapsed' : 'open' ?>>
 <summary class="accordion-title">
-        <h3><?= t('Custom Fields') ?></h3>
+        <?= t('Custom Fields') ?>
     </summary>
 <div class="accordion-content">
         <article class="markdown">
